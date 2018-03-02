@@ -19,14 +19,10 @@ namespace OpenFramework.Security
     using OpenFramework.DataAccess;
     using OpenFramework.Multilanguage;
 
-    /// <summary>
-    /// Implements user profile
-    /// </summary>
+    /// <summary>Implements user profile</summary>
     public sealed class UserProfile
     {
-        /// <summary>
-        /// Gets a empty instance of user profile
-        /// </summary>
+        /// <summary>Gets a empty instance of user profile</summary>
         public static UserProfile Empty
         {
             get
@@ -45,9 +41,7 @@ namespace OpenFramework.Security
             }
         }
 
-        /// <summary>
-        /// Gets all user profiles
-        /// </summary>
+        /// <summary>Gets all user profiles</summary>
         public static ReadOnlyCollection<UserProfile> All
         {
             get
@@ -120,49 +114,31 @@ namespace OpenFramework.Security
             }
         }
 
-        /// <summary>
-        /// Gets or sets user profile identifier
-        /// </summary>
+        /// <summary>Gets or sets user profile identifier</summary>
         public long Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets user identifier
-        /// </summary>
+        /// <summary>Gets or sets user identifier</summary>
         public long UserId { get; set; }
 
-        /// <summary>
-        /// Gets or sets job position of user
-        /// </summary>
+        /// <summary>Gets or sets job position of user</summary>
         public string JobPosition { get; set; }
 
-        /// <summary>
-        /// Gets or sets linkedIn profile
-        /// </summary>
+        /// <summary>Gets or sets linkedIn profile</summary>
         public string LinkedIn { get; set; }
 
-        /// <summary>
-        /// Gets or sets user phone
-        /// </summary>
+        /// <summary>Gets or sets user phone</summary>
         public string Phone { get; set; }
 
-        /// <summary>
-        /// Gets or sets user mobile number
-        /// </summary>
+        /// <summary>Gets or sets user mobile number</summary>
         public string Mobile { get; set; }
 
-        /// <summary>
-        /// Gets or sets user layout language
-        /// </summary>
+        /// <summary>Gets or sets user layout language</summary>
         public Language Language { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether user actives online help
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether user actives online help</summary>
         public bool ShowHelp { get; set; }
 
-        /// <summary>
-        /// Gets a JSON structure of user profile
-        /// </summary>
+        /// <summary>Gets a JSON structure of user profile</summary>
         public string Json
         {
             get
@@ -180,9 +156,7 @@ namespace OpenFramework.Security
             }
         }
 
-        /// <summary>
-        /// Gets a JSON list of user profiles
-        /// </summary>
+        /// <summary>Gets a JSON list of user profiles</summary>
         /// <param name="usersProfiles">List of profiles</param>
         /// <returns>A JSON list of user profiles</returns>
         public static string JsonList(ReadOnlyCollection<UserProfile> usersProfiles)
@@ -213,9 +187,7 @@ namespace OpenFramework.Security
             return res.ToString();
         }
 
-        /// <summary>
-        /// Gets profile by user identifier
-        /// </summary>
+        /// <summary>Gets profile by user identifier</summary>
         /// <param name="userId">User identifier</param>
         /// <returns>Profile of user</returns>
         public static UserProfile GetByUserId(long userId, string connectionString)

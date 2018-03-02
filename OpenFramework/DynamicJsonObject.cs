@@ -1,4 +1,10 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="DynamicJsonObject.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     using System;
     using System.Collections;
@@ -7,28 +13,20 @@
     using System.Linq;
     using System.Text;
 
-    /// <summary>
-    /// Implements DynamicJSONObject class
-    /// </summary>
+    /// <summary>Implements DynamicJSONObject class</summary>
     public sealed class DynamicJsonObject : DynamicObject
     {
-        /// <summary>
-        /// Data dictionary
-        /// </summary>
+        /// <summary>Data dictionary</summary>
         private readonly IDictionary<string, object> dictionary;
 
-        /// <summary>
-        /// Initializes a new instance of the DynamicJsonObject class
-        /// </summary>
+        /// <summary>Initializes a new instance of the DynamicJsonObject class</summary>
         /// <param name="dictionary">Dictionary of data</param>
         public DynamicJsonObject(IDictionary<string, object> dictionary)
         {
             this.dictionary = dictionary ?? throw new ArgumentNullException("dictionary");
         }
 
-        /// <summary>
-        /// Gets an string representation of object
-        /// </summary>
+        /// <summary>Gets an string representation of object</summary>
         /// <returns>String representation of object</returns>
         public override string ToString()
         {
@@ -37,9 +35,7 @@
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Try to get a member of object
-        /// </summary>
+        /// <summary>Try to get a member of object</summary>
         /// <param name="binder">Binder to members</param>
         /// <param name="result">Result to host value</param>
         /// <returns>A value indicating if actions is successful finished</returns>
@@ -62,9 +58,7 @@
             return true;
         }
 
-        /// <summary>
-        /// Try to get a member of object
-        /// </summary>
+        /// <summary>Try to get a member of object</summary>
         /// <param name="binder">Binder to members</param>
         /// <param name="indexes">Indexes of members</param>
         /// <param name="result">Result to host value</param>
@@ -93,9 +87,7 @@
             return base.TryGetIndex(binder, indexes, out result);
         }
 
-        /// <summary>
-        /// Creates a wrap for result
-        /// </summary>
+        /// <summary>Creates a wrap for result</summary>
         /// <param name="result">Result to wrap</param>
         /// <returns>Complete object</returns>
         private static object WrapResultObject(object result)
@@ -117,9 +109,7 @@
             return result;
         }
 
-        /// <summary>
-        /// Creates a string representations of object
-        /// </summary>
+        /// <summary>Creates a string representations of object</summary>
         /// <param name="sb">StringBuilder object that contains data</param>
         private void ToString(StringBuilder sb)
         {

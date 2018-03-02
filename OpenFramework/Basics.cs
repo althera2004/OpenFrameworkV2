@@ -1,4 +1,10 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="Basics.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     using System;
     using System.Data;
@@ -14,9 +20,7 @@
     using OpenFramework.Customer;
     using OpenFramework.Security;
 
-    /// <summary>
-    /// Implements auxiliary functions for framework
-    /// </summary>
+    /// <summary>Implements auxiliary functions for framework</summary>
     public static class Basics
     {
         public static CustomerFramework ActualInstance
@@ -1045,9 +1049,7 @@
             return res.ToString();
         }
 
-        /// <summary>
-        /// Get CSV format data from SQL command
-        /// </summary>
+        /// <summary>Get CSV format data from SQL command</summary>
         /// <param name="cmd">SQL command</param>
         /// <returns>Plain text in CSV format</returns>
         public static string SqlToCSV(SqlCommand cmd)

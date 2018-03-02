@@ -418,108 +418,8 @@ namespace OpenFramework.ItemManager
         [JsonProperty("CDNImageMark")]
         public string CDNImageMark { get; set; }
 
-        /// <summary>Sets format of column data</summary>
-        /// <param name="columnFormat">Column data format</param>
-        public void SetColumnDataFormat(ColumnDataFormat columnFormat)
-        {
-            this.columnDataFormat = columnFormat;
-        }
-
-        /// <summary>Sets text for field label</summary>
-        /// <param name="text">Text for field label</param>
-        public void SetLabel(string text)
-        {
-            this.label = text;
-        }
-
-        /// <summary>
-        /// Gets field value in order to insert in item trace
-        /// </summary>
-        /// <param name="value">Field value</param>
-        /// <returns>String representation of value</returns>
-        public string TraceValue(object value)
-        {
-            switch (this.DataType)
-            {
-                case FieldDataType.DateTime:
-                    DateTime dateValue = (DateTime)value;
-                    return string.Format(CultureInfo.InvariantCulture, "{0:dd/MM/yyyy}", dateValue);
-                case FieldDataType.Boolean:
-                    bool boolValue = (bool)value;
-                    return boolValue ? "true" : "false";
-                default:
-                    return value.ToString();
-            }
-        }
-
-        public static ItemField GetReferedField(ItemBuilder item, ItemField field)
-        {
-            if (field.Name.EndsWith("id", StringComparison.OrdinalIgnoreCase))
-            {
-                var foreignItem = field.Name.Substring(0, field.Name.Length - 2);
-                var foreingRelation = item.Definition.ForeignValues.Where(fv => fv.ItemName.Equals(foreignItem)).FirstOrDefault();
-                if (foreingRelation != null)
-                {
-                    ItemBuilder referedItem = new ItemBuilder(foreignItem, item.InstanceName);
-                    var descriptionField = referedItem.Definition.Layout.Description.Fields.First();
-                    var referedField = referedItem.Definition.Fields.Where(f => f.Name.Equals(descriptionField.Name, StringComparison.OrdinalIgnoreCase)).First();
-                    if (referedField != null)
-                    {
-                        return referedField;
-                    }
-                }
-            }
-
-            return null;
-        }
-
-        public string SqlFieldExtractorReplace(string replacedBy)
-        {
-            string res = string.Empty;
-            switch (this.DataType)
-            {
-                case FieldDataType.Integer:
-                case FieldDataType.Long:
-                case FieldDataType.Decimal:
-                case FieldDataType.Float:
-                case FieldDataType.NullableInteger:
-                case FieldDataType.NullableLong:
-                case FieldDataType.NullableDecimal:
-                case FieldDataType.NullableFloat:
-                    res = string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"'""{1}"":' + ISNULL(CAST(Item.{0} AS nvarchar(20)),'null') + ','",
-                        this.Name,
-                        replacedBy);
-                    break;
-                case FieldDataType.DateTime:
-                case FieldDataType.NullableDateTime:
-                    res = string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"'""{1}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0},102) + '""', 'null') + '"",')",
-                        this.Name,
-                        replacedBy);
-                    break;
-                case FieldDataType.Boolean:
-                case FieldDataType.NullableBoolean:
-                    res = string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"'""{1}"":' +  CASE WHEN Item.{0} = 1 THEN 'true' ELSE 'false' END + ','",
-                        this.Name,
-                        replacedBy);
-                    break;
-                default:
-                    res = string.Format(
-                        CultureInfo.InvariantCulture,
-                        @"'""{1}"":""' +  ISNULL(Item.{0},'') + '"",'",
-                        this.Name,
-                        replacedBy);
-                    break;
-            }
-
-            return res;
-        }
-
+        /// <summary>Gets SQL sentence to extract value of field and label</summary>
+        [JsonIgnore]
         public string SqlFieldExtractor
         {
             get
@@ -566,6 +466,8 @@ namespace OpenFramework.ItemManager
             }
         }
 
+        /// <summary>Gets part of SQL sentence to extract value of field</summary>
+        [JsonIgnore]
         public string SqlFieldExtractorValue
         {
             get
@@ -610,6 +512,115 @@ namespace OpenFramework.ItemManager
 
                 return res;
             }
+        }
+
+        /// <summary>Gets field refered by a foreign key</summary>
+        /// <param name="item">Item source</param>
+        /// <param name="field">Field source</param>
+        /// <returns>Field refered by a foreign key</returns>
+        public static ItemField GetReferedField(ItemBuilder item, ItemField field)
+        {
+            if (field.Name.EndsWith("id", StringComparison.OrdinalIgnoreCase))
+            {
+                var foreignItem = field.Name.Substring(0, field.Name.Length - 2);
+                var foreingRelation = item.Definition.ForeignValues.Where(fv => fv.ItemName.Equals(foreignItem)).FirstOrDefault();
+                if (foreingRelation != null)
+                {
+                    ItemBuilder referedItem = new ItemBuilder(foreignItem, item.InstanceName);
+                    var descriptionField = referedItem.Definition.Layout.Description.Fields.First();
+                    var referedField = referedItem.Definition.Fields.Where(f => f.Name.Equals(descriptionField.Name, StringComparison.OrdinalIgnoreCase)).First();
+                    if (referedField != null)
+                    {
+                        return referedField;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>Sets format of column data</summary>
+        /// <param name="columnFormat">Column data format</param>
+        public void SetColumnDataFormat(ColumnDataFormat columnFormat)
+        {
+            this.columnDataFormat = columnFormat;
+        }
+
+        /// <summary>Sets text for field label</summary>
+        /// <param name="text">Text for field label</param>
+        public void SetLabel(string text)
+        {
+            this.label = text;
+        }
+
+        /// <summary>
+        /// Gets field value in order to insert in item trace
+        /// </summary>
+        /// <param name="value">Field value</param>
+        /// <returns>String representation of value</returns>
+        public string TraceValue(object value)
+        {
+            switch (this.DataType)
+            {
+                case FieldDataType.DateTime:
+                    DateTime dateValue = (DateTime)value;
+                    return string.Format(CultureInfo.InvariantCulture, "{0:dd/MM/yyyy}", dateValue);
+                case FieldDataType.Boolean:
+                    bool boolValue = (bool)value;
+                    return boolValue ? "true" : "false";
+                default:
+                    return value.ToString();
+            }
+        }
+
+        /// <summary>Gets SQL sentence to extract value of field and label for ReplacedBy configuration</summary>
+        /// <param name="replacedBy">ReplacedBy value configuration</param>
+        /// <returns>SQL sentence to extract value of field and label for ReplacedBy configuration</returns>
+        public string SqlFieldExtractorReplace(string replacedBy)
+        {
+            string res = string.Empty;
+            switch (this.DataType)
+            {
+                case FieldDataType.Integer:
+                case FieldDataType.Long:
+                case FieldDataType.Decimal:
+                case FieldDataType.Float:
+                case FieldDataType.NullableInteger:
+                case FieldDataType.NullableLong:
+                case FieldDataType.NullableDecimal:
+                case FieldDataType.NullableFloat:
+                    res = string.Format(
+                        CultureInfo.InvariantCulture,
+                        @"'""{1}"":' + ISNULL(CAST(Item.{0} AS nvarchar(20)),'null') + ','",
+                        this.Name,
+                        replacedBy);
+                    break;
+                case FieldDataType.DateTime:
+                case FieldDataType.NullableDateTime:
+                    res = string.Format(
+                        CultureInfo.InvariantCulture,
+                        @"'""{1}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0},102) + '""', 'null') + '"",')",
+                        this.Name,
+                        replacedBy);
+                    break;
+                case FieldDataType.Boolean:
+                case FieldDataType.NullableBoolean:
+                    res = string.Format(
+                        CultureInfo.InvariantCulture,
+                        @"'""{1}"":' +  CASE WHEN Item.{0} = 1 THEN 'true' ELSE 'false' END + ','",
+                        this.Name,
+                        replacedBy);
+                    break;
+                default:
+                    res = string.Format(
+                        CultureInfo.InvariantCulture,
+                        @"'""{1}"":""' +  ISNULL(Item.{0},'') + '"",'",
+                        this.Name,
+                        replacedBy);
+                    break;
+            }
+
+            return res;
         }
     }
 }

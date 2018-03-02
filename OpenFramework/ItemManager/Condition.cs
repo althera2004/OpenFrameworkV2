@@ -1,12 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// --------------------------------
+// <copyright file="Condition.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
 namespace OpenFramework.ItemManager
 {
+    using System;
+    using Newtonsoft.Json;
+
     [Serializable]
     public sealed class Condition
     {

@@ -54,9 +54,7 @@ namespace OpenFramework.Security
             }
         }
 
-        /// <summary>
-        /// Gets a JSON structure of ItemGrant
-        /// </summary>
+        /// <summary>Gets a JSON structure of ItemGrant</summary>
         public string Json
         {
             get

@@ -8,9 +8,7 @@ namespace OpenFramework.ItemManager
 {
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Definition for item layout
-    /// </summary>
+    /// <summary>Definition for item layout</summary>
     public sealed class ItemDefinitionLayout
     {
         /// <summary>Edition type</summary>

@@ -12,9 +12,7 @@ namespace OpenFramework
     using System.Collections.Specialized;
     using System.Globalization;
 
-    /// <summary>
-    /// Implements encrypted query string
-    /// </summary>
+    /// <summary>Implements encrypted query string</summary>
     public struct CodedQuery
     {
         /// <summary>Encrypted data</summary>

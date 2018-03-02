@@ -11,23 +11,26 @@ namespace OpenFramework.Security
     using System.Collections.ObjectModel;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Web;
-    using OpenFramework.Core;
-    using OpenFramework.Core.Bindings;
-    using OpenFramework.DataAccess;
-    using OpenFramework.ItemManager;
     using System.Globalization;
     using System.Text;
+    using OpenFramework.DataAccess;
+    using OpenFramework.ItemManager;
 
     public class CompanyMemberShip
     {
         public ApplicationUser Member { get; set; }
+
         public ItemBuilder Company { get; set; }
+
         public ApplicationUser CreatedBy { get; set; }
+
         public ApplicationUser ModifiedBy { get; set; }
+
         public DateTime ModifiedOn { get; set; }
+
         public DateTime CreatedOn { get; set; }
-        public bool Active;
+
+        public bool Active { get; set; }
 
         public static CompanyMemberShip Empty(string multipleCompanyItem,string instanceName)
         {

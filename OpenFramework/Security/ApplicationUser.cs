@@ -20,9 +20,7 @@ namespace OpenFramework.Security
     using OpenFramework.Core;
     using OpenFramework.Customer;
 
-    /// <summary>
-    /// Implements class to manage application user
-    /// </summary>
+    /// <summary>Implements class to manage application user</summary>
     public sealed class ApplicationUser
     {
         private const string OpenFrameworkMail = "openframework@openframework.es";

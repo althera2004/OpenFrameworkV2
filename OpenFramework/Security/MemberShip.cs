@@ -14,14 +14,10 @@ namespace OpenFramework.Core.Security
     using System.Globalization;
     using System.Web;
 
-    /// <summary>
-    /// Implements security groups membership
-    /// </summary>
+    /// <summary>Implements security groups membership</summary>
     public sealed class Membership
     {
-        /// <summary>
-        /// Gets all memberships
-        /// </summary>
+        /// <summary>Gets all memberships</summary>
         public static ReadOnlyCollection<Membership> All(string instanceName, string connectionString)
         {
             string source = string.Format(CultureInfo.InvariantCulture, "MemeberShip::All==>{0}", instanceName);

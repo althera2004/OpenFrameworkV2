@@ -1,12 +1,13 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// --------------------------------
+// <copyright file="Test.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón -  jcastilla@sbrinna.com</author>
+// --------------------------------
 namespace OpenFramework.ItemManager
 {
+    using Newtonsoft.Json;
+
     public static class Test
     {
         public static ItemDefinition TestItemDefinitionFromJson()

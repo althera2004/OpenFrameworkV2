@@ -1,5 +1,5 @@
 ﻿// --------------------------------
-// <copyright file="SpecialRules.cs" company="Sbrinna">
+// <copyright file="SpecialRule.cs" company="Sbrinna">
 //     Copyright (c) Sbrinna. All rights reserved.
 // </copyright>
 // <author>Juan Castilla Calderón -  jcastilla@sbrinna.com</author>

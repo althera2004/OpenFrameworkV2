@@ -10,9 +10,7 @@ namespace OpenFramework.ItemManager
     using System.Collections.ObjectModel;
     using Newtonsoft.Json;
 
-    /// <summary>
-    /// Implements item description Class
-    /// </summary>
+    /// <summary>Implements item description Class</summary>
     public sealed class ItemDescription
     {
         /// <summary>List of fields that composes description</summary>

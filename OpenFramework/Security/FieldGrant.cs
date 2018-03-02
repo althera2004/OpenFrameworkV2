@@ -6,14 +6,10 @@
 // --------------------------------
 namespace OpenFramework.Security
 {
-    /// <summary>
-    /// Implements FieldGrant class
-    /// </summary>
+    /// <summary>Implements FieldGrant class</summary>
     public struct FieldGrant
     {
-        /// <summary>
-        /// Gets an empty field grant
-        /// </summary>
+        /// <summary>Gets an empty field grant</summary>
         public static FieldGrant Empty
         {
             get
@@ -27,19 +23,13 @@ namespace OpenFramework.Security
             }
         }
 
-        /// <summary>
-        /// Gets or sets the name of field
-        /// </summary>
+        /// <summary>Gets or sets the name of field</summary>
         public string FieldName { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether field content is readable
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether field content is readable</summary>
         public bool Read { get; set; }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether field content is writable
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether field content is writable</summary>
         public bool Write { get; set; }
     }
 }

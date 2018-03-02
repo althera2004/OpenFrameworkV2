@@ -1,4 +1,10 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="ConstantValue.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     /// <summary>Implements constant values representation</summary>
     public static class ConstantValue

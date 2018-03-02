@@ -16,7 +16,7 @@ namespace OpenFramework.ItemManager
         [JsonProperty("FieldName")]
         public string FieldName;
 
-        /// <summary>condition of filter</summary>
+        /// <summary>Condition of filter</summary>
         [JsonProperty("Condition")]
         public Condition Condition { get; set; }
     }

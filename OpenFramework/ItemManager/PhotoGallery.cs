@@ -23,17 +23,29 @@ namespace OpenFramework.ItemManager
     public class PhotoGallery
     {
         public long Id { get; set; }
+
         public string ItemName { get; set; }
+
         public string ItemField { get; set; }
+
         public long ItemId { get; set; }
+
         public DateTime? Date { get; set; }
+
         public int Order { get; set; }
+
         public string Description { get; set; }
+
         public string GPS { get; set; }
+
         public long CreatedBy { get; set; }
+
         public DateTime CreatedOn { get; set; }
+
         public long ModifiedBy { get; set; }
+
         public DateTime ModifiedOn { get; set; }
+
         public bool Active { get; set; }
 
         /// <summary>Gets an empty instance of PhotoGallery object</summary>

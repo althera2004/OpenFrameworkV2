@@ -1,4 +1,10 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="ActionResult.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón -  jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     using System;
     using System.Globalization;

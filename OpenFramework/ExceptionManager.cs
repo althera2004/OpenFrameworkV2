@@ -1,18 +1,20 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="ExceptionManager.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     using System;
     using System.Globalization;
     using System.IO;
     using System.Web;
 
-    /// <summary>
-    /// Implements the ExceptionManager class
-    /// </summary>
+    /// <summary>Implements the ExceptionManager class</summary>
     public static class ExceptionManager
     {
-        /// <summary>
-        /// Write a trace line on a log daily file
-        /// </summary>
+        /// <summary>Write a trace line on a log daily file</summary>
         /// <param name="ex">Exception occurred</param>
         /// <param name="source">Source of exception</param>
         public static void Trace(Exception ex, string source)
@@ -20,9 +22,7 @@
             Trace(ex, source, string.Empty);
         }
 
-        /// <summary>
-        /// Trace a exception into log file
-        /// </summary>
+        /// <summary>Trace a exception into log file</summary>
         /// <param name="ex">Exception occurred</param>
         /// <param name="source">Source of exception</param>
         /// <param name="extraData">Data extra of exception</param>
@@ -70,9 +70,7 @@
             }
         }
 
-        /// <summary>
-        /// Log exception
-        /// </summary>
+        /// <summary>Log exception</summary>
         /// <param name="exception">Exception occurred</param>
         /// <param name="source">Source of exception</param>
         public static void LogException(Exception exception, string source)
@@ -119,9 +117,7 @@
             }
         }
 
-        /// <summary>
-        /// Notify to system operators an exception occurred
-        /// </summary>
+        /// <summary>Notify to system operators an exception occurred</summary>
         /// <param name="exception">Exception occurred</param>
         public static void NotifySystemOps(Exception exception)
         {

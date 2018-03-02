@@ -23,9 +23,7 @@ public partial class Data_DataTableGetData : Page
         this.Go();
     }
 
-    /// <summary>
-    /// Continues PageLoad execution if session is alive
-    /// </summary>
+    /// <summary>Continues PageLoad execution if session is alive</summary>
     private void Go()
     {        
         var d0 = DateTime.Now;

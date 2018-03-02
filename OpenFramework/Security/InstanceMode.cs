@@ -1,9 +1,15 @@
-﻿using OpenFramework.Customer;
-using System;
-using System.Configuration;
-
+﻿// --------------------------------
+// <copyright file="InstanceMode.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón -  jcastilla@sbrinna.com</author>
+// --------------------------------
 namespace OpenFramework.Security
 {
+    using OpenFramework.Customer;
+    using System;
+    using System.Configuration;
+
     public static class InstanceMode
     {
         public static Instance Product

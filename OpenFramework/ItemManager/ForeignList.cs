@@ -7,11 +7,8 @@
 namespace OpenFramework.ItemManager
 {
     using Newtonsoft.Json;
-    using OpenFramework.Core.ItemManager;
 
-    /// <summary>
-    /// Implements foreign list
-    /// </summary>
+    /// <summary>Implements foreign list definition</summary>
     public sealed class ForeignList
     {
         /// <summary>Name of local field</summary>

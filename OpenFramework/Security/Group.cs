@@ -17,12 +17,8 @@ namespace OpenFramework.Security
     using OpenFramework;
     using OpenFramework.Core.Bindings;
     using OpenFramework.DataAccess;
-    using OpenFramework.ItemManager;
-    using OpenFramework.Customer;
 
-    /// <summary>
-    /// Implements security group class
-    /// </summary>
+    /// <summary>Implements security group class</summary>
     public sealed class Group
     {
         /// <summary>Members of group</summary>

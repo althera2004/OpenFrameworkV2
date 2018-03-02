@@ -152,7 +152,7 @@ namespace OpenFramework.Core
                     valueArray[x] = this.ObtainValue(this.value[x]);
                 }
 
-                return new ReadOnlyCollection<object>(valueArray);//.ToList();
+                return new ReadOnlyCollection<object>(valueArray); // .ToList();
             }
         }
         

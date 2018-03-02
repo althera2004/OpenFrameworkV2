@@ -125,7 +125,7 @@ namespace OpenFramework.ItemManager
             }
         }
 
-        /// <summary> Gets or sets a value indicating if item supports geolocation</summary>
+        /// <summary> Gets a value indicating whether if item supports geolocation</summary>
         [JsonIgnore]
         public bool GeoLocation
         {

@@ -1,18 +1,20 @@
-﻿namespace OpenFramework
+﻿// --------------------------------
+// <copyright file="DynamicJSONConverter.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
+namespace OpenFramework
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Web.Script.Serialization;
 
-    /// <summary>
-    /// Implements DynamicJSONConverter class
-    /// </summary>
+    /// <summary>Implements DynamicJSONConverter class</summary>
     public sealed class DynamicJsonConverter : JavaScriptConverter
     {
-        /// <summary>
-        /// Gets supported types
-        /// </summary>
+        /// <summary>Gets supported types</summary>
         public override IEnumerable<Type> SupportedTypes
         {
             get
@@ -21,9 +23,7 @@
             }
         }
 
-        /// <summary>
-        /// Deserialize object
-        /// </summary>
+        /// <summary>Deserialize object</summary>
         /// <param name="dictionary">Dictionary of data</param>
         /// <param name="type">Type to deserialize</param>
         /// <param name="serializer">Serializer to performs action</param>
@@ -38,9 +38,7 @@
             return type == typeof(object) ? new DynamicJsonObject(dictionary) : null;
         }
 
-        /// <summary>
-        /// Gets the dictionary of object data
-        /// </summary>
+        /// <summary>Gets the dictionary of object data</summary>
         /// <param name="obj">Object to inspect</param>
         /// <param name="serializer">Serializer to performs action</param>
         /// <returns>Serialized object</returns>

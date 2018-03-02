@@ -12,17 +12,9 @@ namespace OpenFramework
     using System.Text;
     using System.Web;
 
+    /// <summary>Log actions on files</summary>
     public static class ActionLog
     {
-        /// <summary>Gets application user data for trace</summary>
-        private static string ApplicationUserTrace(string userDescription)
-        {
-            return string.Format(
-                CultureInfo.InvariantCulture,
-                "{0:dd/MM/yyyy - hh:mm:ss} - {1}",
-                DateTime.Now, userDescription);
-        }
-
         /// <summary>Inserts a trace for an item action</summary>
         /// <param name="action">Action performed</param>
         /// <param name="itemId">Item identificer</param>
@@ -38,7 +30,9 @@ namespace OpenFramework
         /// <param name="action">Action performed</param>
         /// <param name="itemId">Item identificer</param>
         /// <param name="data">Data of action</param>
-        public static void Trace(string action, long itemId, string data,string instanceName, string userDescription)
+        /// <param name="instanceName">Name of instance</param>
+        /// <param name="userDescription">User description</param>
+        public static void Trace(string action, long itemId, string data, string instanceName, string userDescription)
         {
             Trace(string.Format(CultureInfo.InvariantCulture, "{0}{1}", action, itemId), data, instanceName, userDescription);
         }
@@ -47,14 +41,18 @@ namespace OpenFramework
         /// <param name="action">Action performed</param>
         /// <param name="itemId">Item identificer</param>
         /// <param name="data">Data of action</param>
+        /// <param name="instanceName">Instance name</param>
+        /// <param name="userDescription">User description</param>
         public static void Trace(string action, string itemId, string data, string instanceName, string userDescription)
         {
-            Trace(string.Format(CultureInfo.InvariantCulture, "{0}{1}", action, itemId), data,instanceName, userDescription);
+            Trace(string.Format(CultureInfo.InvariantCulture, "{0}{1}", action, itemId), data, instanceName, userDescription);
         }
 
         /// <summary>Inserts a trace for an action</summary>
         /// <param name="action">Action performed</param>
         /// <param name="data">Data of action</param>
+        /// <param name="instanceName">Instance name</param>
+        /// <param name="userDescription">User description</param>
         public static void Trace(string action, string data, string instanceName, string userDescription)
         {
             string fileName = string.Format(
@@ -64,7 +62,7 @@ namespace OpenFramework
                 action);
 
             string path = HttpContext.Current.Request.PhysicalApplicationPath;
-            if(!path.EndsWith("\\", StringComparison.OrdinalIgnoreCase))
+            if (!path.EndsWith("\\", StringComparison.OrdinalIgnoreCase))
             {
                 path = string.Format(CultureInfo.InvariantCulture, "{0}\\", path);
             }
@@ -85,6 +83,8 @@ namespace OpenFramework
         /// <summary>Inserts a trace with actual date for an action</summary>
         /// <param name="action">Action performed</param>
         /// <param name="data">Data of action</param>
+        /// <param name="instanceName">Instance name</param>
+        /// <param name="userDescription">User description</param>
         public static void TraceDated(string action, string data, string instanceName, string userDescription)
         {
             string fileName = string.Format(
@@ -112,6 +112,18 @@ namespace OpenFramework
                 output.Write("\t");
                 output.WriteLine(data);
             }
+        }
+
+        /// <summary>Gets application user data for trace</summary>
+        /// <param name="userDescription">User value description</param>
+        /// <returns>Formatted user description</returns>
+        private static string ApplicationUserTrace(string userDescription)
+        {
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0:dd/MM/yyyy - hh:mm:ss} - {1}",
+                DateTime.Now,
+                userDescription);
         }
     }
 }

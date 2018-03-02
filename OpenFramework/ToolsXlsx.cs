@@ -8,9 +8,9 @@ namespace OpenFramework
 {
     using System;
     using System.Globalization;
+    using NPOI.HSSF.UserModel;
     using NPOI.SS.UserModel;
     using NPOI.XSSF.UserModel;
-    using NPOI.HSSF.UserModel;
 
     /// <summary>Tools to operate in an Excel document</summary>
     public static class ToolsXlsx
