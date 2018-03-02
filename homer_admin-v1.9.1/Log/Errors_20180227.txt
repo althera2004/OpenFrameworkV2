@@ -1,0 +1,470 @@
+********** 27/02/2018 22:23:41 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:27:19 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:28:56 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:29:04 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:31:28 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:39:46 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:39:46 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:39:47 **********
+Exception Type: System.InvalidOperationException
+Exception: No se ha inicializado la propiedad ConnectionString.
+Source: OpenFramework.core.Tools.Basics.SQLToJSON(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"Referencia":"' +  ISNULL(Item.Referencia,'') + '",' +'"Referencia2":"' +  ISNULL(Item.Referencia2,'') + '",' +'"TematicaId":' + ISNULL(CAST(Item.TematicaId AS nvarchar(20)),'null') + ',' +'"FormatoId":' + ISNULL(CAST(Item.FormatoId AS nvarchar(20)),'null') + ',' +'"Imagen":"' +  ISNULL(Item.Imagen,'') + '",' +'"Imagen1":"' +  ISNULL(Item.Imagen1,'') + '",' +'"Imagen2":"' +  ISNULL(Item.Imagen2,'') + '",' +'"Year":' + ISNULL(CAST(Item.Year AS nvarchar(20)),'null') + ',' +'"Instrucciones":"' +  ISNULL(Item.Instrucciones,'') + '",' +'"EdicionLimitada":' +  CASE WHEN Item.EdicionLimitada = 1 THEN 'true' ELSE 'false' END + ',' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Pieza Item WITH(NOLOCK) WHERE Id = 2)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.PermissionDemand()
+   en System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Basics.SQLToJSON(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 859
+
+********** 27/02/2018 22:40:07 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:40:07 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:41:36 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:41:50 **********
+Exception Type: System.InvalidOperationException
+Exception: No se ha inicializado la propiedad ConnectionString.
+Source: OpenFramework.core.Tools.Basics.SQLToJSON(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"Referencia":"' +  ISNULL(Item.Referencia,'') + '",' +'"Referencia2":"' +  ISNULL(Item.Referencia2,'') + '",' +'"TematicaId":' + ISNULL(CAST(Item.TematicaId AS nvarchar(20)),'null') + ',' +'"FormatoId":' + ISNULL(CAST(Item.FormatoId AS nvarchar(20)),'null') + ',' +'"Imagen":"' +  ISNULL(Item.Imagen,'') + '",' +'"Imagen1":"' +  ISNULL(Item.Imagen1,'') + '",' +'"Imagen2":"' +  ISNULL(Item.Imagen2,'') + '",' +'"Year":' + ISNULL(CAST(Item.Year AS nvarchar(20)),'null') + ',' +'"Instrucciones":"' +  ISNULL(Item.Instrucciones,'') + '",' +'"EdicionLimitada":' +  CASE WHEN Item.EdicionLimitada = 1 THEN 'true' ELSE 'false' END + ',' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Pieza Item WITH(NOLOCK) WHERE Id = 2)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.PermissionDemand()
+   en System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Basics.SQLToJSON(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 859
+
+********** 27/02/2018 22:44:00 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:44:00 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:45:24 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:45:24 **********
+Exception Type: System.InvalidOperationException
+Exception: No se ha inicializado la propiedad ConnectionString.
+Source: OpenFramework.core.Tools.Basics.SQLToJSON(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"Referencia":"' +  ISNULL(Item.Referencia,'') + '",' +'"Referencia2":"' +  ISNULL(Item.Referencia2,'') + '",' +'"TematicaId":' + ISNULL(CAST(Item.TematicaId AS nvarchar(20)),'null') + ',' +'"FormatoId":' + ISNULL(CAST(Item.FormatoId AS nvarchar(20)),'null') + ',' +'"Imagen":"' +  ISNULL(Item.Imagen,'') + '",' +'"Imagen1":"' +  ISNULL(Item.Imagen1,'') + '",' +'"Imagen2":"' +  ISNULL(Item.Imagen2,'') + '",' +'"Year":' + ISNULL(CAST(Item.Year AS nvarchar(20)),'null') + ',' +'"Instrucciones":"' +  ISNULL(Item.Instrucciones,'') + '",' +'"EdicionLimitada":' +  CASE WHEN Item.EdicionLimitada = 1 THEN 'true' ELSE 'false' END + ',' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Pieza Item WITH(NOLOCK) WHERE Id = 2)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.PermissionDemand()
+   en System.Data.SqlClient.SqlConnectionFactory.PermissionDemand(DbConnection outerConnection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Basics.SQLToJSON(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 859
+
+********** 27/02/2018 22:45:53 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:45:57 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:49:54 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:49:54 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:49:54 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Sintaxis incorrecta cerca de ':'.
+Falta la comilla de cierre después de la cadena de caracteres '
+                      FROM Item_Pieza Item WITH(NOLOCK) WHERE Id = 2'.
+Source: OpenFramework.core.Tools.Basics.SQLToJSON(SELECT 
+		              '{'"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"Referencia":"' +  ISNULL(Item.Referencia,'') + '",' +'"Referencia2":"' +  ISNULL(Item.Referencia2,'') + '",' +'"TematicaId":' + ISNULL(CAST(Item.TematicaId AS nvarchar(20)),'null') + ',' +'"FormatoId":' + ISNULL(CAST(Item.FormatoId AS nvarchar(20)),'null') + ',' +'"Imagen":"' +  ISNULL(Item.Imagen,'') + '",' +'"Imagen1":"' +  ISNULL(Item.Imagen1,'') + '",' +'"Imagen2":"' +  ISNULL(Item.Imagen2,'') + '",' +'"Year":' + ISNULL(CAST(Item.Year AS nvarchar(20)),'null') + ',' +'"Instrucciones":"' +  ISNULL(Item.Instrucciones,'') + '",' +'"EdicionLimitada":' +  CASE WHEN Item.EdicionLimitada = 1 THEN 'true' ELSE 'false' END + ',' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}'
+                      FROM Item_Pieza Item WITH(NOLOCK) WHERE Id = 2)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLToJSONSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 860
+
+********** 27/02/2018 22:51:47 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:51:47 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:52:42 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:52:42 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:54:20 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:54:20 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:55:03 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:55:19 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:59:16 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 22:59:16 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:25:51 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:26:43 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:26:56 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:27:19 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:28:06 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:29:06 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:30:27 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:30:51 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:31:00 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:31:11 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:32:00 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:32:27 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:34:09 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:36:00 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:36:32 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:36:32 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 27/02/2018 23:36:40 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+

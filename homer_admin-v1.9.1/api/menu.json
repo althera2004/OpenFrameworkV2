@@ -1,0 +1,42 @@
+﻿[
+    {
+        "Leaf": true,
+        "Url": "/index.html",
+        "Label": "Dashboard",
+        "Id": 0
+    },
+    {
+        "Leaf": true,
+        "Item": "MiPieza",
+        "Label": "Mis piezas",
+        "ListId": "Custom",
+        "Id": 1
+    },
+    {
+        "Leaf": true,
+        "Item": "Pieza",
+        "Label": "Piezas",
+        "ListId": "Custom",
+        "Id": 4
+    },
+    {
+        "Label": "Configuración",
+        "Options": [
+            {
+                "Type": "Leaf",
+				"Item": "Tematica",
+                "Label": "Temática",
+				"ListId": "Custom",
+                "Id": 2
+            },
+            {
+                "Type": "Leaf",
+				"Item": "Formato",
+                "Label": "Formatos",
+				"ListId": "Custom",
+                "Id": 3
+            }
+
+        ]
+    }
+]

@@ -1,0 +1,64 @@
+﻿{
+    "ItemName": "Tematica",
+    "MustReload": true,
+	"Description": "Temáticas de playmobil",
+  "Layout": {
+    "Icon": "list",
+    "Label": "Temática",
+    "LabelPlural": "Temáticas",
+    "Description": {
+      "Pattern": "{0}",
+      "Fields": [
+        { "Name": "Nombre" }
+      ]
+    },
+    "EditionType": "inline"
+  },
+    "ForeignValues": [],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Imagen", "Label": "Imagen", "Type": "Image", "Zoom": true },
+        { "Name": "Icon", "Label": "Icono", "Type": "Image", "Zoom": true }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+			"AutoClick": true,
+            "EditAction": 3,
+            "CustomAjaxSource": "ITEM_TEMATICA_GETALL",
+            "Columns": [
+                { "DataProperty": "Nombre",  "ReplacedBy": "N", "Descriptible": true },
+                { "DataProperty": "Imagen", "ReplacedBy": "I", "Render": "ToSingleImageList" },
+                { "DataProperty": "Icon", "ReplacedBy": "Ic", "Render": "ToSingleImageList" }
+            ]
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" }
+                            ]
+                        },
+                        {
+                            
+                            "Fields": [
+                                { "Name": "Imagen" },                           
+                                { "Name": "Icon" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

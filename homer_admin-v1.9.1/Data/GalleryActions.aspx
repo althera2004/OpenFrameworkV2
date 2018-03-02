@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="GalleryActions.aspx.cs" Inherits="Data_GalleryActions" %>

@@ -1,0 +1,524 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Main.master.cs" Inherits="Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <!-- Page title -->
+    <title>OpenFramework v3 | <%=this.PageTitle %></title>
+
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+    <link rel="stylesheet" href="/vendor/xeditable/bootstrap3-editable/css/bootstrap-editable.css" />
+    <link rel="stylesheet" href="/vendor/select2-3.5.2/select2.css" />
+    <link rel="stylesheet" href="/vendor/select2-bootstrap/select2-bootstrap.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="/vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+    <link rel="stylesheet" href="/vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+    <style>
+        td.details-control {
+            background: url('/images/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/images/details_close.png') no-repeat center center;
+        }
+    </style>
+    <script type="text/javascript">
+        var PageType = "form";
+        var MenuOptionId = 3;
+        var queryParams = null;
+        var Data = null;
+        var ItemDefinition = null;
+        window.onload = function () {
+            queryParams = DecodeEncryptedQuery();
+
+            var actualUser = <%=this.ActualUser %>;
+            console.log(actualUser);
+
+            $(".profile-picture").html(LayoutMenuRender(actualUser));
+
+            $.getJSON("/api/menu.json?ac=" + guid(), function (json) {
+                $("#side-menu").html(MenuRender(json));
+                $('#side-menu').metisMenu();
+            });
+
+            console.log("Params", queryParams);
+
+            $("#FaxNumber").mask("(99) 9999?9-9999");
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="fixed-sidebar fixed-navbar fixed-footer fixed-small-header">
+<!-- Simple splash screen-->
+<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>OpenFramework v3 - Sistema abierto de gestión</h1><p>Herramienta de gestión y control de procesos productivos.</p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
+<!--[if lt IE 7]>
+<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Header -->
+<div id="header">
+    <div class="color-line">
+    </div>
+    <div id="logo" class="light-version">
+        <!--<span>OpenFramework v3</span>-->
+		<img src="/img/LogoOpenFramework.png" alt="OpenFramework v3" title="OpenFramework v3" />
+    </div>
+    <nav role="navigation">
+        <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+        <div class="small-logo">
+            <span class="text-primary"></span>
+        </div>
+        <form role="search" class="navbar-form-custom" method="post" action="Search.aspx">
+            <div class="form-group">
+                <input type="text" placeholder="Buscar" class="form-control" name="search">
+            </div>
+        </form>
+        <div class="mobile-menu">
+            <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                <i class="fa fa-chevron-down"></i>
+            </button>
+            <div class="collapse mobile-navbar" id="mobile-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a class="" href="login.html">Login</a>
+                    </li>
+                    <li>
+                        <a class="" href="login.html">Logout</a>
+                    </li>
+                    <li>
+                        <a class="" href="profile.html">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <ul class="nav navbar-nav no-borders">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-speaker"></i>
+                    </a>
+                    <asp:Literal runat="server" ID="LtAlerts"></asp:Literal>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-keypad"></i>
+                    </a>
+
+                    <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <a href="projects.html">
+                                        <i class="pe pe-7s-portfolio text-info"></i>
+                                        <h5>Projects</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="mailbox.html">
+                                        <i class="pe pe-7s-mail text-warning"></i>
+                                        <h5>Email</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="contacts.html">
+                                        <i class="pe pe-7s-users text-success"></i>
+                                        <h5>Contacts</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="forum.html">
+                                        <i class="pe pe-7s-comment text-info"></i>
+                                        <h5>Forum</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="analytics.html">
+                                        <i class="pe pe-7s-graph1 text-danger"></i>
+                                        <h5>Analytics</h5>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="file_manager.html">
+                                        <i class="pe pe-7s-box1 text-success"></i>
+                                        <h5>Files</h5>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                        <i class="pe-7s-mail"></i>
+                        <span class="label label-success">4</span>
+                    </a>
+                    <ul class="dropdown-menu hdropdown animated flipInX">
+                        <div class="title">
+                            You have 4 new messages
+                        </div>
+                        <li>
+                            <a>
+                                It is a long established.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                There are many variations.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Lorem Ipsum is simply dummy.
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                Contrary to popular belief.
+                            </a>
+                        </li>
+                        <li class="summary"><a href="#">See All Messages</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" id="sidebar" class="right-sidebar-toggle">
+                        <i class="pe-7s-upload pe-7s-news-paper"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="login.html">
+                        <i class="pe-7s-upload pe-rotate-90"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<!-- Navigation -->
+<aside id="menu">
+    <div id="navigation">
+        <div class="profile-picture">
+            <a href="index.html">
+                <img src="images/profile.png" class="img-circle m-b" alt="logo" style="width:45px;height:45px;">
+            </a>
+            <div class="stats-label text-color">
+                <span class="font-extra-bold font-uppercase" id="SpanUserName"></span>
+                <div class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        <small class="text-muted"><b class="caret"></b></small>
+                    </a>
+                    <ul class="dropdown-menu animated flipInX m-t-xs">
+                        <li><a href="contacts.html">Contacts</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <!--<li><a href="analytics.html">Analytics</a></li>-->
+                        <li class="divider"></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <ul class="nav" id="side-menu">
+            <asp:ContentPlaceHolder runat="server" ID="NavigationMenu"></asp:ContentPlaceHolder>
+        </ul>
+    </div>
+</aside>
+
+<!-- Main Wrapper -->
+    <div id="wrapper">
+        <div class="small-header transition animated fadeIn">
+            <!-- Panel de presentación de contenido -->
+            <div class="hpanel" style="border-bottom:1px solid #e4e5e7;">
+                <div class="panel-body">
+                    <div id="hbreadcrumb" class="pull-right">
+                        <ol class="hbreadcrumb breadcrumb">
+                            <li><a href="index.html">Inicio</a></li>
+                            <li class="active">
+                                <span id="ActualBradCrumb"></span>
+                            </li>
+                        </ol>
+                    </div>
+                    <i class="fa fa-gears fa-2x"></i>
+                    <div style="display: inline-block; margin-left: 8px;">
+                        <h2 class="font-light m-b-xs" id="PageTitle"></h2>
+                        <small id="PageSubtitle"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content animate-panel" id="WorkArea">
+            <div class="hpanel">
+                <ul class="nav nav-tabs" id="FormTabs" style="margin-top:8px;margin-left:8px;">                    
+                </ul>
+                <div class="tab-content">
+                    <asp:ContentPlaceHolder runat="server" ID="PanelMain"></asp:ContentPlaceHolder>
+                </div>
+            </div>
+
+            <!-- Right sidebar -->
+            <div id="right-sidebar" class="animated fadeInRight">
+                <div class="p-m">
+                    <button id="sidebar-close" class="right-sidebar-toggle sidebar-button btn btn-default m-b-md"><i class="pe pe-7s-close"></i></button>
+                </div>
+                <asp:ContentPlaceHolder runat="server" ID="PanelRight"></asp:ContentPlaceHolder>
+            </div>
+
+            <!-- Footer-->
+            <footer class="footer">
+                <span class="pull-right" id="footer-button">
+                    <asp:ContentPlaceHolder runat="server" ID="ContentMainButtons"></asp:ContentPlaceHolder>                    
+                </span>
+                <span id="LayoutModifiedByFullName"></span>
+                <br />
+                <span id="LayoutModifiedOn"></span>
+            </footer>
+
+        </div>
+    </div>
+    <form id="form1" runat="server" style="display:none;">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+<!-- Vendor scripts -->
+<script src="/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/vendor/jquery-flot/jquery.flot.js"></script>
+<script src="/vendor/jquery-flot/jquery.flot.resize.js"></script>
+<script src="/vendor/jquery-flot/jquery.flot.pie.js"></script>
+<script src="/vendor/flot.curvedlines/curvedLines.js"></script>
+<script src="/vendor/jquery.flot.spline/index.js"></script>
+<script src="/vendor/metisMenu/dist/metisMenu.min.js"></script>
+<script src="/vendor/iCheck/icheck.min.js"></script>
+<script src="/vendor/peity/jquery.peity.min.js"></script>
+<script src="/vendor/sparkline/index.js"></script>
+<script src="/vendor/moment/moment.js"></script>
+<script src="/vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="/vendor/select2-3.5.2/select2.min.js"></script>
+<script src="/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+<script src="/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="/vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+<script src="/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+<!-- DataTables -->
+<script src="/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/media/js/dataTables.colVis.min.js"></script>
+<script src="/vendor/datatables/media/js/dataTables.colReorder.min.js"></script>
+<script src="/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- DataTables buttons scripts -->
+<script src="/vendor/pdfmake/build/pdfmake.min.js"></script>
+<script src="/vendor/pdfmake/build/vfs_fonts.js"></script>
+<script src="/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+
+<!-- App scripts -->
+<script src="scripts/homer.js?ac=<%=this.AntiCache %>"></script>
+<script src="scripts/charts.js?ac=<%=this.AntiCache %>"></script>
+
+    <script type="text/javascript" src="/Actuacion.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Tools.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/base64.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/ActualUser.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Menu.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Item.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/DataTable.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/ListColumn.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Form.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Navigation.js?ac=<%=this.AntiCache %>"></script>
+    <script src="//cdn.jsdelivr.net/alasql/0.2/alasql.min.js"></script>
+    <script type="text/javascript" src="/vendor/mask/jquery.maskedinput.js?ac=<%=this.AntiCache %>"></script>
+    <script type="text/javascript" src="/js/Attachment.js?ac=<%=this.AntiCache %>"></script>
+
+    <script>
+        function fnFormatDetails(d) {
+            console.log(d);
+            return "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\">" +
+                "<tr>" +
+                "<td>Full name:</td>" +
+                "<td>" + d.R + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Extension number:</td>" +
+                "<td>" + d.I + "</td>" +
+                "</tr>" +
+                "<tr>" +
+                "<td>Extra info:</td>" +
+                "<td>" + d.Cr + "</td>" +
+                "</tr>" +
+                "</table>";
+        }
+
+        RenderTableHeader();
+        var columns = new Array();
+        var RenderColumns = "";
+        var DescriptionIndex = null;
+        for (var x = 0; x < definition.Lists[0].Columns.length; x++) {
+            var column = definition.Lists[0].Columns[x];
+            if (x == 0) {
+                columns.push({ data: column.DataProperty, "className": "details-control", "sortable": false });
+                RenderColumns += "$(\"td\", row).eq(0).html(\"\");\n";
+            }
+            else {
+
+                if (typeof column.Expand !== "undefined" && column.Expand === true) {
+                    continue;
+                }
+
+                var field = GetFieldByName(definition, column.DataProperty);
+                var dataSource = column.DataProperty;
+                if (typeof column.ReplacedBy !== "undefined") {
+                    dataSource = column.ReplacedBy;
+                }
+
+                if (typeof column.Descriptible !== "undefined" && column.Descriptible === true) {
+                    DescriptionIndex = dataSource;
+                }
+
+                columns.push({ data: dataSource });
+
+                var renderColumn = null;
+
+                if (field.Type === "url") {
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(ToWebPageBlank(data." + dataSource + "))";
+                }
+                else if (field.Type === "email") {
+                    console.log("email");
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(ToMail(data." + dataSource + "))";
+                }
+                else if (typeof column.Render !== "undefined") {
+
+                    if (column.Render.indexOf("#") !== -1) {
+                        var func = column.Render.split("#")[0] + "data." + column.DataProperty + column.Render.split("#")[1];
+                        renderColumn = "$(\"td\", row).eq(" + x + ").html(" + func + ")";
+                    }
+                    else {
+                        renderColumn = "$(\"td\", row).eq(" + x + ").html(" + column.Render + ")";
+                    }
+                }
+
+
+                if (typeof column.ToolTip !== "undefined") {
+                    if (renderColumn === null) {
+                        renderColumn = "$(\"td\", row).eq(" + x + ").html(RenderSpanToolTip(data." + dataSource + ",data." + column.ToolTip + "))";
+                    }
+                    else {
+                        toolTipField = column.ToolTip;
+                        renderColumn += ".attr(\"title\", \"hola\")";
+                    }
+                }
+
+                if (renderColumn !== null) {
+                    RenderColumns += renderColumn + ";\n";
+                }
+            }
+        }
+
+        console.log("DescriptionIndex", DescriptionIndex);
+        columns.push({ data: "Id", "sortable": false, "width": 150 });
+        RenderColumns += "$(\"td\", row).eq(" + (columns.length - 1) + ").html(buttons(data, '" + DescriptionIndex + "', " + definition.Lists[0].Duplicate + "));";
+
+        console.log("RenderColumns", RenderColumns);
+
+
+        $(function () {
+            RenderTable("example1");
+        });
+
+
+        $('.closebox').on('click', function (event) {
+            event.preventDefault();
+            var hpanel = $(this).closest('div.hpanel');
+            hpanel.remove();
+            if ($('body').hasClass('fullscreen-panel-mode')) { $('body').removeClass('fullscreen-panel-mode'); }
+        });
+
+        function TableReload() {
+            var table = $('#example1').DataTable();
+            table.ajax.reload();
+        }
+
+
+
+        function data2(data) {
+            return data.Description;
+            console.log(typeof data[2]);
+            return '<a href="' + data[2].url + '" title="Acceder a la instancia de ' + data[0].name + '" target="_blank">' + data[2].name + '</a>&nbsp;<i class="fa fa-external-link"></i>';
+        }
+
+        $("#PageTitle").html(definition.Layout.LabelPlural);
+
+        var subtitle = "";
+        if (PageType === "list") {
+            subtitle = definition.Lists[0].Title;
+        }
+        else {
+            subtitle = definition.Forms[0].Title;
+        }
+
+        $("#PageSubtitle").html(subtitle);
+        $("#ActualBradCrumb").html(definition.Layout.LabelPlural);
+
+        function RenderTableHeader() {
+            var res = "<th style=\"width:25px;\">&nbsp;</th>";
+            for (var x = 1; x < definition.Lists[0].Columns.length; x++) {
+
+                var column = definition.Lists[0].Columns[x];
+                if (typeof column.Expand !== "undefined" && column.Expand === true) {
+                    continue;
+                }
+
+                var source = column.DataProperty;
+                var field = GetFieldByName(definition, source);
+                var label = column.Label;
+                if (typeof label === "undefined") {
+                    label = field.Label;
+                }
+
+                res += "<th>" + label + "</th>";
+            }
+
+            res += "<th>&nbsp;</th>"
+            $("#tableHeader").html(res);
+        }
+
+        if (PageType === "form") {
+            $(".tab-content").html(RenderForm(definition, definition.Forms[0]));
+            $(".tab-content").html(RenderFooterButtons(definition.Forms[0].Tabs[0]));
+        }
+
+        $('.datepicker').datepicker();
+        $("#wrapper").click();
+</script>
+</body>
+</html>

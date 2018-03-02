@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<style>
+	td.details-control {
+		background: url('/images/details_open.png') no-repeat center center;
+		cursor: pointer;
+	}
+
+	tr.shown td.details-control {
+		background: url('/images/details_close.png') no-repeat center center;
+	}
+</style>
+
+<script type="text/javascript">
+	console.clear();
+	console.log("Coded query", codedQuery);
+	var MenuOptionId = 3;
+	var queryParams = DecodeEncryptedQuery();
+	var Data = null;
+	var ItemDefinition = null;
+	
+	var formbuttons = "&nbsp;<button class=\"btn btn-primary btn-success\" type=\"button\"><i class=\"fa fa-check\"></i>&nbsp;Guardar</button>";
+	formbuttons += "&nbsp;<button class=\"btn btn-primary btn-danger\" type=\"button\"><i class=\"fa fa-trash\"></i>&nbsp;Eliminar</button>";
+	formbuttons += "&nbsp;<button class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-reply\"></i>&nbsp;Volver</button>";
+	
+	$("#footer-button").html(formbuttons);
+	
+	$.getJSON("/Instances/" + CustomerName + "/ItemDefinition/" + queryParams.ItemName + ".item?ac=" + guid(), function (json) {
+		console.log("Definition", json);
+		ItemDefinition = json;
+
+		$("#PageTitle").html(ItemDefinition.Layout.Label);
+		$("#ActualBradCrumb").html(ItemDefinition.Layout.Label);
+		$("#formTest").html(RenderTab(ItemDefinition, ItemDefinition.Forms[0].Tabs[0]));
+
+        var dataSent = {
+            "itemName": queryParams.ItemName,
+            "itemId": queryParams.Id,
+            "instanceName": CustomerName
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/Data/ItemDataBase.aspx/GetByIdJson",
+            data: JSON.stringify(dataSent),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function (msg) {
+                eval("Data=" + msg.d + ";");
+                console.log(Data);
+                FillForm(Data);
+				
+				$(".demo-trigger").css("border", "4px solid #f00;"); 
+				$(".demo-trigger").leroyZoom({
+					"zoomTop": 20,
+					"zoomLeft": 20,
+					"parent": "body",
+					"preload": Dictionary.Zoom.PreloadMessage,
+					"error": Dictionary.Zoom.LoadErrorMessage
+				});
+                LayoutModified(Data);
+
+            },
+            error: function (msg, text) {
+                alert(text);
+            }
+        });
+    });
+
+	console.log("Params", queryParams);
+
+	$("#FaxNumber").mask("(99) 9999?9-9999");
+</script>
+
+
+
+	<div class="hpanel">
+		<div class="panel-body">
+			<form method="get" class="form-horizontal" id="formTest">
+			</form>
+		</div>
+	</div>

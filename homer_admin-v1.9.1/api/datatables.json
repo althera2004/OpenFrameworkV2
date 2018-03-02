@@ -1,0 +1,40 @@
+{
+  "data": [
+    [
+      "GESE...",
+      "GES001",
+      {"name":"GESE","url":"http://www.openframework.es/"},
+      "01/01/2016",
+      "31/12/2017",
+      "Básica",
+	  1
+    ],
+    [
+      "ShortCut",
+      "SHRTCT",
+      {"name":"ShortCut","url":"http://www.openframework.es/"},
+      "01/12/2016",
+      "31/12/2017",
+      "Básica",
+	  2
+    ],
+    [
+      "Constraula",
+      "CNSTRL",
+      {"name":"Constraula","url":"http://www.openframework.es/"},
+      "01/12/2016",
+      "31/12/2017",
+      "Básica",
+	  3
+    ],
+    [
+      "Augusta",
+      "AGSTPDL",
+      {"name":"Augusta Padel","url":"http://www.openframework.es/"},
+      "01/12/2016",
+      "31/12/2017",
+      "Básica",
+	  4
+    ]
+  ]
+}

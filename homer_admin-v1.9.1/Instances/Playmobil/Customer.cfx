@@ -1,0 +1,23 @@
+﻿{
+    "ConnectionString": "Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;",
+    "Id": 21,
+    "Name": "playmobil",
+    "DeleteAction": "Inactive",
+    "SessionTimeout": "15m",
+    "MultiCompany": "true",
+    "MultiCompanyItem": "Actividad",
+    "DefaultLanguage": "ca-es",
+    "GoogleAPIKey": "AIzaSyCoN9uYrpwRPdv4d-cfVrRYhUBjmdD8oNE",
+    "Mail": {
+        "Mode": "smtp",
+        "Server": "smtp.sbrinna.com",
+        "User": "jcastilla@sbrinna.com",
+        "Password": "V@nessa57",
+        "Port": 25,
+        "UserName": "Open framweork",
+        "MailSender": "jcastilla@sbrinna.com"
+    },
+    "ActiveAlerts": "true",
+    "SaveAction": "both",
+    "ListNumRows":  50
+}

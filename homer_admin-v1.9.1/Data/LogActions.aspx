@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LogActions.aspx.cs" Inherits="Data_LogActions" %>

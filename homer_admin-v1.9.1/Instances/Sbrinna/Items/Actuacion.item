@@ -1,0 +1,647 @@
+﻿{
+    "ItemName": "Actuacion",
+    "MustReload": true,
+    "GeoLocation": false,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Actuació",
+        "LabelPlural": "Actuacions",
+        "Description": {
+            "Pattern": "{0} - {1} {2}, {3}",
+            "Fields": [
+                { "Name": "Codigo" },
+                { "Name": "TipoVia" },
+                { "Name": "Direccion" },
+                { "Name": "Barrio" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "PreventsDelete": [ ],
+    "NeedFK": [ "Icono", "Cuadrilla", "CuadrillaOT", "User", "ClientePropietario" ],
+    "ForeignValues": [
+        { "ItemName": "Adjudicacion", "FieldRetrieved": "Descripcion", "ImportReference": "NumContrato" },
+        { "ItemName": "Barrio" },
+        { "ItemName": "Localidad" },
+        { "ItemName": "Elemento" },
+        { "ItemName": "Patologia", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "Unidad", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "NivelProblema", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "TipoVia" },
+        { "ItemName": "EstadoOT", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "Centro", "FieldRetrieved": "Nombre", "ImportReference": "Codigo" },
+        { "ItemName": "TipoMantenimiento", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "Categoria", "FieldRetrieved": "Descripcion" },
+        { "ItemName": "Incidencia" },
+        { "ItemName": "NivelUrgencia" },
+        { "ItemName": "Frecuencia" }
+    ],
+    "PrimaryKeys": [
+        { "Id": "PK", "Values": [ "CodigoIncidencia", "CodigoOT", "AdjudicacionId" ] }
+    ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "AdjudicacionId", "Label": "Adjudicació", "Type": "long", "Required": true },
+        { "Name": "CodigoIncidencia", "Label": "Codi", "Type": "text", "Length": 20 },
+        { "Name": "CodigoOT", "Label": "CodiOT", "Type": "text", "Length": 20 },
+        { "Name": "RefHost", "Label": "Nº Host", "Type": "text", "Length": 50 },
+        { "Name": "Descripcion", "Label": "Descripció", "Type": "textarea", "Length": 500 },
+        { "Name": "TramoA", "Label": "Tram A", "Type": "text", "Length": 50 },
+        { "Name": "TramoB", "Label": "Tram B", "Type": "text", "Length": 50 },
+        { "Name": "TipoViaId", "Label": "Tipus de via", "Type": "long", "ColumnDataType": "Text", "Required": true },
+        { "Name": "Direccion", "Label": "Direcció", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Numero", "Label": "Nº", "Type": "text", "Length": 15 },
+        { "Name": "LocalidadId", "Label": "Localitat", "Type": "long", "Required": true, "ColumnDataType": "Text" },
+        { "Name": "BarrioId", "Label": "Barri", "Type": "long", "ColumnDataType": "Text", "Required": true },
+        { "Name": "Amidament", "Label": "Amidament", "Type": "decimal", "DataFormat": { "Name": "Decimal", "Precission": 2 } },
+        { "Name": "ElementoId", "Label": "Element", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "PatologiaId", "Label": "Patologia", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "Cantidad", "Label": "Cuantitat", "Type": "decimal" },
+        { "Name": "UnidadId", "Label": "Unitat", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "Importe", "Label": "Valoració", "Type": "money" },
+        { "Name": "NivelProblemaId", "Label": "Nivell de problema", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "Latitud", "Label": "Latitut", "Type": "decimal", "DataFormat": { "Name": "Decimal", "Precission": 8 } },
+        { "Name": "Longitud", "Label": "Longitut", "Type": "decimal", "DataFormat": { "Name": "Decimal", "Precission": 8 } },
+        { "Name": "FechaDeteccion", "Label": "Detecció", "Type": "datetime" },
+        { "Name": "FechaRecepcion", "Label": "Recepció", "Type": "datetime" },
+        { "Name": "FechaInicio", "Label": "Inici", "Type": "datetime" },
+        { "Name": "FechaFinal", "Label": "Final", "Type": "datetime" },
+        { "Name": "FechaCertificacion", "Label": "Certificació", "Type": "datetime" },
+        { "Name": "EstadoOTId", "Label": "Estat", "Type": "long", "Required": true, "ColumnDataType": "Text" },
+        { "Name": "NivelUrgenciaId", "Label": "Nivell urgència", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "Valoracion", "Label": "Import", "Type": "money" },
+        { "Name": "CentroId", "Label": "Centre", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "FrecuenciaId", "Label": "Frequència", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "Urgente", "Label": "Urgent", "Type": "boolean" },
+        { "Name": "ModificaCartografia", "Label": "Modifica cartografia", "Type": "boolean" },
+        { "Name": "CategoriaId", "Label": "Categoria", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "TipoMantenimientoId", "Label": "Tipus manteniment", "Type": "long", "ColumnDataType": "Text" },
+        { "Name": "RefIris", "Label": "Ref. Iris", "Type": "text", "Length": 50 },
+        { "Name": "Observaciones", "Label": "Observacions", "Type": "textarea", "Length": 500 },
+        { "Name": "FotosInicio", "Label": "Imatges inici", "Type": "PhotoGallery" },
+        { "Name": "FotosProceso", "Label": "Imatges procés", "Type": "PhotoGallery" },
+        { "Name": "FotosFinal", "Label": "Imatges final", "Type": "PhotoGallery" },
+        { "Name": "FechaAnulacion", "Label": "Data anul·lació", "Type": "datetime" },
+        { "Name": "UsuarioAnulacion", "Label": "Usuario anul·lació", "Type": "datetime" },
+        { "Name": "MotivoAnulacion", "Label": "Motiu anul·lació", "Type": "textarea"},
+        { "Name": "OTMaker", "Label": "Generador OT", "Type": "long"}
+
+    ],
+    "GPSMappings": [
+        { "Data": "Longitude", "FieldValue": "lng" },
+        { "Data": "Address", "FieldValue": "direccionCompleta" },
+        { "Data": "City", "ContextValue": "#UserProfile#City" },
+        { "Data": "Country", "FixedValue": "España" }
+    ],
+    "SQLMappings": [
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "Item_Actuacion_GetAll",
+            "Columns": [
+                { "DataProperty": "CodigoIncidencia" },
+                { "DataProperty": "CentroId", "ReplacedBy": "CentroDescription" },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "BarrioId" },
+                { "DataProperty": "ElementoId", "ReplacedBy": "ElementoDescription" },
+                { "DataProperty": "PatologiaId" },
+                { "DataProperty": "NivelProblemaId", "ReplacedBy": "NivelProblemaDescription" },
+                { "DataProperty": "CodigoOT" }
+            ]
+        },
+        {
+            "Id": "SimularIncidencia",
+            "FormId": "SimularIncidencia",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "Item_Actuacion_GetAllAsIncidencia",
+            "Columns": [
+                { "DataProperty": "CodigoIncidencia" },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "BarrioId", "HiddenMobile": true },
+                { "DataProperty": "ElementoId", "ReplacedBy": "ElementoDescription" },
+                { "DataProperty": "PatologiaId", "HiddenMobile": true },
+                { "DataProperty": "NivelProblemaId", "ReplacedBy": "NivelProblemaDescription", "HiddenMobile": true },
+                { "DataProperty": "CodigoOT" }
+            ]
+
+        },
+        {
+            "Id": "IncidenciaByAdjudicacion",
+            "FormId": "IncidenciaByAdjudicacion",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "ITEM_INCIDENCIA_GETBYADJUDICACION",
+            "Columns": [
+                { "DataProperty": "CodigoIncidencia" },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "BarrioId", "HiddenMobile": true },
+                { "DataProperty": "ElementoId", "ReplacedBy": "ElementoDescription" },
+                { "DataProperty": "PatologiaId", "ReplcedBy": "PatologiaDescription", "HiddenMobile": true },
+                { "DataProperty": "NivelProblemaId", "ReplacedBy": "NivelProblemaDescription", "HiddenMobile": true },
+                { "DataProperty": "CodigoOT" }
+            ]
+        },
+        {
+            "Id": "Certificaciones",
+            "FormId": "Certificaciones",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "ACTUACIONES_GETCERTIFICACION",
+            "Columns": [
+                { "DataProperty": "CodigoOT" },
+                { "DataProperty": "RefHost", "Render": "ADJUDICACION_RenderHost" },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "FechaInicio", "Render": "ADJUDICACION_RenderCertificacionInicio" },
+                { "DataProperty": "FechaFinal", "Render": "ADJUDICACION_RenderCertificacionFinal"},
+                { "DataProperty": "FechaCertificacion", "Render": "ADJUDICACION_DateMonth" },
+                { "DataProperty": "Valoracion", "Render": "ADJUDICACION_CertificacionImporte" }
+            ]
+        },
+        {
+            "Id": "OTByAdjudicacion",
+            "FormId": "OTViaPublica",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "ITEM_OT_GETBYADJUDICACION",
+            "Columns": [
+                { "DataProperty": "CodigoOT", "ReplacedBy": "O" },
+                { "DataProperty": "RefHost", "ReplacedBy": "H", "HiddenMobile": true },
+                { "DataProperty": "Descripcion", "ReplacedBy": "D", "Render": "MaxText" },
+                { "DataProperty": "Direccion", "ReplacedBy": "A" },
+                { "DataProperty": "ElementoId", "ReplacedBy": "C", "HiddenMobile": true },
+                { "DataProperty": "BarrioId", "ReplacedBy": "B", "HiddenMobile": true },
+                { "DataProperty": "FechaRecepcion", "ReplacedBy": "R", "HiddenMobile": true },
+                { "DataProperty": "FechaInicio", "ReplacedBy": "I", "HiddenMobile": true },
+                { "DataProperty": "FechaCertificacion", "ReplacedBy": "Cr", "HiddenMobile": true },
+                { "DataProperty": "EstadoOTId", "ReplacedBy": "E", "HiddenMobile": true },
+                { "DataProperty": "Urgente", "ReplacedBy": "U", "HiddenMobile": true }
+            ]
+        },
+        {
+            "Id": "OTViaPublica",
+            "FormId": "OTViaPublica",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "Item_Actuacion_GetOTViaPublica",
+            "Columns": [
+                { "DataProperty": "CodigoOT" },
+                { "DataProperty": "RefHost", "HiddenMobile": true },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "BarrioId", "ReplacedBy": "BarrioDescription" },
+                { "DataProperty": "ElementoId", "ReplacedBy": "CategoriaDescription", "HiddenMobile": true },
+                { "DataProperty": "NivelUrgenciaId", "ReplacedBy": "NivelUrgenciaDescription", "HiddenMobile": true },
+                { "DataProperty": "FechaRecepcion", "HiddenMobile": true },
+                { "DataProperty": "FechaInicio", "HiddenMobile": true },
+                { "DataProperty": "FechaCertificacion", "HiddenMobile": true },
+                { "DataProperty": "EstadoOTId", "ReplacedBy": "EstadoOTDescription", "HiddenMobile": true }
+            ]
+        },
+        {
+            "Id": "OTEdificio",
+            "FormId": "OTEdificio",
+            "Layout": 1,
+            "EditAction": 3,
+            "GeoLocation": false,
+            "CustomAjaxSource": "Item_Actuacion_GetOTEdifici",
+            "Columns": [
+                { "DataProperty": "CodigoOT" },
+                { "DataProperty": "Direccion" },
+                { "DataProperty": "BarrioId", "ReplacedBy": "BarrioDescripcion" },
+                { "DataProperty": "CentroId", "ReplacedBy": "CentroDescripcion" },
+                { "DataProperty": "NivelProblemaId", "ReplacedBy": "NivelProblemaDescription" }
+            ]
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Icon": "gear",
+                    "Label": "Fitxa",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Ficha", "Type": 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Icon": "check",
+                    "Label": "Dades",
+                    "Rows": [
+                        {
+                            "Label": "Adjudicació",
+                            "Fields": [
+                                { "Name": "AdjudicacionId" },
+                                { "Name": "ClientePropietarioId", "Label": "Propietat" }
+                            ]
+                        },
+                        {
+                            "Label": "Direcció",
+                            "Fields": [
+                                { "Name": "TipoViaId" },
+                                { "Name": "Direccion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Numero" },
+                                { "Name": "BarrioId" },
+                                { "Name": "LocalidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Latitud" },
+                                { "Name": "Longitud" },
+                                { "Name": "GeoCode", "Label": "Obtenir coordenades", "Type": 1, "Function": "Geocode" },
+                                { "Name": "ShowMap", "Label": "Veure al mapa", "Type": 1, "Function": "ShowMap" }
+                            ]
+                        },
+                        {
+                            "Label": "Dades",
+                            "Fields": [
+                                { "Name": "ElementoId" },
+                                { "Name": "PatologiaId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "NivelProblemaId" },
+                                { "Name": "Importe" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Observaciones" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FechaRecepcion" },
+                                { "Name": "FechaInicio" },
+                                { "Name": "FechaFinal" },
+                                { "Name": "FechaCertificacion" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Galeria",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "FotosInicio" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FechaRecepcion" },
+                                { "Name": "FechaInicio" },
+                                { "Name": "FechaFinal" },
+                                { "Name": "FechaCertificacion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosProceso" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosFinal" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FechaRecepcion" },
+                                { "Name": "FechaInicio" },
+                                { "Name": "FechaFinal" },
+                                { "Name": "FechaCertificacion" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Id": "Inventario",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Fitxa",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Ficha", "Type": 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Dades inventari",
+                    "Rows": [
+                        {
+                            "Label": "Adjudicació",
+                            "Fields": [
+                                { "Name": "AdjudicacionId" },
+                                { "Name": "ClientePropietarioId", "Label": "Propietat" }
+                            ]
+                        },
+                        {
+                            "Label": "Direcció",
+                            "Fields": [
+                                { "Name": "TipoViaId" },
+                                { "Name": "Direccion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Numero" },
+                                { "Name": "BarrioId" },
+                                { "Name": "LocalidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Latitud" },
+                                { "Name": "Longitud" },
+                                { "Name": "GeoCode", "Label": "Obtenir coordenades", "Type": 1, "Function": "Geocode" },
+                                { "Name": "ShowMap", "Label": "Veure al mapa", "Type": 1, "Function": "ShowMap" }
+                            ]
+                        },
+                        {
+                            "Label": "Dades",
+                            "Fields": [
+                                { "Name": "NivelProblemaId" },
+                                { "Name": "PatologiaId" },
+                                { "Name": "FechaDeteccion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "ElementoId" },
+                                { "Name": "Amidament" },
+                                { "Name": "UnidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Importe" },
+                                { "Name": "CodigoIncidencia" },
+                                { "Name": "OTButtonGenerar", "Label": "Generar OT", "Type": 1, "Function": "ACTUACION_GoNewOT" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Observaciones" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Galeria",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "FotosInicio" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Id": "OTViaPublica",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Fitxa",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Ficha", "Type": 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Dades OT via pública",
+                    "Rows": [
+                        {
+                            "Label": "Adjudicació",
+                            "Fields": [
+                                { "Name": "AdjudicacionId" },
+                                { "Name": "ClientePropietarioId", "Label": "Propietat" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "RefIris" },
+                                { "Name": "RefHost" },
+                                { "Name": "ModificaCartografia" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Descripcion" }
+                            ]
+                        },
+                        {
+                            "Label": "Adreça",
+                            "Fields": [
+                                { "Name": "TipoViaId" },
+                                { "Name": "Direccion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Numero" },
+                                { "Name": "BarrioId" },
+                                { "Name": "LocalidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Latitud" },
+                                { "Name": "Longitud" },
+                                { "Name": "GeoCode", "Label": "Obtenir coordenades", "Type": 1, "Function": "Geocode" },
+                                { "Name": "ShowMap", "Label": "Veure al mapa", "Type": 1, "Function": "ShowMap" }
+                            ]
+                        },
+                        {
+                            "Label": "Dades",
+                            "Fields": [
+                                { "Name": "NivelUrgenciaId" },
+                                { "Name": "FechaRecepcion" },
+                                { "Name": "Urgente" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "ElementoId" },
+                                { "Name": "Amidament" },
+                                { "Name": "UnidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FechaInicio" },
+                                { "Name": "FechaFinal" },
+                                { "Name": "CuadrillaId", "Label": "Brigada" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+
+                                { "Name": "FechaCertificacion" },
+                                { "Name": "Valoracion" },
+                                { "Name": "FechaDeteccion" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Galeria",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "FotosInicio" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosProceso" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosFinal" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Id": "OTEdificio",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Fitxa",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Ficha", "Type": 4 }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Dades OT edifici",
+                    "Rows": [
+                        {
+                            "Label": "Adjudicació",
+                            "Fields": [
+                                { "Name": "AdjudicacionId" },
+                                { "Name": "ClientePropietarioId", "Label": "Propietat" }
+                            ]
+                        },
+                        {
+                            "Label": "Edifici",
+                            "Fields": [
+                                { "Name": "CentroId" },
+                                { "Name": "Tipologia", "Label": "Tipologia" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "TipoViaId" },
+                                { "Name": "Direccion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Numero" },
+                                { "Name": "BarrioId" },
+                                { "Name": "LocalidadId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Latitud" },
+                                { "Name": "Longitud" },
+                                { "Name": "ShowMap", "Label": "Veure al mapa", "Type": 1, "Function": "ShowMap" },
+                                { "Type": 2 }
+                            ]
+                        },
+                        {
+                            "Label": "Dades",
+                            "Fields": [
+                                { "Name": "TipoMantenimientoId" },
+                                { "Name": "Urgente" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "NivelProblemaId" },
+                                { "Name": "Importe" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FechaRecepcion" },
+                                { "Name": "FechaInicio" },
+                                { "Name": "FechaFinal" },
+                                { "Name": "FechaCertificacion" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Observaciones" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Icon": "gear",
+                    "Label": "Galeria",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "FotosInicio" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosProceso" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FotosFinal" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],    
+    "DataAdapter": {
+        "GetById": { "Stored": "Adapter_Actuacion_GetById" }
+    }
+}

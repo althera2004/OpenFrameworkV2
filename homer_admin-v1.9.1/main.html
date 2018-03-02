@@ -1,0 +1,752 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>    
+	
+	<!-- Vendor styles -->
+    <link type="text/css" rel="stylesheet" href="/vendor/fontawesome/css/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="/vendor/metisMenu/dist/metisMenu.css" />
+    <link type="text/css" rel="stylesheet" href="/vendor/animate.css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="/vendor/datatables.net-bs/css/dataTables.bootstrap.min.css" />
+
+    <!-- App styles -->
+    <link type="text/css" rel="stylesheet" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link type="text/css" rel="stylesheet" href="/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="/styles/static_custom.css" />
+	
+	
+    <link type="text/css" rel="stylesheet" href="/vendor/sweetalert/lib/sweet-alert.css" />
+    <link type="text/css" rel="stylesheet" href="/vendor/toastr/build/toastr.min.css" />
+
+
+	<style type="text/css">
+		.dt-toolbar-footer{border-top:1px solid #ddd;}
+		.dataTables_scrollHeadInner{border-bottom:1px solid #ddd;}
+		
+		.imagecontainer { 
+			float:left;
+			width:50%;
+		}
+		
+		.imagecontainer img {
+			max-height:100%;
+			max-width:50%;
+		}
+
+		#thumbs_container {
+			padding: 0px;
+			padding-top:5px;
+			margin: 0px;
+			width: 100%;
+			overflow:auto;
+			border: 1px solid #e0e0e0;
+		}
+
+		.thumb_item {
+			background-color:#fff;
+			display: block;
+			float: left;
+			margin: 0px;
+			float:left;
+			height: 175px;
+			min-height:175px;
+			max-height:175px;
+			width: 20%;
+			margin-bottom:4px;
+			display:block;
+		}
+
+        .thumbContent {
+            margin-left: 10px;
+			margin-right: 10px;
+			margin-bottom: 30px;
+            border: 1px solid #efefef;
+            height: 100%;
+            -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+            box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);
+        }
+
+		.thumb_item img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+        a.thumb_item:hover img, a.thumb_item:active img {
+            border-color: #006;
+        }
+		
+		.thumb_data {
+			float:left;
+			width:50%;
+			min-height:150px;
+			max-height:150px;
+		}
+		
+		#userMenu .collapse-sign { display:none; }
+		
+		.profile-picture { display:none; }
+		
+		.toast-message { color:#000!important;}
+	</style>
+
+    <script type="text/javascript" src="/Dicc/common-es-es.js"></script>
+    <script type="text/javascript" src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/app.config.js"></script>
+    <script type="text/javascript" src="/js/app.min.js"></script>
+    <script type="text/javascript" src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="vendor/flot.curvedlines/curvedLines.js"></script>
+    <script type="text/javascript" src="vendor/jquery.flot.spline/index.js"></script>
+    <script type="text/javascript" src="vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script type="text/javascript" src="vendor/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="vendor/peity/jquery.peity.min.js"></script>
+    <script type="text/javascript" src="vendor/sparkline/index.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables/media/js/dataTables.colVis.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables/media/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- DataTables buttons scripts -->
+    <script type="text/javascript" src="vendor/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="vendor/pdfmake/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+
+    <!-- App scripts -->
+    <script type="text/javascript" src="scripts/homer.js"></script>
+    <script type="text/javascript" src="scripts/charts.js"></script>
+    <script type="text/javascript" src="/js/DataColumnFormat.js"></script>
+    <script type="text/javascript" src="/js/Tools.js"></script>
+    <script type="text/javascript" src="/js/base64.js"></script>
+    <script type="text/javascript" src="/js/ActualUser.js"></script>
+    <script type="text/javascript" src="/js/Menu.js"></script>
+    <script type="text/javascript" src="/js/Item.js"></script>
+    <script type="text/javascript" src="/js/DataTable.js"></script>
+    <script type="text/javascript" src="/js/ListColumn.js"></script>
+    <script type="text/javascript" src="/js/Form.js"></script>
+    <script type="text/javascript" src="/js/Navigation.js"></script>
+    <script src="//cdn.jsdelivr.net/alasql/0.2/alasql.min.js"></script>
+    <script type="text/javascript" src="/vendor/mask/jquery.maskedinput.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="/css/jquery.leroy-zoom.css">
+	<script type="text/javascript" src="/js/jquery.leroy-zoom.js"></script>
+	<script type="text/javascript" src="/js/Modals.js"></script>
+	<script type="text/javascript" src="/js/UploadImage.js"></script>	
+	<script type="text/javascript" src="/vendor/sweetalert/lib/sweet-alert.min.js"></script>
+	<script type="text/javascript" src="/vendor/toastr/build/toastr.min.js"></script>
+
+
+    <script type="text/javascript">
+	
+        toastr.options = {
+            "debug": true,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "toastClass": "animated fadeInDown",
+			"timeOut": 5000
+        };
+		
+        function test2() {
+            GoEncryptedView("Pieza", 2, null);
+        }
+
+        var codedQuery = "";
+		var actualUser = null;
+		var CustomerName = "Playmobil";
+        var MenuOptionId = 1;
+        var queryParams = null;
+        var Data = null;//{ "Id": 84, "CompanyId": 1, "EnterpriseId": 134, "BusinessName": "Sorigue", "Tradename": "Sorigue", "ShortName": "Sorigue", "Adress": "Jaen, 10 - 4ºB", "TownId": 1433, "PostalCode": "48012", "ProvinceId": 1, "ProvinceDescription": "Barcelona", "CountryId": 1, "Webpage": "http://www.portalssgg.com", "Email": "", "Phone1": "946722083", "Phone2": "", "FaxNumber": "", "NIF": "B95646642", "FoundationYear": null, "CapitalStock": null, "CompanyGroup": "", "Notes": "", "Agent1Id": "", "Agent2Id": "", "ActivitySectorId": 25, "Activity": "Ingeniería Eléctrica", "CNAEId": null, "EmployeeNumber": null, "AnualBilling": null, "RegularSchedule": "", "SummerSchedule": "", "MarketingSelected": false, "MarketingSegmentation": "", "IsCustomer": false, "IsProvider": true, "Blocked": true, "IsIVACost": false, "ProviderApprovalEvaluation": "No Apto             ", "ProviderApprovalDate": "2014-01-30T00:00:00", "ApprovalScore": 0.00, "ApprovalScoreUpdateDate": "2014-12-30T00:00:00", "EnvironmentalCommitmentDate": "2011-07-22T00:00:00", "ServerFolder": "", "ClientFolder": "", "AuditorySubfolder": "", "IVACostPercentage": null, "Active": true, "CNAE": null,  "Description": "134 - AIELEK, S.L." };
+        var ItemDefinition = null;
+        window.onload = function () {
+            queryParams = DecodeEncryptedQuery();
+            actualUser = {
+                "Id": 1,
+                "FullName": "Juan Castilla",
+                "JobPosition": "MegaMaster"
+            };
+            console.log(actualUser);
+
+            $(".profile-picture").html(LayoutMenuRender(actualUser));
+			$("#DivUserFullName").html(actualUser.FullName);
+			$("#DivUserJobPosition").html(actualUser.JobPosition);
+
+            $.getJSON("/api/menu.json?ac=" + guid(), function (json) {
+                $("#side-menu").html(MenuRender(json));
+                $('#side-menu').metisMenu();			
+
+				$(".ownerLink").on("click", function (e) { console.log($(this)); console.log($(this).data("link")); GoEncryptedList($(this).data("link"), "custom");});
+            });
+
+			if(typeof queryParams.ItemName !== "undefined") {
+				$.getJSON("/Instances/Sbrinna/Items/" + queryParams.ItemName + ".item?ac=" + guid(), function (json) {
+					console.log("Definition", json);
+					ItemDefinition = json;
+
+					$("#PageTitle").html(ItemDefinition.Layout.Label);
+					$("#ActualBradCrumb").html(ItemDefinition.Layout.Label);
+
+					$("#formTest").html(RenderTab(ItemDefinition, ItemDefinition.Forms[0].Tabs[0]));
+				});
+			}
+
+            $.getJSON("/api/data.json?ac=" + guid(), function (json) {
+                Data = json;
+                FillForm(Data);
+                LayoutModified(Data);
+            });
+
+            console.log("Params", queryParams);
+
+            $("#FaxNumber").mask("(99) 9999?9-9999");
+        }
+
+		window.onresize = function () {
+			$("#main").height($(window).height() - $(".panel-body").height() - $(".footer").height() - $("#header").height() - 60);
+				$(".dataTables_scrollBody").css("height",($(window).height() - 330));
+				$("#thumbs_container").css("height",($(window).height() - 330));
+		}
+		
+		function guid() {
+		  function s4() {
+			return Math.floor((1 + Math.random()) * 0x10000)
+			  .toString(16)
+			  .substring(1);
+		  }
+		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+		}
+    </script>
+</head>
+<body class="fixed-sidebar fixed-navbar fixed-footer fixed-small-header">
+    <div id="header">
+        <div class="color-line">
+        </div>
+        <nav role="navigation">
+            <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+            <div class="small-logo">
+                <span class="text-primary">Open<strong>Framework</strong><i>v3</i></span>
+            </div>
+            <form role="search" class="navbar-form-custom" method="post" action="#">
+                <div class="form-group">
+                    <input type="text" placeholder="Buscar..." class="form-control" name="search">
+                </div>
+            </form>
+            <div class="mobile-menu">
+                <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="collapse mobile-navbar" id="mobile-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="" href="login.html">Login</a>
+                        </li>
+                        <li>
+                            <a class="" href="login.html">Logout</a>
+                        </li>
+                        <li>
+                            <a class="" href="profile.html">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav no-borders">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-speaker"></i>
+                        </a>
+                        <ul class="dropdown-menu hdropdown notification animated flipInX">
+                            <li>
+                                <a>
+                                    <span class="label label-success">NEW</span> It is a long established.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="label label-warning">WAR</span> There are many variations.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="label label-danger">ERR</span> Contrary to popular belief.
+                                </a>
+                            </li>
+                            <li class="summary"><a href="#">See all notifications</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-keypad"></i>
+                        </a>
+
+                        <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="projects.html">
+                                                <i class="pe pe-7s-portfolio text-info"></i>
+                                                <h5>Projects</h5>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="mailbox.html">
+                                                <i class="pe pe-7s-mail text-warning"></i>
+                                                <h5>Email</h5>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="contacts.html">
+                                                <i class="pe pe-7s-users text-success"></i>
+                                                <h5>Contacts</h5>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="forum.html">
+                                                <i class="pe pe-7s-comment text-info"></i>
+                                                <h5>Forum</h5>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="analytics.html">
+                                                <i class="pe pe-7s-graph1 text-danger"></i>
+                                                <h5>Analytics</h5>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="file_manager.html">
+                                                <i class="pe pe-7s-box1 text-success"></i>
+                                                <h5>Files</h5>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-mail"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu hdropdown animated flipInX">
+                            <div class="title">
+                                You have 4 new messages
+                            </div>
+                            <li>
+                                <a>
+                                    It is a long established.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    There are many variations.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Lorem Ipsum is simply dummy.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Contrary to popular belief.
+                                </a>
+                            </li>
+                            <li class="summary"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="userMenu">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+							<img src="images/profiles/1.png" class="m-b" alt="logo" style="width:30px;height:30px;margin-top:-5px;">
+						</a>
+						<ul class="dropdown-menu hdropdown animated flipInX">
+                            <div class="title font-extra-bold font-uppercase" id="DivUserFullName"></div>
+							<div class="title text-muted" id="DivUserJobPosition"></div>
+							<li>
+								<a class="" href="login.html">Login</a>
+							</li>
+							<li>
+								<a class="" href="login.html">Logout</a>
+							</li>
+							<li>
+								<a class="" href="profile.html">Profile</a>
+							</li>
+						</ul>
+					</li>
+                    <li>
+                        <a href="#" id="sidebar" class="right-sidebar-toggle">
+                            <i class="pe-7s-upload pe-7s-news-paper"></i>
+                        </a>
+                    </li>
+                    <!--<li class="dropdown">
+                        <a href="login.html">
+                            <i class="pe-7s-upload pe-rotate-90"></i>
+                        </a>
+                    </li>-->
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    <aside id="menu">
+        <div id="navigation">
+            <ul class="nav" id="side-menu"></ul>
+        </div>
+
+        <div style="float:left;width:70%;border:1px solid #333;">
+            <button id="BtnModal"        type="button" data-toggle="modal" data-target="#myModal">modal</button>
+            <button id="BtnModalSucess"  type="button" data-toggle="modal" data-target="#myModalSuccess">Success</button>
+            <button id="BtnModalInfo"    type="button" data-toggle="modal" data-target="#myModalInfo">Info</button>
+            <button id="BtnModalWarning" type="button" data-toggle="modal" data-target="#myModalWarning">Warning</button>
+            <button id="BtnModalDelete"  type="button" data-toggle="modal" data-target="#myModalDelete">Danger</button>
+            <button id="BtnModalImage"   type="button" data-toggle="modal" data-target="#myModalImage">Image</button>
+        </div>
+    </aside>
+
+    <div id="wrapper">
+        <div class="small-header transition animated fadeIn">
+            <!-- Panel de presentación de contenido -->
+            <div class="hpanel" id="BreadCrumbDiv">
+                <div class="panel-body">
+                    <div id="hbreadcrumb" class="pull-right">
+                        <ol class="hbreadcrumb breadcrumb">
+                            <li><a href="index.html">Inicio</a></li>
+                            <li class="active">
+                                <span id="ActualBradCrumb"></span>
+                            </li>
+                        </ol>
+                    </div>
+                    <i class="fa fa-gears fa-2x"></i>
+                    <div style="display:inline-block;margin-left:8px;">
+                        <h2 class="font-light m-b-xs" id="PageTitle">
+                            Instancias
+                        </h2>
+                        <small id="PageSubtitle" style="font-size:12px!important;"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content animate-panel">
+
+            <div class="hpanel" id="main" role="main">                
+                <div style="float:left;width:29%;border:1px solid #33f;">
+                    <a href="/ajax/tables.html" id="launcher"><span class="menu-item-parent">test</span></a>
+                    <span onclick="test('querytest.aspx');">a1</span>
+                    <span onclick="test2();">a2</span>
+                    <span onclick="UIInfo('titutlo','mensaje','xxxxxx');">info</span>
+                    <span onclick="toastr.info('Info - This is a custom Homer info notification');">toast</span>
+                    <span onclick="OpenImageUploadPopup($('#Imagen').attr('src'), 'Imagen principal', 'Imagen');">imagen</span>
+                </div>
+				<div id="ImagenDiv" class="col-md-4" style="text-align:center;max-height:252px;height:252px;border:1px solid #333;background-image:url(/img/ImageUploadBackground.png)" onfocus="$('ImagenButttons').show();" onblur="$('ImagenButttons').hide();">             
+				<a href="#" id="ImagenZoomer" class="demo-trigger zoomable" style="max-width:100%;max-height:250px;">
+				<div class="zoom-cursor" style="display: block; top: 154px; left: 205.844px;"></div>                 
+				<img id="Imagen" name="Imagen" src="/Instances/playmobil/Data/img/Pieza_Imagen_311.png?864EEDC3-B98A-4628-8FB0-BB80CBE55B9C" style="max-width:100%;max-height:250px;">             </a>         </div>
+            </div>
+
+            <!-- Right sidebar -->
+            <div id="right-sidebar" class="animated fadeInRight">
+
+                <div class="p-m">
+                    <button id="sidebar-close" class="right-sidebar-toggle sidebar-button btn btn-default m-b-md">
+                        <i class="pe pe-7s-close"></i>
+                    </button>
+                    <div>
+                        <span class="font-bold no-margins"> Analytics </span>
+                        <br>
+                        <small> Lorem Ipsum is simply dummy text of the printing simply all dummy text.</small>
+                    </div>
+                    <div class="row m-t-sm m-b-sm">
+                        <div class="col-lg-6">
+                            <h3 class="no-margins font-extra-bold text-success">300,102</h3>
+
+                            <div class="font-bold">98% <i class="fa fa-level-up text-success"></i></div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="no-margins font-extra-bold text-success">280,200</h3>
+
+                            <div class="font-bold">98% <i class="fa fa-level-up text-success"></i></div>
+                        </div>
+                    </div>
+                    <div class="progress m-t-xs full progress-small">
+                        <div style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" role="progressbar"
+                             class=" progress-bar progress-bar-success">
+                            <span class="sr-only">35% Complete (success)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-m bg-light border-bottom border-top">
+                    <span class="font-bold no-margins"> Social talks </span>
+                    <br>
+                    <small> Lorem Ipsum is simply dummy text of the printing simply all dummy text.</small>
+                    <div class="m-t-md">
+                        <div class="social-talk">
+                            <div class="media social-profile clearfix">
+                                <a class="pull-left">
+                                    <img src="images/a1.jpg" alt="profile-picture">
+                                </a>
+
+                                <div class="media-body">
+                                    <span class="font-bold">John Novak</span>
+                                    <small class="text-muted">21.03.2015</small>
+                                    <div class="social-content small">
+                                        Injected humour, or randomised words which don't look even slightly believable.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-talk">
+                            <div class="media social-profile clearfix">
+                                <a class="pull-left">
+                                    <img src="images/a3.jpg" alt="profile-picture">
+                                </a>
+
+                                <div class="media-body">
+                                    <span class="font-bold">Mark Smith</span>
+                                    <small class="text-muted">14.04.2015</small>
+                                    <div class="social-content">
+                                        Many desktop publishing packages and web page editors.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-talk">
+                            <div class="media social-profile clearfix">
+                                <a class="pull-left">
+                                    <img src="images/a4.jpg" alt="profile-picture">
+                                </a>
+
+                                <div class="media-body">
+                                    <span class="font-bold">Marica Morgan</span>
+                                    <small class="text-muted">21.03.2015</small>
+
+                                    <div class="social-content">
+                                        There are many variations of passages of Lorem Ipsum available, but the majority have
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-m">
+                    <span class="font-bold no-margins"> Sales in last week </span>
+                    <div class="m-t-xs">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <small>Today</small>
+                                <h4 class="m-t-xs">$170,20 <i class="fa fa-level-up text-success"></i></h4>
+                            </div>
+                            <div class="col-xs-6">
+                                <small>Last week</small>
+                                <h4 class="m-t-xs">$580,90 <i class="fa fa-level-up text-success"></i></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <small>Today</small>
+                                <h4 class="m-t-xs">$620,20 <i class="fa fa-level-up text-success"></i></h4>
+                            </div>
+                            <div class="col-xs-6">
+                                <small>Last week</small>
+                                <h4 class="m-t-xs">$140,70 <i class="fa fa-level-up text-success"></i></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <small>
+                        Lorem Ipsum is simply dummy text of the printing simply all dummy text.
+                        Many desktop publishing packages and web page editors.
+                    </small>
+                </div>
+            </div>
+
+            <!-- Footer-->
+            <footer class="footer">
+                <span class="pull-right" id="footer-button">
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Acciones <span class="caret"></span></button>
+                        <ul class="dropdown-menu pull-right pull-top">
+                            <li><a href="#">Exportar lista a Excel&reg;</a></li>
+                            <li><a href="#">Imprimir en PDF</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Importar datos</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Configurar lista <i>(requires admin)</i></a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary btn-success " type="button"><i class="fa fa-check"></i>&nbsp;Guardar</button>
+                </span>
+                Open<strong>Framework</strong>&nbsp;v3<br />
+                <i>Althera2004&nbsp;&copy;&nbsp;2015-2020</i>
+            </footer>
+        </div>
+    </div>
+
+    <div class="modal fade hmodal-success" id="myModalSuccess" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold modal-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade hmodal-info" id="myModalInfo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold modal-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade hmodal-warning" id="myModalWarning" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold modal-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade hmodal-danger" id="myModalDelete" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold modal-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Modal title</h4>
+                    <small class="font-bold modal-subtitle">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</small>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+                        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially unchanged.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalImage" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title"><span id="MyModalImageAction"></span>&nbsp;imagen</h4>
+                    <small class="font-bold modal-subtitle" style="font-size:11px;">*Al terminar la acción no es necesario guardar el ítem.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+						<span class="col-sm-12" style="font-size:12px;">Seleccionar imagen para el campo <strong id="UploadImageFieldName"></strong></span>
+					</div>
+					<div class="row">
+						<div class="col-sm-6"><strong>Actual</strong></div>
+						<div class="col-sm-6"><strong>Nueva</strong></div>
+					</div>
+					<div class="row" style="padding:8px;">
+						<div class="col-sm-6 imagefolderLeft">
+							<img id="UploadImage1" src="img/noimage.png" alt="Actual image" />
+						</div>
+						<div class="col-sm-6 imagefolderRight">
+							<img id="UploadImage2" src="img/noimage.png" alt="New image" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">&nbsp;</div>
+						<div class="col-sm-6">
+							<input type="file" name="UploadImagefile" id="UploadImageFile" class="inputfile" />
+							<label class="col-sm-12 btn btn-primary btn-success" for="UploadImageFile"><i class="fa fa-file"></i>&nbsp;Seleccionar imagen</label>
+						</div>
+					</div>
+					<div class="row" id="MyModalImageErrorMessageDiv">
+						<div class="ErrorMessage col-sm-12" id="MyModalImageErrorMessage"></span>
+					</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="UploadImageValidation();">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+</body>
+</html>
