@@ -1,0 +1,414 @@
+********** 05/03/2018 20:20:45 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Error parsing Infinity value. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseNumberPositiveInfinity(ReadType readType, Boolean matched)
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:20:45 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 20:20:45 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:11 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:11 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Error parsing Infinity value. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseNumberPositiveInfinity(ReadType readType, Boolean matched)
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:11 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 20:21:11 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:55 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:55 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Error parsing Infinity value. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseNumberPositiveInfinity(ReadType readType, Boolean matched)
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:55 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:21:55 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 20:24:25 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:24:56 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 20:25:27 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:02:30 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Error parsing Infinity value. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseNumberPositiveInfinity(ReadType readType, Boolean matched)
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:03:59 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:05:28 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Unexpected character encountered while parsing value: x. Path '', line 0, position 0.
+Source: JsonException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseValue()
+   en Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:09:41 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:09:44 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:09:44 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Invalid property identifier character: {. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseProperty()
+   en Newtonsoft.Json.JsonReader.ReadAndAssert()
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:09:44 **********
+Exception Type: Newtonsoft.Json.JsonSerializationException
+Exception: Unexpected end when deserializing object. Path 'Forms', line 99, position 0.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ThrowUnexpectedEndException(JsonReader reader, JsonContract contract, Object currentObject, String message)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:09:55 **********
+Exception Type: Newtonsoft.Json.JsonReaderException
+Exception: Invalid property identifier character: {. Path '', line 1, position 1.
+Source: JsonException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en Newtonsoft.Json.JsonTextReader.ParseProperty()
+   en Newtonsoft.Json.JsonReader.ReadAndAssert()
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:09:55 **********
+Exception Type: Newtonsoft.Json.JsonSerializationException
+Exception: Unexpected end when deserializing object. Path 'Forms', line 99, position 0.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ThrowUnexpectedEndException(JsonReader reader, JsonContract contract, Object currentObject, String message)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:10:12 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:10:12 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:10:26 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:10:27 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:10:27 **********
+Exception Type: Newtonsoft.Json.JsonSerializationException
+Exception: Unexpected end when deserializing object. Path 'Forms', line 99, position 0.
+Source: JsonException -- ItemDefinition::Load(Pieza)
+Stack Trace: 
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.ThrowUnexpectedEndException(JsonReader reader, JsonContract contract, Object currentObject, String message)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.PopulateObject(Object newObject, JsonReader reader, JsonObjectContract contract, JsonProperty member, String id)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, Object existingValue)
+   en Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   en Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   en Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 458
+
+********** 05/03/2018 21:10:27 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:10:52 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:12:20 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:12:26 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:12:31 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:12:34 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:13:22 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(MiPieza)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:13:24 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Tematica)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+
+********** 05/03/2018 21:13:25 **********
+Exception Type: System.IO.FileNotFoundException
+Exception: No se pudo encontrar el archivo 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\js\Template.js'.
+Source: IOException -- ItemDefinition::Load(Formato)
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.File.InternalCopy(String sourceFileName, String destFileName, Boolean overwrite, Boolean checkHost)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 481
+

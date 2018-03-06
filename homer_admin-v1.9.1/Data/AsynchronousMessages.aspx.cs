@@ -5,12 +5,14 @@
 // <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
 // --------------------------------
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
+using System.Linq;
 using OpenFramework;
 using System.Net;
 using System.Data.SqlClient;
@@ -158,6 +160,33 @@ public partial class Data_AsynchronousMessages : Page
         }
 
         res.SetSuccess(IPAddress);
+
+        return res;
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat= ResponseFormat.Json)]
+    public static ActionResult GetAllItems(string instanceName)
+    {
+        var res = ActionResult.NoAction;
+		try
+		{
+            CustomerFramework instance = CustomerFramework.Load(instanceName);
+			string path = instance.DefinitionPath;
+			var filesPath = Directory.GetFiles(path, "*.item").ToList();
+			var files = new List<string>();
+
+			foreach (string fileName in filesPath)
+			{
+				files.Add(Path.GetFileNameWithoutExtension(fileName));
+			}
+
+			res.SetSuccess(files);
+		}
+		catch(Exception ex)
+		{
+			res.SetFail(ex);
+		}
 
         return res;
     }

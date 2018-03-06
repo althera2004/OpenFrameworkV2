@@ -147,7 +147,7 @@
 
 
     <script type="text/javascript">
-	
+		var FK = [];
         toastr.options = {
             "debug": true,
             "newestOnTop": false,
@@ -168,7 +168,13 @@
         var queryParams = null;
         var Data = null;//{ "Id": 84, "CompanyId": 1, "EnterpriseId": 134, "BusinessName": "Sorigue", "Tradename": "Sorigue", "ShortName": "Sorigue", "Adress": "Jaen, 10 - 4ºB", "TownId": 1433, "PostalCode": "48012", "ProvinceId": 1, "ProvinceDescription": "Barcelona", "CountryId": 1, "Webpage": "http://www.portalssgg.com", "Email": "", "Phone1": "946722083", "Phone2": "", "FaxNumber": "", "NIF": "B95646642", "FoundationYear": null, "CapitalStock": null, "CompanyGroup": "", "Notes": "", "Agent1Id": "", "Agent2Id": "", "ActivitySectorId": 25, "Activity": "Ingeniería Eléctrica", "CNAEId": null, "EmployeeNumber": null, "AnualBilling": null, "RegularSchedule": "", "SummerSchedule": "", "MarketingSelected": false, "MarketingSegmentation": "", "IsCustomer": false, "IsProvider": true, "Blocked": true, "IsIVACost": false, "ProviderApprovalEvaluation": "No Apto             ", "ProviderApprovalDate": "2014-01-30T00:00:00", "ApprovalScore": 0.00, "ApprovalScoreUpdateDate": "2014-12-30T00:00:00", "EnvironmentalCommitmentDate": "2011-07-22T00:00:00", "ServerFolder": "", "ClientFolder": "", "AuditorySubfolder": "", "IVACostPercentage": null, "Active": true, "CNAE": null,  "Description": "134 - AIELEK, S.L." };
         var ItemDefinition = null;
+
+        var itemNames = [];
+
         window.onload = function () {
+
+            GetItemNames();
+
             queryParams = DecodeEncryptedQuery();
             actualUser = {
                 "Id": 1,
@@ -188,7 +194,7 @@
 				$(".ownerLink").on("click", function (e) { console.log($(this)); console.log($(this).data("link")); GoEncryptedList($(this).data("link"), "custom");});
             });
 
-			if(typeof queryParams.ItemName !== "undefined") {
+			/*if(typeof queryParams.ItemName !== "undefined") {
 				$.getJSON("/Instances/Sbrinna/Items/" + queryParams.ItemName + ".item?ac=" + guid(), function (json) {
 					console.log("Definition", json);
 					ItemDefinition = json;
@@ -204,11 +210,11 @@
                 Data = json;
                 FillForm(Data);
                 LayoutModified(Data);
-            });
+            });/
 
             console.log("Params", queryParams);
 
-            $("#FaxNumber").mask("(99) 9999?9-9999");
+            $("#FaxNumber").mask("(99) 9999?9-9999");*/
         }
 
 		window.onresize = function () {
@@ -442,7 +448,12 @@
 
         <div class="content animate-panel">
 
-            <div class="hpanel" id="main" role="main">                
+            <div class="hpanel" id="main" role="main">  
+				<div class="m">
+                    <div class="progress m-t-xs full progress-striped active">
+                        <div id="ItemsLoadedProgressBar" style="width:0%" class=" progress-bar progress-bar-success">0%</div>
+                    </div>
+                </div>			
                 <div style="float:left;width:29%;border:1px solid #33f;">
                     <a href="/ajax/tables.html" id="launcher"><span class="menu-item-parent">test</span></a>
                     <span onclick="test('querytest.aspx');">a1</span>
@@ -455,6 +466,8 @@
 				<a href="#" id="ImagenZoomer" class="demo-trigger zoomable" style="max-width:100%;max-height:250px;">
 				<div class="zoom-cursor" style="display: block; top: 154px; left: 205.844px;"></div>                 
 				<img id="Imagen" name="Imagen" src="/Instances/playmobil/Data/img/Pieza_Imagen_311.png?864EEDC3-B98A-4628-8FB0-BB80CBE55B9C" style="max-width:100%;max-height:250px;">             </a>         </div>
+				
+				<div id="itemsTable"></div>				
             </div>
 
             <!-- Right sidebar -->

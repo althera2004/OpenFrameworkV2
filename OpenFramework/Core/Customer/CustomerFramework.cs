@@ -1,4 +1,8 @@
-﻿namespace OpenFramework.Customer
+﻿using System;
+using System.Configuration;
+using System.Globalization;
+
+namespace OpenFramework.Customer
 {
     /// <summary>Implements customer framework class</summary>
     public sealed class CustomerFramework
@@ -40,6 +44,28 @@
             res.Name = instanceName;
             res.LoadConfig();
             return res;
+        }
+
+        public string DefinitionPath
+        {
+            get
+            {
+                string path = string.Format(
+                    CultureInfo.InvariantCulture,
+                    ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString(),
+                    this.Name);
+
+                if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
+                {
+                    path = string.Format(CultureInfo.InvariantCulture, @"{0}\", path);
+                }
+                else
+                {
+                    path = string.Format(CultureInfo.InvariantCulture, @"{0}", path);
+                }
+
+                return path.ToUpperInvariant();
+            }
         }
     }
 }
