@@ -51,8 +51,6 @@ public partial class Data_FKScript : Page
         }
 
 
-        this.Response.Write(",\"Duration\":");
-        this.Response.Write(string.Format(CultureInfo.InvariantCulture, "{0:#0.000}", (DateTime.Now - d0).TotalMilliseconds));
 
         if (this.Request.QueryString["r"] == null)
         {
@@ -60,6 +58,8 @@ public partial class Data_FKScript : Page
         }
         else
         {
+			this.Response.Write(",\"Duration\":");
+			this.Response.Write(string.Format(CultureInfo.InvariantCulture, "{0:#0.000}", (DateTime.Now - d0).TotalMilliseconds));
             this.Response.Write("}");
         }
 

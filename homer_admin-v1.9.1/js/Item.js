@@ -49,6 +49,7 @@ function GetItemNames() {
 			itemNames = msg.d.ReturnValue;
 			for(var x=0;x<itemNames.length;x++){
 				$("#itemsTable").append("<div class=\"col col-sm-3\">" + itemNames[x] + "</div>");
+				totalItems++;
 			}
 			
 			for (var x = 0; x < itemNames.length; x++) {
@@ -63,9 +64,26 @@ function GetItemNames() {
 
 var loaded = 0;
 var totalItems = 0;
+		
+var RefreshFKActual = 0;
+function RefreshFK() {
+	ReloadFK(itemNames[RefreshFKActual]);
+	RefreshFKActual++;
+	if (RefreshFKActual >= itemNames.length) {
+		RefreshFKActual = 0;
+	}
+	setTimeout(RefreshFK, 10000);
+}
+
+function ReloadFK(itemName){
+	$.getJSON("/Data/FKScript.aspx?r=1&itemName=" + itemName + "&InstanceName=" + CustomerName + "&ac=" + guid(), function (data) {
+		FK[data.ItemName] = data.Data;
+	});
+}
 
 function LoadItem(itemName) {
-	$.getJSON("/Data/FKScript.aspx?itemName=" + itemName + "&InstanceName=" + CustomerName + "&ac=" + guid(), function (data) {
+	console.log("LoadItem", itemName);
+	$.getJSON("/Data/FKScript.aspx?r=1&itemName=" + itemName + "&InstanceName=" + CustomerName + "&ac=" + guid(), function (data) {
 		console.log("loaded", itemName + " --> " + data.Data.length);
 		$("#Count_" + itemName).html("&nbsp(" + data.Data.length + ")");
 		UpdateLoading(itemName);
@@ -75,15 +93,15 @@ function LoadItem(itemName) {
 
 function UpdateLoading(itemName) {
 	loaded++;
+	console.log("Loaded", loaded + " of " + totalItems);
 	$("#ItemsLoadedProgressBar").css("width", (loaded * 100 / totalItems) + "%");
-	$("#status").html("Loading... " + loaded + " / " + totalItems);
+	$("#ItemsLoadedProgressBar").html("Loading... " + loaded + " / " + totalItems);
 	$("#Item_" + itemName + "_Status").html("<i class=\"fa fa-check\" style=\"color:#3c3;\"></i>");
 	if (loaded === totalItems) {
 		$("#left-panel").show();
 		$("#HeaderControls").show();
 		RefreshFK();
-		$("nav").show();
-		//GoEncryptedList("Tematica", "Custom");
+		alert("todos");
 	}
 }
 
