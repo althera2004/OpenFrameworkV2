@@ -1,19 +1,18 @@
 {
     "ItemName": "MiPieza",
     "MustReload": true,
-  "Layout": {
-    "Icon": "list",
-    "Label": "Mi pieza",
-    "LabelPlural": "Mis piezas",
-    "Description": {
-      "Pattern": "{0} - {1}",
-      "Fields": [
-        { "Name": "Referencia" },
-        { "Name": "Nombre" }
-      ]
-    },
-    "EditionType": "inline"
-  },
+	"Layout": 
+	{
+		"Icon": "list",
+		"Label": "Mi pieza",
+		"LabelPlural": "Mis piezas",
+		"Description":
+		{
+			"Pattern": "{0} - {1}",
+			"Fields": [ { "Name": "Referencia" }, { "Name": "Nombre" }]
+		},
+		"EditionType": "inline"
+	},
     "ForeignValues": [{"ItemName":"Tematica"}],
     "PrimaryKeys": [ ],
     "Fields": [
@@ -22,19 +21,23 @@
         { "Name": "Referencia", "Label": "Referencia", "Type": "text", "Length": 50, "Required": true },
         { "Name": "Owner", "Label": "Propietario", "Type": "int", "Required": true }
     ],
-  "FKList": {
-    "Fields": [ "Nombre", "Referencia" ],
-    "Filter": [
-      {
-        "FieldName": "Owner",
-        "Condition": {
-          "Type": "Global",
-          "Value": "#ApplicationUserId"
-        }
-      }
-    ]
-  },
-    "Lists": [
+	"FKList":
+	{
+		"Fields": [ "Nombre", "Referencia" ],
+		"Filter":
+		[
+			{
+				"FieldName": "Owner",
+				"Condition":
+				{
+					"Type": "Global",
+					"Value": "#ApplicationUserId"
+				}
+			}
+		]
+	},
+    "Lists":
+	[
         {
             "Id": "Custom",
             "FormId": "Custom",

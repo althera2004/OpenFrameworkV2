@@ -2,18 +2,18 @@
     "ItemName": "Tematica",
     "MustReload": true,
 	"Description": "Temáticas de playmobil",
-  "Layout": {
-    "Icon": "list",
-    "Label": "Temática",
-    "LabelPlural": "Temáticas",
-    "Description": {
-      "Pattern": "{0}",
-      "Fields": [
-        { "Name": "Nombre" }
-      ]
-    },
-    "EditionType": "inline"
-  },
+	"Layout": 
+	{
+		"Icon": "list",
+		"Label": "Temática",
+		"LabelPlural": "Temáticas",
+		"Description":
+		{
+			"Pattern": "{0}",
+			"Fields": [ { "Name": "Nombre" } ]
+		},
+		"EditionType": "inline"
+	},
     "ForeignValues": [],
     "PrimaryKeys": [ ],
     "Fields": [

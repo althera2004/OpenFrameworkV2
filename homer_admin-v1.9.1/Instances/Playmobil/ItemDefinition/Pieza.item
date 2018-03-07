@@ -7,10 +7,8 @@
     "Label": "Pieza",
     "LabelPlural": "Piezas",
     "Description": {
-      "Pattern": "{0}",
-      "Fields": [
-        { "Name": "Nombre" }
-      ]
+		"Pattern": "{0}",
+		"Fields": [ { "Name": "Nombre" } ]
     },
     "EditionType": "inline"
   },
@@ -21,12 +19,12 @@
         { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true, "FK": true },
         { "Name": "Referencia", "Label": "Referencia", "Type": "text", "Length": 50, "Required": true, "FK": true },
         { "Name": "Referencia2", "Label": "Referencia2", "Type": "text", "Length": 50 },
-        { "Name": "TematicaId", "Label": "Temática", "Type": "long" },
+        { "Name": "TematicaId", "Label": "Tem&aacute;tica", "Type": "long" },
         { "Name": "FormatoId", "Label": "Formato", "Type": "long" },
-        { "Name": "Imagen", "Label": "Imagen", "Type": "Image" },
-        { "Name": "Imagen1", "Label": "Imagen1", "Type": "Image" },
+        { "Name": "Imagen", "Label": "Imagen", "Type": "Image", "Zoom": true },
+        { "Name": "Imagen1", "Label": "Imagen1", "Type": "Image", "Zoom": true  },
         { "Name": "Imagen2", "Label": "Imagen2", "Type": "Image" },
-        { "Name": "Year", "Label": "Año", "Type": "int" },
+        { "Name": "Year", "Label": "A&ntilde;o", "Type": "int" },
 		{ "Name": "Instrucciones", "Label": "Intrucciones", "Type": "DocumentFile" },
         { "Name": "EdicionLimitada", "Label": "EdicionLimitada", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheckNull" } }
     ],

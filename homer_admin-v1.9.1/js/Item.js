@@ -95,14 +95,13 @@ function UpdateLoading(itemName) {
 	loaded++;
 	console.log("Loaded", loaded + " of " + totalItems);
 	$("#ItemsLoadedProgressBar").css("width", (loaded * 100 / totalItems) + "%");
-	$("#ItemsLoadedProgressBar").html("Loading... " + loaded + " / " + totalItems);
+	$("#ItemsLoadedProgressBar").html(Dictionary.Common_Loading + "... " + loaded + " / " + totalItems);
 	$("#Item_" + itemName + "_Status").html("<i class=\"fa fa-check\" style=\"color:#3c3;\"></i>");
 	if (loaded === totalItems) {
 		$("#left-panel").show();
 		$("#HeaderControls").show();
 		RefreshFK();
-		alert("todos");
 	}
 }
 
-$("#status").html("Loading... 0 / " + totalItems);
+$("#ItemsLoadedProgressBar").html(Dictionary.Common_Loading + "... 0 / " + totalItems);
