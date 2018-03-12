@@ -256,21 +256,9 @@ namespace OpenFramework.CRUD
 
             foreach (ItemField field in item.Definition.Fields)
             {
-                /*ForeignList foreignData = item.ForeignListName(field.Name);
-
-                if (field.Name != "Id" && string.IsNullOrEmpty(foreignData.LinkField))
+                if (field.Name != "Id")
                 {
-                    string realField = string.Empty;
-                    if (item.Definition.SqlMappings.Any(m => m.ItemField == field.Name))
-                    {
-                        SqlMapping mapping = item.Definition.SqlMappings.Where(m => m.ItemField == field.Name).First();
-                        realField = mapping.TableField;
-                    }
-                    else
-                    {
-                        realField = GetRealField(item, field.Name);
-                    }
-
+                    
                     if (first)
                     {
                         first = false;
@@ -280,8 +268,8 @@ namespace OpenFramework.CRUD
                         values.Append(",");
                     }
 
-                    values.AppendFormat(@"[{0}] = {1}", realField, SqlValue.Value(field, item[field.Name]));
-                }*/
+                    values.AppendFormat(@"[{0}] = {1}", field.Name, SqlValue.Value(field, item[field.Name]));
+                }
             }
 
             values.Append(UpdateQueryValuesEnd(applicationUserId));

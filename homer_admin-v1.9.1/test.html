@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<style>
+	td.details-control {
+		background: url('/images/details_open.png') no-repeat center center;
+		cursor: pointer;
+	}
+
+	tr.shown td.details-control {
+		background: url('/images/details_close.png') no-repeat center center;
+	}
+</style>
+
+<script type="text/javascript">
+	$("#myCar").vc3dEye({
+		imagePath:"/Instances/" + CustomerName + "/Data/360/Pieza_1/",
+		totalImages:12,
+		imageExtension:"jpg",
+		width: 300,
+		height: 300
+	});
+</script>
+
+
+
+	<div class="hpanel">
+	HOLA MARIO
+		<div class="panel-body">			
+                <div style="float:left;width:29%;border:1px solid #33f;">
+                    <a href="/ajax/tables.html" id="launcher"><span class="menu-item-parent">test</span></a>
+                    <span onclick="test('querytest.aspx');">a1</span>
+                    <span onclick="test2();">a2</span>
+                    <span onclick="UIInfo('titutlo','mensaje','xxxxxx');">info</span>
+                    <span onclick="toastr.info('Info - This is a custom Homer info notification');">toast</span>
+                    <span onclick="OpenImageUploadPopup($('#Imagen').attr('src'), 'Imagen principal', 'Imagen');">imagen</span>		
+				<div id="myCar"></div>
+                </div>
+				<div id="ImagenDiv" class="col-md-4" style="text-align:center;max-height:252px;height:252px;border:1px solid #333;background-image:url(/img/ImageUploadBackground.png)" onfocus="$('ImagenButttons').show();" onblur="$('ImagenButttons').hide();">             
+				<a href="#" id="ImagenZoomer" class="demo-trigger zoomable" style="max-width:100%;max-height:250px;">
+				<div class="zoom-cursor" style="display: block; top: 154px; left: 205.844px;"></div>                 
+				<img id="Imagen" name="Imagen" src="/Instances/playmobil/Data/img/Pieza_Imagen_311.png?864EEDC3-B98A-4628-8FB0-BB80CBE55B9C" style="max-width:100%;max-height:250px;">             </a>         </div>
+		</div>
+	</div>

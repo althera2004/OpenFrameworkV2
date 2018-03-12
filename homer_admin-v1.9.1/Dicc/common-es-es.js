@@ -23,6 +23,7 @@
 	"Common_Replace": "Sustituir",
     "Common_ActionSuccess": "Operación realizada correctamente.",
     "Common_ActionError": "¡Se ha producido un error!",
+	"Common_Select": "Seleccionar",
     "Page_Import": {
         "Importacion": "Importación"
     },

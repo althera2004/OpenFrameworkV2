@@ -234,7 +234,7 @@ function ToSingleImage(x, value, type, full, field, instanceName, itemName) {
     if (typeof value === "undefined") { value = "/img/blank.gif"; }
     if (value === null) { value = "/img/blank.gif"; }
     if (value === "") { value = "/img/blank.gif"; }
-    return "<div class=\"imagecontainer\"><img src=\"" + value + "?"+ (Math.random()) +"\" /></div>";
+    return "<div class=\"imagecontainer\"><img src=\"/Instances/" + CustomerName + "/data/img/" +  value + "?"+ (Math.random()) +"\" /></div>";
 }
 
 function ToSingleImageList(x, value, type, full, field, instanceName, itemName) {
@@ -243,12 +243,14 @@ function ToSingleImageList(x, value, type, full, field, instanceName, itemName) 
     if (value === "") { value = "/img/blank.gif"; }
 	
 	if(value === "/img/blank.gif"){
-		return "<div class=\"imagecontainer\" style=\"text-align:center;\"><img src=\"" + value + "?"+ (Math.random()) +"\" style=\"width:30px;height:30px;border:1px solid #ddd;\" /></div>";
+		return "<div class=\"imagecontainer\" style=\"text-align:center;\"><img src=\"" +  value + "?"+ (Math.random()) +"\" style=\"width:30px;height:30px;border:1px solid #ddd;\" /></div>";
 	}
 	
+	var image = "/Instances/" + CustomerName + "/data/img/" + value;
+	
 	var res = "<div class=\"imagecontainer\" style=\"text-align:center;\">";
-	res += "<a href=\"#\" class=\"demo-trigger\" data-medium-url=\""+value+"\" data-large-url=\""+value+"\">";
-    res += "<img src=\"" + value + "\" style=\"width:30px;height:30px;border:1px solid #ddd;\" />";
+	res += "<a href=\"#\" class=\"demo-trigger\" data-medium-url=\"" + image +"\" data-large-url=\"" + image + "\">";
+    res += "<img src=\"" + image + "\" style=\"width:30px;height:30px;border:1px solid #ddd;\" />";
 	res +="</a></div>";
 	return res;
 }

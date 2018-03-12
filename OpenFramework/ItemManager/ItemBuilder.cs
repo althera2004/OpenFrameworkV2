@@ -1072,16 +1072,16 @@ namespace OpenFramework.ItemManager
             }
         }
 
-        public ActionResult Save(string stringConnection, long userId, bool fromImport = false)
+        public ActionResult Save(string instanceName, long userId, bool fromImport = false)
         {
             this.PrepareToSave();
             if (this.Id > 0)
             {
-                return OpenFramework.CRUD.Save.Update(this, stringConnection, userId, fromImport);
+                return OpenFramework.CRUD.Save.Update(this, instanceName, userId, fromImport);
             }
             else
             {
-                return OpenFramework.CRUD.Save.Insert(this, stringConnection, userId, fromImport);
+                return OpenFramework.CRUD.Save.Insert(this, instanceName, userId, fromImport);
             }
         }
 

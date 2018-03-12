@@ -22,8 +22,7 @@
     {
         "ajax":
         {
-            //"url": "api/" + queryParams.Item + ".json",
-			"url": "/Instances/" + CustomerName + "/Data/ItemDataBase.aspx?Action=GetList&ItemName=" + queryParams.Item + "&ListId=" + queryParams.ListId + extraParams,
+            "url": "/Instances/" + CustomerName + "/Data/ItemDataBase.aspx?Action=GetList&ItemName=" + queryParams.Item + "&ListId=" + queryParams.ListId + extraParams,
             "dataType": "json",
             "serverSide": true,
             "dataSrc": "data",
@@ -116,12 +115,28 @@
 			}
 		}
     });
+	
+	$("#" + tableName + "_wrapper .dataTables_filter input").on("blur", ListFilterChanged);
 
     // Add event listener for opening and closing details
     $("#" + tableName + " tbody").on("click", "tr .btn-Edit", function (e) {
         console.log(e.target.className);
         var table = $("#" + tableName).DataTable();
+		var rowIndex = 0;
         var data = table.row($(this).parents('tr')).data();
+		var tableData = [];
+		var cont = 0;
+		$.each(table.rows( { filter: 'applied' } ).data(), function() {
+			tableData.push(this.Id);
+			if(this.Id === data.Id){ 
+				rowIndex = cont;
+				console.log(cont, this.Id);
+			}
+			cont++;
+		});
+		listSerie.actual = rowIndex;
+		listSerie.ids = tableData;
+		console.log(listSerie);
         BtnEditClicked(data.Id);
         event.stopPropagation();
         return false;

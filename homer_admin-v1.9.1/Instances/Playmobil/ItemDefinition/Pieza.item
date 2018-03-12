@@ -40,7 +40,7 @@
             "EditAction": 3,
             "CustomAjaxSource": "ITEM_PIEZA_GETALL",
             "Sorting": [{"Index":1, "SortingType": "asc"}],
-            "GridMode": "default",
+            "GridMode": "_default",
             "Columns": [
                 { "DataProperty": "Nombre",  "ReplacedBy": "N" },
                 { "DataProperty": "Referencia",  "ReplacedBy": "R" },

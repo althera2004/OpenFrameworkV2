@@ -63,8 +63,8 @@ function UploadImageGo() {
 
         UploadImageData = {
             "instanceName": CustomerName,
-            "itemName": 'Pieza',//ItemName,
-            "itemId": 311,//Data.Id,
+            "itemName": ItemDefinition.ItemName,
+            "itemId": Data.Id,
             "itemField": image.alt,
             "image": imgdata
         };
@@ -81,10 +81,18 @@ function UploadImageGo() {
                     console.log(msg.d.ReturnValue);
                     var res;
                     eval("res=" + msg.d.ReturnValue);
-                    document.getElementById("UploadImage1").src = res.url;
                     eval("Data." + UploadImageData.itemField + "= '" + res.url + "';");
-                    $("#" + UploadImageData.itemField).attr("src", res.url);
-                    $("#dialog-uploadImage").click();
+                    //$("#" + UploadImageData.itemField).attr("src", res.url);
+                    $("#myModalImage").click();
+					
+					$("#" + UploadImageData.itemField).attr("src", res.url );
+					$("#" + UploadImageData.itemField + "BtnChange").show();
+					$("#" + UploadImageData.itemField + "BtnDelete").show();
+					$("#" + UploadImageData.itemField + "BtnView").show();
+                    $("#" + UploadImageData.itemField + "BtnAdd").hide();
+
+                    $("#" + UploadImageData.itemField + "Zoomer").data("medium-url", res.url);
+                    $("#" + UploadImageData.itemField + "Zoomer").data("large-url", res.url);
                 },
                 "error": function (xhr, status, msg) {
                     toastr.danger(msg);

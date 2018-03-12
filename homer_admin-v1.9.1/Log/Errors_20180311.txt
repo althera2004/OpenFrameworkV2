@@ -1,0 +1,190 @@
+********** 11/03/2018 17:39:49 **********
+Exception Type: System.IO.DirectoryNotFoundException
+Exception: No se puede encontrar una parte de la ruta de acceso 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\Instances\Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;\ItemDefinition\Pieza.item'.
+Source: Update:UPDATE Item_Pieza SET ,[ModifiedBy] = 1, [ModifiedOn] = GETDATE() WHERE Id = 347
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 448
+   en OpenFramework.ItemManager.ItemBuilder..ctor(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 63
+   en OpenFramework.ItemManager.ItemBuilder.Empty(String itemName, Boolean withDefaults, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 975
+   en OpenFramework.CRUD.Read.ById(Int64 id, ItemDefinition definition, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Read.cs:línea 17
+   en OpenFramework.CRUD.Save.Update(ItemBuilder itemBuilder, String instanceName, Int64 userId, Boolean fromImport) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Save.cs:línea 159
+
+********** 11/03/2018 17:42:31 **********
+Exception Type: System.IO.DirectoryNotFoundException
+Exception: No se puede encontrar una parte de la ruta de acceso 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\Instances\Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;\ItemDefinition\Pieza.item'.
+Source: Update:UPDATE Item_Pieza SET ,[ModifiedBy] = 1, [ModifiedOn] = GETDATE() WHERE Id = 359
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 448
+   en OpenFramework.ItemManager.ItemBuilder..ctor(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 63
+   en OpenFramework.ItemManager.ItemBuilder.Empty(String itemName, Boolean withDefaults, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 975
+   en OpenFramework.CRUD.Read.ById(Int64 id, ItemDefinition definition, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Read.cs:línea 17
+   en OpenFramework.CRUD.Save.Update(ItemBuilder itemBuilder, String instanceName, Int64 userId, Boolean fromImport) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Save.cs:línea 159
+
+********** 11/03/2018 20:44:51 **********
+Exception Type: System.IO.DirectoryNotFoundException
+Exception: No se puede encontrar una parte de la ruta de acceso 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\Instances\Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;\ItemDefinition\Pieza.item'.
+Source: Update:UPDATE Item_Pieza SET [Nombre] = N'Caballero del dragón',[Referencia] = N'026-307997',[Referencia2] = N'',[TematicaId] = 21,[FormatoId] = NULL,[Imagen] = N'Pieza_Imagen_278.png?C4A24B77-13E2-48B6-84CE-BCDA47E0E3F9',[Imagen1] = N'',[Imagen2] = N'',[Year] = 2017,[Instrucciones] = N'',[EdicionLimitada] = 0,[ModifiedBy] = 1, [ModifiedOn] = GETDATE() WHERE Id = 278
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 448
+   en OpenFramework.ItemManager.ItemBuilder..ctor(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 63
+   en OpenFramework.ItemManager.ItemBuilder.Empty(String itemName, Boolean withDefaults, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 975
+   en OpenFramework.CRUD.Read.ById(Int64 id, ItemDefinition definition, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Read.cs:línea 17
+   en OpenFramework.CRUD.Save.Update(ItemBuilder itemBuilder, String instanceName, Int64 userId, Boolean fromImport) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Save.cs:línea 159
+
+********** 11/03/2018 20:47:51 **********
+Exception Type: System.IO.DirectoryNotFoundException
+Exception: No se puede encontrar una parte de la ruta de acceso 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\Instances\Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;\ItemDefinition\Pieza.item'.
+Source: Update:UPDATE Item_Pieza SET [Nombre] = N'Barco pirata',[Referencia] = N'3029',[Referencia2] = N'',[TematicaId] = NULL,[FormatoId] = NULL,[Imagen] = N'Pieza_Imagen_171.png?632AC7B9-2689-42E3-8F6D-4816710CC647',[Imagen1] = N'Pieza_Imagen1_171.png?632AC7B9-2689-42E3-8F6D-4816710CC647',[Imagen2] = N'',[Year] = 1996,[Instrucciones] = N'',[EdicionLimitada] = 0,[ModifiedBy] = 1, [ModifiedOn] = GETDATE() WHERE Id = 171
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 448
+   en OpenFramework.ItemManager.ItemBuilder..ctor(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 63
+   en OpenFramework.ItemManager.ItemBuilder.Empty(String itemName, Boolean withDefaults, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 975
+   en OpenFramework.CRUD.Read.ById(Int64 id, ItemDefinition definition, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Read.cs:línea 17
+   en OpenFramework.CRUD.Save.Update(ItemBuilder itemBuilder, String instanceName, Int64 userId, Boolean fromImport) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Save.cs:línea 159
+
+********** 11/03/2018 20:50:33 **********
+Exception Type: System.IO.DirectoryNotFoundException
+Exception: No se puede encontrar una parte de la ruta de acceso 'D:\My Web Sites\Homer\Homer Theme\webapplayers.com\homer_admin-v1.9.1\Instances\Data Source=.;Initial Catalog=Playmobil;User Id=sa;Password=P@ssw0rd;\ItemDefinition\Tematica.item'.
+Source: Update:UPDATE Item_Tematica SET [Nombre] = N'Magia',[Imagen] = N'',[Icon] = N'Tematica_Icon_25.png?413D30A7-759D-4524-AC47-C60A789DEE34',[ModifiedBy] = 1, [ModifiedOn] = GETDATE() WHERE Id = 25
+Stack Trace: 
+   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   en System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   en System.IO.StreamReader..ctor(String path)
+   en OpenFramework.ItemManager.ItemDefinition.Load(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemDefinition.cs:línea 448
+   en OpenFramework.ItemManager.ItemBuilder..ctor(String itemName, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 63
+   en OpenFramework.ItemManager.ItemBuilder.Empty(String itemName, Boolean withDefaults, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\ItemManager\ItemBuilder.cs:línea 975
+   en OpenFramework.CRUD.Read.ById(Int64 id, ItemDefinition definition, String instanceName) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Read.cs:línea 17
+   en OpenFramework.CRUD.Save.Update(ItemBuilder itemBuilder, String instanceName, Int64 userId, Boolean fromImport) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\CRUD\Save.cs:línea 157
+
+********** 11/03/2018 20:54:57 **********
+Inner Exception Type: System.ComponentModel.Win32Exception
+Inner Exception: No se ha encontrado la ruta de acceso de la red
+Inner Source: 
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server)
+Source: ApplicationUser::GetInstances(1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Security.ApplicationUser.GetInstances() en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Security\ApplicationUser.cs:línea 857
+
+********** 11/03/2018 20:56:35 **********
+Inner Exception Type: System.ComponentModel.Win32Exception
+Inner Exception: No se ha encontrado la ruta de acceso de la red
+Inner Source: 
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server)
+Source: ApplicationUser::GetInstances(1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Security.ApplicationUser.GetInstances() en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Security\ApplicationUser.cs:línea 857
+
+********** 11/03/2018 21:00:19 **********
+Inner Exception Type: System.ComponentModel.Win32Exception
+Inner Exception: No se ha encontrado la ruta de acceso de la red
+Inner Source: 
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server)
+Source: ApplicationUser::GetInstances(1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Security.ApplicationUser.GetInstances() en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Security\ApplicationUser.cs:línea 857
+
+********** 11/03/2018 21:00:58 **********
+Inner Exception Type: System.ComponentModel.Win32Exception
+Inner Exception: No se ha encontrado la ruta de acceso de la red
+Inner Source: 
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server)
+Source: ApplicationUser::GetInstances(1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Security.ApplicationUser.GetInstances() en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Security\ApplicationUser.cs:línea 857
+
+********** 11/03/2018 21:01:24 **********
+Inner Exception Type: System.ComponentModel.Win32Exception
+Inner Exception: No se ha encontrado la ruta de acceso de la red
+Inner Source: 
+Exception Type: System.Data.SqlClient.SqlException
+Exception: Error relacionado con la red o específico de la instancia mientras se establecía una conexión con el servidor SQL Server. No se encontró el servidor o éste no estaba accesible. Compruebe que el nombre de la instancia es correcto y que SQL Server está configurado para admitir conexiones remotas. (provider: Named Pipes Provider, error: 40 - No se pudo abrir una conexión con SQL Server)
+Source: ApplicationUser::GetInstances(1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en OpenFramework.Security.ApplicationUser.GetInstances() en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Security\ApplicationUser.cs:línea 857
+

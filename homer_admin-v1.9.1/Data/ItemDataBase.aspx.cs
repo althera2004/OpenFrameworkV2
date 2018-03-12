@@ -18,6 +18,8 @@ using OpenFramework;
 using OpenFramework.ItemManager;
 using OpenFramework.Customer;
 using OpenFramework.CRUD;
+using System.Configuration;
+using System.Globalization;
 
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
@@ -47,6 +49,47 @@ public partial class Data_ItemDataBase : Page
         CustomerFramework instance = new CustomerFramework() { Name = instanceName };
         instance.LoadConfig();
         return PhotoGallery.JsonList(PhotoGallery.GetByItemFieldId(itemName, itemFieldName, itemId, instance.Config.ConnectionString));
+    }    
+
+    [WebMethod]
+    [ScriptMethod]
+    public static ActionResult DeleteImage(string itemName,long itemId, string fieldName, string instanceName, long applicationUserId)
+    {
+        var res = ActionResult.NoAction;
+        var query = string.Format(
+            CultureInfo.InvariantCulture,
+            "UPDATE Item_{0} SET {1} = NULL WHERE Id = {2}",
+            itemName,
+            fieldName,
+            itemId);
+        var instance = CustomerFramework.Load(instanceName);
+        using (var cmd = new SqlCommand(query))
+        {
+            cmd.CommandType = CommandType.Text;
+            using(var cnn = new SqlConnection(instance.Config.ConnectionString))
+            {
+                cmd.Connection = cnn;
+                try
+                {
+                    cmd.Connection.Open();
+                    cmd.ExecuteNonQuery();
+                    res.SetSuccess();
+                }
+                catch(Exception ex)
+                {
+                    res.SetFail(ex);
+                }
+                finally
+                {
+                    if(cmd.Connection.State != ConnectionState.Closed)
+                    {
+                        cmd.Connection.Close();
+                    }
+                }
+            }
+        }
+
+        return res;
     }
 
     [WebMethod]
@@ -54,12 +97,10 @@ public partial class Data_ItemDataBase : Page
     public static ActionResult Save(string itemName, string itemData,string instanceName, long applicationUserId)
     {
         var res = ActionResult.NoAction;
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-        instance.LoadConfig();
         itemData = itemData.Replace('^', '{');
         dynamic data = JsonConvert.DeserializeObject(itemData);
         ItemBuilder itemBuilder = ItemBuilder.FromJsonObject(itemName, data, instanceName);
-        return itemBuilder.Save(instance.Config.ConnectionString, applicationUserId, false);
+        return itemBuilder.Save(instanceName, applicationUserId, false);
     }
 
     [WebMethod]
@@ -109,8 +150,6 @@ public partial class Data_ItemDataBase : Page
             return res;
         }
 
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-        instance.LoadConfig();
         ItemBuilder item = new ItemBuilder(itemName, instanceName);
         for (var i = 0; i < fieldNames.Length; i++)
         {
@@ -122,7 +161,7 @@ public partial class Data_ItemDataBase : Page
             item["Id"] = 0;
         }
 
-        res = item.Save(instance.Config.ConnectionString, applicationUserId, false);
+        res = item.Save(instanceName, applicationUserId, false);
 
         return res;
     }

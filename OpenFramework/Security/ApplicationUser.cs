@@ -842,7 +842,8 @@ namespace OpenFramework.Security
             {
                 return;
             }
-
+            // WEKE
+            return;
             string source = string.Format(CultureInfo.InvariantCulture, "ApplicationUser::GetInstances({0})", this.Id);
             this.instances = new List<Instance>();
             using (SqlCommand cmd = new SqlCommand("User_GetInstances"))

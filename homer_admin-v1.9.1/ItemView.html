@@ -70,6 +70,26 @@
 	console.log("Params", queryParams);
 
 	$("#FaxNumber").mask("(99) 9999?9-9999");
+	
+	function SerieShowPrevious(){
+		listSerie.actual--;
+		if(listSerie.actual < 0){
+			listSerie.actual = listSerie.ids.length-1;
+		}
+		
+		console.log("actual",listSerie.ids[listSerie.actual]);
+		BtnEditClicked(listSerie.ids[listSerie.actual]);
+	}
+	
+	function SerieShowNext(){
+		listSerie.actual++;
+		if(listSerie.actual > listSerie.ids.length-1){
+			listSerie.actual = 0;
+		}
+		
+		console.log("actual",listSerie.ids[listSerie.actual]);
+		BtnEditClicked(listSerie.ids[listSerie.actual]);
+	}
 </script>
 
 

@@ -148,6 +148,7 @@
 
 
     <script type="text/javascript">
+		var filterList = [];
 		var FK = [];
         toastr.options = {
             "debug": true,
@@ -173,9 +174,6 @@
         var itemNames = [];
 
         window.onload = function () {
-
-            GetItemNames();
-
             queryParams = DecodeEncryptedQuery();
             actualUser = {
                 "Id": 1,
@@ -217,13 +215,9 @@
 
             $("#FaxNumber").mask("(99) 9999?9-9999");*/
 			
-			$("#myCar").vc3dEye({
-				imagePath:"/images/",
-				totalImages:40,
-				imageExtension:"jpg",
-				width: 300,
-				height: 300
-			});
+			
+
+            GetItemNames();
         }
 
 		window.onresize = function () {
@@ -239,6 +233,11 @@
 			  .substring(1);
 		  }
 		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+		}
+		
+		function ListFilterChanged(e) {
+			filterList["FilterText"] = e.currentTarget.value;
+			console.log(filterList["FilterText"]);			
 		}
     </script>
 </head>
@@ -450,6 +449,7 @@
                             Instancias
                         </h2>
                         <small id="PageSubtitle" style="font-size:12px!important;"></small>
+						<span id="SerieButton"><button onclick="SerieShowPrevious();">&lt;&lt;</button><button onclick="SerieShowNext();">&gt;&gt;</button></span>
                     </div>
                 </div>
             </div>
@@ -457,26 +457,12 @@
 
         <div class="content animate-panel">
 
-            <div class="hpanel" id="main" role="main">  
+            <div class="hpanel" id="main" role="main">  				
 				<div class="m">
                     <div class="progress m-t-xs full progress-striped active">
                         <div id="ItemsLoadedProgressBar" style="width:0%" class=" progress-bar progress-bar-success">0%</div>
                     </div>
-                </div>			
-                <div style="float:left;width:29%;border:1px solid #33f;">
-                    <a href="/ajax/tables.html" id="launcher"><span class="menu-item-parent">test</span></a>
-                    <span onclick="test('querytest.aspx');">a1</span>
-                    <span onclick="test2();">a2</span>
-                    <span onclick="UIInfo('titutlo','mensaje','xxxxxx');">info</span>
-                    <span onclick="toastr.info('Info - This is a custom Homer info notification');">toast</span>
-                    <span onclick="OpenImageUploadPopup($('#Imagen').attr('src'), 'Imagen principal', 'Imagen');">imagen</span>		
-				<div id="myCar"></div>
-                </div>
-				<div id="ImagenDiv" class="col-md-4" style="text-align:center;max-height:252px;height:252px;border:1px solid #333;background-image:url(/img/ImageUploadBackground.png)" onfocus="$('ImagenButttons').show();" onblur="$('ImagenButttons').hide();">             
-				<a href="#" id="ImagenZoomer" class="demo-trigger zoomable" style="max-width:100%;max-height:250px;">
-				<div class="zoom-cursor" style="display: block; top: 154px; left: 205.844px;"></div>                 
-				<img id="Imagen" name="Imagen" src="/Instances/playmobil/Data/img/Pieza_Imagen_311.png?864EEDC3-B98A-4628-8FB0-BB80CBE55B9C" style="max-width:100%;max-height:250px;">             </a>         </div>
-				
+                </div>				
 				<div id="itemsTable"></div>					
             </div>
 

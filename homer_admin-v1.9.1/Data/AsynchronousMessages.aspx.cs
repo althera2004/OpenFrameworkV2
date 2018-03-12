@@ -6,18 +6,17 @@
 // --------------------------------
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
-using System.Linq;
 using OpenFramework;
-using System.Net;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
 using OpenFramework.Customer;
 
 [WebService(Namespace = "http://tempuri.org/")]
@@ -66,10 +65,9 @@ public partial class Data_AsynchronousMessages : Page
 
         var query = string.Format(
             CultureInfo.InvariantCulture,
-            "UPDATE Item_{0} SET {1} = '{2}' WHERE Id = {3}",
+            "UPDATE Item_{0} SET {1} = '{0}_{1}_{2}.png' WHERE Id = {2}",
             itemName,
             itemField,
-            url,
             itemId);
 
         var instance = CustomerFramework.Load(instanceName);

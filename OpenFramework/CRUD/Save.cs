@@ -122,7 +122,7 @@ namespace OpenFramework.CRUD
 
         /// <summary>Updates item data in database</summary>
         /// <param name="itemBuilder">Item instance</param>
-        /// <param name="connectionString">String connection to database</param>
+        /// <param name="instanceName">Name of instance</param>
         /// <param name="userId">User identifier</param>
         /// <param name="fromImport">Indicates if update is from import (not required)</param>
         /// <returns>Result of action</returns>
@@ -137,7 +137,7 @@ namespace OpenFramework.CRUD
 
             if (string.IsNullOrEmpty(instanceName))
             {
-                res.SetFail("No connection string specified");
+                res.SetFail("No instance specified");
                 return res;
             }
 
@@ -151,9 +151,7 @@ namespace OpenFramework.CRUD
                         return ActionResult.NoAction;
                     }
 
-                    CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-                    instance.LoadConfig();
-
+                    CustomerFramework instance = CustomerFramework.Load(instanceName);
                     using (SqlConnection cnn = new SqlConnection(instance.Config.ConnectionString))
                     {
                         var old = Read.ById(itemBuilder.Id, itemBuilder.Definition, instanceName);                        

@@ -471,7 +471,7 @@ namespace OpenFramework.ItemManager
                     string templateFileName = string.Format(CultureInfo.InvariantCulture, @"{0}js\Template.js", path2);
                     string destinationFileName = string.Format(
                         CultureInfo.InvariantCulture,
-                        @"{0}CustomersFramework\{1}\Scripts\{2}.js",
+                        @"{0}Instances\{1}\Scripts\{2}.js",
                         path2,
                         instanceName,
                         itemName);
