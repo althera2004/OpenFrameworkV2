@@ -277,10 +277,10 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                Dictionary<string, ReadOnlyCollection<string>> res = new Dictionary<string, ReadOnlyCollection<string>>();
+                var res = new Dictionary<string, ReadOnlyCollection<string>>();
                 if (this.primaryKeys != null)
                 {
-                    foreach (PrimaryKey pk in this.primaryKeys)
+                    foreach (var pk in this.primaryKeys)
                     {
                         res.Add(pk.Id, pk.ItemFields);
                     }
@@ -300,8 +300,8 @@ namespace OpenFramework.ItemManager
                     return new ReadOnlyCollection<string>(new List<string>());
                 }
 
-                List<string> res = new List<string>();
-                foreach (ReadOnlyCollection<string> fields in this.PrimaryKeys.Values)
+                var res = new List<string>();
+                foreach (var fields in this.PrimaryKeys.Values)
                 {
                     foreach (string fieldName in fields)
                     {
@@ -319,7 +319,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                List<string> res = new List<string>();
+                var res = new List<string>();
                 if (this.foreignValues != null)
                 {
                     foreach (ForeignList foreigList in this.foreignValues)
@@ -406,7 +406,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                List<ForeignList> res = new List<ForeignList>();
+                var res = new List<ForeignList>();
                 foreach (ForeignList fl in this.ForeignValues)
                 {
                     if (!string.IsNullOrEmpty(fl.ImportReference))
@@ -445,14 +445,14 @@ namespace OpenFramework.ItemManager
             string path = ItemBuilder.GetPathDefinition(itemName, instanceName);
             string jsonDefinition = string.Empty;
 
-            using (StreamReader input = new StreamReader(path))
+            using (var input = new StreamReader(path))
             {
                 jsonDefinition = input.ReadToEnd();
             }
 
             if (!string.IsNullOrEmpty(jsonDefinition))
             {
-                ItemDefinition res = ItemDefinition.Empty;
+                var res = ItemDefinition.Empty;
                 try
                 {
                     res = JsonConvert.DeserializeObject<ItemDefinition>(jsonDefinition);
@@ -583,7 +583,7 @@ namespace OpenFramework.ItemManager
             }
 
             string jsonDefinition = string.Empty;
-            using (StreamReader input = new StreamReader(fileName))
+            using (var input = new StreamReader(fileName))
             {
                 jsonDefinition = input.ReadToEnd();
             }
@@ -593,7 +593,7 @@ namespace OpenFramework.ItemManager
             string itemName = path[path.Length - 1].ToUpperInvariant().Replace(".ITEM", string.Empty);
             if (!string.IsNullOrEmpty(jsonDefinition))
             {
-                ItemDefinition res = ItemDefinition.Empty;
+                var res = ItemDefinition.Empty;
                 try
                 {
                     res = JsonConvert.DeserializeObject<ItemDefinition>(jsonDefinition);

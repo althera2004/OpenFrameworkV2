@@ -1,0 +1,103 @@
+{
+    "ItemName": "Pieza",
+	"Description": "Piezas de playmobil",
+    "MustReload": true,
+	"Layout": {
+    "Icon": "list",
+    "Label": "Pieza",
+    "LabelPlural": "Piezas",
+    "Description": {
+		"Pattern": "{0}",
+		"Fields": [ { "Name": "Nombre" } ]
+    },
+    "EditionType": "inline"
+  },
+    "ForeignValues": [ { "ItemName": "Tematica" } , { "ItemName":"Formato" } ],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true, "FK": true },
+        { "Name": "Referencia", "Label": "Referencia", "Type": "text", "Length": 50, "Required": true, "FK": true },
+        { "Name": "Referencia2", "Label": "Referencia2", "Type": "text", "Length": 50 },
+        { "Name": "TematicaId", "Label": "Tem&aacute;tica", "Type": "long" },
+        { "Name": "FormatoId", "Label": "Formato", "Type": "long" },
+        { "Name": "Imagen", "Label": "Imagen", "Type": "Image", "Zoom": true },
+        { "Name": "Imagen1", "Label": "Imagen1", "Type": "Image", "Zoom": true  },
+        { "Name": "Imagen2", "Label": "Imagen2", "Type": "Image" },
+        { "Name": "Year", "Label": "A&ntilde;o", "Type": "int" },
+		{ "Name": "Instrucciones", "Label": "Intrucciones", "Type": "DocumentFile" },
+        { "Name": "EdicionLimitada", "Label": "EdicionLimitada", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheckNull" } }
+    ],
+	"FKList": {
+		"Fields": [ "Nombre", "Referencia", "TematicaId", "FormatoId" ],
+		"Filter": []
+	},
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "ITEM_PIEZA_GETALL",
+            "Sorting": [{"Index":1, "SortingType": "asc"}],
+            "GridMode": "_default",
+            "Columns": [
+                { "DataProperty": "Nombre",  "ReplacedBy": "N" },
+                { "DataProperty": "Referencia",  "ReplacedBy": "R" },
+                { "DataProperty": "TematicaId",  "ReplacedBy": "T" },
+                { "DataProperty": "FormatoId",  "ReplacedBy": "F" },
+                { "DataProperty": "Imagen", "ReplacedBy": "I", "Render": "ToSingleImageList" }
+            ]
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Buttons": [
+              {"Id": "AddToMiPieza", "Label": "Añadir a mi coleccion", "action": "AddToMiPieza" },
+              {"Id": "AddToMiPieza", "Label": "Añadir a mi coleccion1", "action": "AddToMiPieza", "Group":  1, "Icon": "gear" },
+              {"Id": "AddToMiPieza", "Label": "Añadir a mi coleccion2", "action": "AddToMiPieza", "Group":  2, "Icon": "gear" },
+              {"Id": "AddToMiPieza", "Label": "Añadir a mi coleccion3", "action": "AddToMiPieza", "Group":  2, "Icon": "gear"},
+              {"Id": "AddToMiPieza", "Label": "A&ntilde; mi coleccion4", "action": "AddToMiPieza", "Group":  2, "Icon": "gear" }
+            ],
+            "Tabs": [
+                {
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },
+                                { "Name": "TematicaId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Referencia" },                           
+                                { "Name": "Referencia2" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Year" },                           
+                                { "Name": "EdicionLimitada" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "FormatoId" },                           
+                                { "Name": "Instrucciones" }
+                            ]
+                        },
+                        {
+                            "Fields": [                         
+                                { "Name": "Imagen" },
+                                { "Name": "Imagen1" },                           
+                                { "Name": "Imagen2" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

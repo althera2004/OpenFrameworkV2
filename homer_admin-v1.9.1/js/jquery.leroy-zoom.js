@@ -37,7 +37,7 @@
 
 			var tagName = this.tagName.toLowerCase();
 			var init_image = function(obj){
-				if(tagName == "a" && zoomable($(obj))){
+				if(tagName === "a" && zoomable($(obj))){
 					if (magnifiable($(obj))) {
 						//$(obj).addClass("magnifiable");
 						$('<div class="zoom-cursor"></div>').prependTo(obj);
@@ -57,26 +57,26 @@
 			$("#" + options.id).text(options.preload);
 
             var image = $("<img />").attr("src", href).load(function () {
-				if (!this.complete || typeof this.naturalWidth == "undefined" || this.naturalWidth == 0) {
-            		error();
-            		return false;
-        		} else {
-        			$("#" + options.id).text("");
-        			callback(image);
-        		}
-    		});
-		};
+                if (!this.complete || typeof this.naturalWidth === "undefined" || this.naturalWidth === 0) {
+                    error();
+                    return false;
+                } else {
+                    $("#" + options.id).text("");
+                    callback(image);
+                }
+            });
+        };
 
         function zoomable(anchor) {
             console.log("zoomable", anchor.attr("src"));
-			if(anchor.data("data-medium-url") != "#" && anchor.data("data-medium-url") != ""){
+			if(anchor.data("data-medium-url") !== "#" && anchor.data("data-medium-url") !== ""){
 				return true;
 			}
-			return anchor.attr("data-medium-url") != "#" && anchor.attr("data-medium-url") != ""
+			return anchor.attr("data-medium-url") !== "#" && anchor.attr("data-medium-url") !== ""
 		};
 
 		function magnifiable(anchor) {
-			return anchor.attr("data-large-url") != "#" && anchor.attr("data-large-url") != ""
+			return anchor.attr("data-large-url") !== "#" && anchor.attr("data-large-url") !== ""
 		};
 
 		function magnify(e, anchor, obj) { return false;
@@ -87,18 +87,17 @@
 				anchor.addClass("magnified");
 				
 				var callback = function(img) {
-					anchor.find(".zoom-cursor").fadeIn(300);
-
-		            $("#"+ options.id).animate({
-		                top: options.zoomTop - 50,
-		                width: w2 + 100,
-		                height: h2 + 100
-		            }, 300);
-		            show(e, img, obj);
-				};
-				load_image(anchor.attr("data-large-url"), callback);
-			}
-		};
+                    anchor.find(".zoom-cursor").fadeIn(300);
+                    $("#" + options.id).animate({
+                        top: options.zoomTop - 50,
+                        width: w2 + 100,
+                        height: h2 + 100
+                    }, 300);
+                    show(e, img, obj);
+                };
+                load_image(anchor.attr("data-large-url"), callback);
+            }
+        };
 
         function start(e, anchor, obj) {
             var imgUrl = anchor.attr("data-medium-url") || anchor.data("medium-url");

@@ -1,12 +1,114 @@
-﻿function RenderTable(tableName) {
-	var listDefinition = GetListDefinitionById(ItemDefinition, queryParams.ListId);
+﻿function CreateList(definition, listId, listName) {
+    RenderTableHeader(definition, listId);
+    GetTableColumns(definition, listId);
+    RenderTable(definition, listId, listName);
+}
+
+function RenderTableHeader(definition, listId) {
+    var list = GetListById(definition.ItemName, listId);
+    var res = "";
+    if (list.Expandible === true) {
+        res += "<th style=\"width:25px;\">&nbsp;</th>";
+    }
+    for (var x = 0; x < list.Columns.length; x++) {
+        var column = list.Columns[x];
+        console.log("Header column", column);
+        if (typeof column.Expand !== "undefined" && column.Expand === true) {
+            continue;
+        }
+
+        var source = column.DataProperty;
+        var field = GetFieldByName(definition, source);
+        var label = column.Label;
+        if (typeof label === "undefined") {
+            label = field.Label;
+        }
+
+        res += "<th>" + label + "</th>";
+    }
+
+    res += "<th>&nbsp;</th>"
+    $("#tableHeader").html(res);
+}
+
+function GetTableColumns(definition, listId) {
+    var list = GetListById(definition.ItemName, listId);
+    var DescriptionIndex = null;
+    for (var x = 0; x < list.Columns.length; x++) {
+        var column = list.Columns[x];
+        console.log("Column", column);
+        if (x == 0 && list.Expandible) {
+            columns.push({ data: column.DataProperty, "className": "details-control", "sortable": false });
+            RenderColumns += "$(\"td\", row).eq(0).html(\"\");\n";
+        }
+        else {
+            if (typeof column.Expand !== "undefined" && column.Expand === true) {
+                continue;
+            }
+
+            var field = GetFieldByName(definition, column.DataProperty);
+            var dataSource = column.DataProperty;
+            if (typeof column.ReplacedBy !== "undefined") {
+                dataSource = column.ReplacedBy;
+            }
+
+            if (typeof column.Descriptible !== "undefined" && column.Descriptible === true) {
+                DescriptionIndex = dataSource;
+            }
+
+            columns.push({ data: dataSource });
+
+            var renderColumn = null;
+
+            if (field.Type === "url") {
+                renderColumn = "$(\"td\", row).eq(" + x + ").html(ToWebPageBlank(data." + dataSource + "))";
+            }
+            else if (field.Type === "email") {
+                console.log("email");
+                renderColumn = "$(\"td\", row).eq(" + x + ").html(ToMail(data." + dataSource + "))";
+            }
+            else if (typeof column.Render !== "undefined") {
+
+                if (column.Render.indexOf("#") !== -1) {
+                    var func = column.Render.split("#")[0] + "data." + column.DataProperty + column.Render.split("#")[1];
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(" + func + ")";
+                }
+                else {
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(" + column.Render + ")";
+                }
+            }
+
+            if (typeof column.ToolTip !== "undefined") {
+                if (renderColumn === null) {
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(RenderSpanToolTip(data." + dataSource + ",data." + column.ToolTip + "))";
+                }
+                else {
+                    toolTipField = column.ToolTip;
+                    renderColumn += ".attr(\"title\", \"hola\")";
+                }
+            }
+
+            if (renderColumn !== null) {
+                RenderColumns += renderColumn + ";\n";
+            }
+        }
+    }
+
+    console.log("DescriptionIndex", DescriptionIndex);
+    columns.push({ data: "Id", "sortable": false, "width": 150 });
+    RenderColumns += "$(\"td\", row).eq(" + (columns.length - 1) + ").html(buttons(data, '" + DescriptionIndex + "', " + ItemDefinition.Lists[0].Duplicate + "));";
+    return RenderColumns;
+}
+
+function RenderTable(itemDefiniton, listId, tableName, parameters) {
+    var listDefinition = GetListDefinitionById(itemDefiniton, listId);
 	console.log(listDefinition);
 	var extraParams = "";
 	if(typeof listDefinition.Parameters !== "undefined") {
 		var params = listDefinition.Parameters;
 		for(var x=0;x<params.length;x++) {
 		
-			if(params[x].Value === "#actualUser#") {
+            if (params[x].Value === "#ApplicationUserId") {
 				extraParams += "&" + params[x].Name + "=" + actualUser.Id;
 			}
 			else {
@@ -16,7 +118,15 @@
 			console.log(params[x].Name, params[x].Value);
 		}
 	}
-	console.log("Extraparams", extraParams);
+    console.log("Extraparams", extraParams);
+
+    var tableSorting = [[1, "asc"]];
+    if (typeof listDefinition.Sorting !== "undefined" && listDefinition.Sorting !== null) {
+        tableSorting = [];
+        for (var s = 0; s < listDefinition.Sorting.length; s++) {
+            tableSorting.push([listDefinition.Sorting[s].Index , listDefinition.Sorting[s].SortingType ]);
+        }
+    }
 		
     var table_Items = $("#" + tableName).dataTable(
     {
@@ -30,13 +140,13 @@
 		"deferRender": true,
 		"scrollY": ($(window).height() - 330),
 		"scrollCollapse": true,
-		"processing": false,
+        "processing": false,
 		"pageLength": 50,
                 "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-4'f><'col-sm-8 col-xs-8 hidden-xs'C|l>>r" +
                 "t" + 
                 "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-        "order": [[1, "asc"]],
+        "order": tableSorting,
         "aButtons": ["refresh", "copy", "csv", "pdf"],
         "columns": columns,
         "createdRow": function (row, data, index) { eval(RenderColumns); },
@@ -168,11 +278,7 @@
     //$(".ColVis").hide();
     $(".ColVis").after("<span class=\"btn btn-primary btn-success\" id=\"BtnNew\" style=\"float:right;\"><i class=\"fa fa-plus\"></i> Añadir " + ItemDefinition.Layout.Label.toLowerCase() + "</span>");
 	
-	$("#BtnNew").on("click",function(){GoNew(ItemDefinition.ItemName,null)});
-	
-    //new $.fn.dataTable.ColReorder($('#example1').dataTable(), { "iFixedColumns": 1, });
-
-    //$("#example1_length").css("float", "right");
+    $("#BtnNew").on("click", function () { GoNew(ItemDefinition.ItemName, null) });
 
 
     if (typeof ItemDefinition.Lists[0].AutoClick !== "undefined" || ItemDefinition.Lists[0].AutoClick === true) {

@@ -1,0 +1,55 @@
+﻿{
+    "ItemName": "ReunionTipo",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Tipo reunión",
+        "LabelPlural": "Tipos reunión",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [{"ItemName": "ReunionPeriodicidad"}],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Tipo", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "ReunionPeriodicidadId", "Label": "Periodicidad", "Type": "long", "ColumnDataType": "Text" }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "Item_ReunionTipo_GetAll",
+            "Columns": [
+                { "DataProperty": "Nombre", "ReplacedBy":"N" },
+                { "DataProperty": "ReunionPeriodicidadId", "ReplacedBy":"P" }
+            ]
+
+        } ],
+    "Forms": [
+      {
+        "Id": "Custom",
+        "FormType": "Custom",
+        "Tabs": [
+          {
+            "Label": "Datos",
+            "Rows": [
+              {
+                "Fields": [
+                  { "Name": "Nombre" },
+                  { "Name": "ReunionPeriodicidadId" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+}

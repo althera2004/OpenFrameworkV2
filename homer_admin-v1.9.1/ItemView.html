@@ -13,16 +13,32 @@
 <script type="text/javascript">
 	console.clear();
 	console.log("Coded query", codedQuery);
+	PageType = "form";
+	$("#SerieButton").show();
 	var MenuOptionId = 3;
 	var queryParams = DecodeEncryptedQuery();
 	var Data = null;
 	var ItemDefinition = null;
+    $("#footer-button").html("");
+
+    $.getScript("/Instances/" + CustomerName + "/Scripts/" + queryParams.ItemName + ".js", function (data, textStatus, jqxhr) {
+        console.log(textStatus); // Success
+        console.log(jqxhr.status); // 200
+        console.log("Load was performed.");
+
+        var customActions = null;
+        eval("customActions = typeof " + queryParams.ItemName.toUpperCase() + "_CustomActions;")
+        console.log("CustomActions", customActions);
+        if (customActions === "function") {
+            eval(queryParams.ItemName.toUpperCase() + "_CustomActions();");
+        }
+    });
 	
-	var formbuttons = "&nbsp;<button class=\"btn btn-primary btn-success\" type=\"button\"><i class=\"fa fa-check\"></i>&nbsp;Guardar</button>";
+	/*var formbuttons = "&nbsp;<button class=\"btn btn-primary btn-success\" type=\"button\"><i class=\"fa fa-check\"></i>&nbsp;Guardar</button>";
 	formbuttons += "&nbsp;<button class=\"btn btn-primary btn-danger\" type=\"button\"><i class=\"fa fa-trash\"></i>&nbsp;Eliminar</button>";
 	formbuttons += "&nbsp;<button class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-reply\"></i>&nbsp;Volver</button>";
 	
-	$("#footer-button").html(formbuttons);
+	$("#footer-button").html(formbuttons);*/
 	
 	$.getJSON("/Instances/" + CustomerName + "/ItemDefinition/" + queryParams.ItemName + ".item?ac=" + guid(), function (json) {
 		console.log("Definition", json);
@@ -30,9 +46,10 @@
 
 		$("#PageTitle").html(ItemDefinition.Layout.Label);
 		$("#ActualBradCrumb").html(ItemDefinition.Layout.Label);
-		$("#formTest").html(RenderTab(ItemDefinition, ItemDefinition.Forms[0].Tabs[0]));
+        $(".tab-content").html(RenderForm(ItemDefinition, ItemDefinition.Forms[0]));
 
-        var dataSent = {
+        GetById(queryParams.ItemName, queryParams.Id);
+        /*var dataSent = {
             "itemName": queryParams.ItemName,
             "itemId": queryParams.Id,
             "instanceName": CustomerName
@@ -48,8 +65,7 @@
             success: function (msg) {
                 eval("Data=" + msg.d + ";");
                 console.log(Data);
-                FillForm(Data);
-				
+                FillForm(Data);				
 				$(".demo-trigger").css("border", "4px solid #f00;"); 
 				$(".demo-trigger").leroyZoom({
 					"zoomTop": 20,
@@ -59,12 +75,17 @@
 					"error": Dictionary.Zoom.LoadErrorMessage
 				});
                 LayoutModified(Data);
+				
+				$(".i-checks").iCheck({
+					checkboxClass: "icheckbox_square-green",
+					radioClass: "iradio_square-green"
+				});
 
             },
             error: function (msg, text) {
                 alert(text);
             }
-        });
+        });*/
     });
 
 	console.log("Params", queryParams);
@@ -85,18 +106,15 @@
 		listSerie.actual++;
 		if(listSerie.actual > listSerie.ids.length-1){
 			listSerie.actual = 0;
-		}
-		
+        }
+        
 		console.log("actual",listSerie.ids[listSerie.actual]);
 		BtnEditClicked(listSerie.ids[listSerie.actual]);
 	}
 </script>
-
-
-
-	<div class="hpanel">
-		<div class="panel-body">
-			<form method="get" class="form-horizontal" id="formTest">
-			</form>
-		</div>
-	</div>
+<form method="get" class="form-horizontal" id="formTest">
+    <div class="hpanel" id="MainForm">
+	    <div class="tab-content">		
+	    </div>
+    </div>
+</form>

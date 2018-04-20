@@ -44,7 +44,7 @@ namespace OpenFramework
 
         public static CustomerFramework GetActualInstance()
         {
-            CustomerFramework res = CustomerFramework.Empty;
+            var res = CustomerFramework.Empty;
             if (HttpContext.Current.Session["FrameworkCustomer"] != null)
             {
                 res = HttpContext.Current.Session["FrameworkCustomer"] as CustomerFramework;
@@ -105,9 +105,8 @@ namespace OpenFramework
 
         public static string ServerName(string request)
         {
-            Uri uri = new Uri(request);
-            string requested = uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port;
-            return requested;
+            var uri = new Uri(request);
+            return uri.Scheme + Uri.SchemeDelimiter + uri.Host + ":" + uri.Port;
         }
 
         public static bool ValidateDate(string value)
@@ -117,7 +116,7 @@ namespace OpenFramework
                 return true;
             }
 
-            string[] data = value.Split('/');
+            var data = value.Split('/');
             if (data.Length != 3)
             {
                 return false;
@@ -128,7 +127,7 @@ namespace OpenFramework
                 int day = Convert.ToInt32(data[0], CultureInfo.InvariantCulture);
                 int month = Convert.ToInt32(data[1], CultureInfo.InvariantCulture);
                 int year = Convert.ToInt32(data[2], CultureInfo.InvariantCulture);
-                DateTime probeDate = new DateTime(year, month, day);
+                var probeDate = new DateTime(year, month, day);
             }
             catch
             {
@@ -138,9 +137,7 @@ namespace OpenFramework
             return true;
         }
 
-        /// <summary>
-        /// Validates email format
-        /// </summary>
+        /// <summary>Validates email format</summary>
         /// <param name="emailAddress">Text to validate</param>
         /// <returns>Boolean indicating if text if a valid email</returns>
         public static bool EmailIsValid(string emailAddress)
@@ -152,9 +149,7 @@ namespace OpenFramework
             return new Regex(validEmailPattern, RegexOptions.IgnoreCase).IsMatch(emailAddress);
         }
 
-        /// <summary>
-        /// Clone an object
-        /// </summary>
+        /// <summary>Clone an object</summary>
         /// <typeparam name="T">Type of object</typeparam>
         /// <param name="source">Object to be cloned</param>
         /// <returns>Copy of source object</returns>
@@ -171,9 +166,8 @@ namespace OpenFramework
                 return default(T);
             }
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            using (stream)
+            var formatter = new BinaryFormatter();
+            using (var stream = new MemoryStream())
             {
                 formatter.Serialize(stream, source);
                 stream.Seek(0, SeekOrigin.Begin);
@@ -181,9 +175,7 @@ namespace OpenFramework
             }
         }
         
-        /// <summary>
-        /// Extract characters from right of text
-        /// </summary>
+        /// <summary>Extract characters from right of text</summary>
         /// <param name="text">Text where extract</param>
         /// <param name="length">Number of characters to extract</param>
         /// <returns>String value</returns>
@@ -202,9 +194,7 @@ namespace OpenFramework
             return text.Substring(text.Length - length, length);
         }
 
-        /// <summary>
-        /// Extract characters from left of text
-        /// </summary>
+        /// <summary>Extract characters from left of text</summary>
         /// <param name="text">Text where extract</param>
         /// <param name="length">Number of characters to extract</param>
         /// <returns>String value</returns>
@@ -223,9 +213,7 @@ namespace OpenFramework
             return text.Substring(0, length);
         }
 
-        /// <summary>
-        /// Calculate seconds in a string time formatted
-        /// </summary>
+        /// <summary>Calculate seconds in a string time formatted</summary>
         /// <param name="time">Time formatted</param>
         /// <returns>Number of seconds represented in time formatted</returns>
         public static int? ParseTime(string time)
@@ -262,9 +250,7 @@ namespace OpenFramework
             }
         }
 
-        /// <summary>
-        /// Calculates month name from a date
-        /// </summary>
+        /// <summary>Calculates month name from a date</summary>
         /// <param name="date">Date to get month name from</param>
         /// <returns>Name of month</returns>
         public static string MonthDate(DateTime date)
@@ -315,9 +301,7 @@ namespace OpenFramework
             return res;
         }
 
-        /// <summary>
-        /// Calculates if two dates are in the same month of the same year
-        /// </summary>
+        /// <summary>Calculates if two dates are in the same month of the same year</summary>
         /// <param name="firstDate">First date on comparison</param>
         /// <param name="secondDate">Second date on comparison</param>
         /// <returns>Indicates if two dates are in the same month of the same year</returns>
@@ -336,9 +320,7 @@ namespace OpenFramework
             return true;
         }
 
-        /// <summary>
-        /// Gets a limited length string
-        /// </summary>
+        /// <summary>Gets a limited length string</summary>
         /// <param name="text">Original string</param>
         /// <param name="length">Maximum length</param>
         /// <returns>A limited length string</returns>
@@ -435,7 +417,7 @@ namespace OpenFramework
                 return string.Empty;
             }
 
-            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plaintext);
+            var plainTextBytes = Encoding.UTF8.GetBytes(plaintext);
             return Convert.ToBase64String(plainTextBytes);
         }
 
@@ -451,7 +433,7 @@ namespace OpenFramework
                 base64EncodedData = base64EncodedData.Replace("%3d", "=");
             }
 
-            byte[] base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+            var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
             return Encoding.UTF8.GetString(base64EncodedBytes);
         }
 
@@ -462,8 +444,7 @@ namespace OpenFramework
                 return null;
             }
 
-            string[] data = value.Split('/');
-
+            var data = value.Split('/');
             if (data.Count() != 3)
             {
                 return null;
@@ -505,7 +486,7 @@ namespace OpenFramework
 
         public static string TimeAgo(DateTime date)
         {
-            TimeSpan span = DateTime.Now - date;
+            var span = DateTime.Now - date;
             if (span.Days > 365)
             {
                 int years = span.Days / 365;
@@ -611,7 +592,7 @@ namespace OpenFramework
 
         public static string FormatDateDDMMYYYY(DateTime? date)
         {
-            if (!date.HasValue)
+            if (date == null)
             {
                 return string.Empty;
             }
@@ -699,7 +680,7 @@ namespace OpenFramework
         /// <returns>Formatted text for DatePicker control</returns>
         public static string FormatDatePicker(DateTime? date)
         {
-            if (!date.HasValue)
+            if (date == null)
             {
                 return string.Empty;
             }
@@ -719,7 +700,7 @@ namespace OpenFramework
         /// <returns>Formatted text for DatePicker control</returns>
         public static string FormatTimePicker(DateTime? date)
         {
-            if (!date.HasValue)
+            if (date == null)
             {
                 return string.Empty;
             }
@@ -732,12 +713,11 @@ namespace OpenFramework
             string res = "[]";
             if (!string.IsNullOrEmpty(storedName))
             {
-                CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-                instance.LoadConfig();
-                using (SqlCommand cmd = new SqlCommand(storedName))
+                var instance = CustomerFramework.Load(instanceName);
+                using (var cmd = new SqlCommand(storedName))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    using (SqlConnection cnn = new SqlConnection(instance.Config.ConnectionString))
+                    using (var cnn = new SqlConnection(instance.Config.ConnectionString))
                     {
                         cmd.Connection = cnn;
                         res = SQLJSONStream(cmd);
@@ -757,19 +737,18 @@ namespace OpenFramework
         {
             if (cmd == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder("[");
+            var res = new StringBuilder("[");
             try
             {
                 cmd.Connection.Open();
-                using (SqlDataReader rdr = cmd.ExecuteReader())
+                using (var rdr = cmd.ExecuteReader())
                 {
                     bool first = true;
                     while (rdr.Read())
                     {
-                        //// if (!rdr.IsDBNull(0))
                         {
                             if (first)
                             {
@@ -808,14 +787,12 @@ namespace OpenFramework
         {
             if (string.IsNullOrEmpty(storedName))
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            string res = "[]";
-            CustomerFramework customerConfig = HttpContext.Current.Session["FrameworkCustomer"] as CustomerFramework;
+            var customerConfig = HttpContext.Current.Session["FrameworkCustomer"] as CustomerFramework;
             string connectionString = customerConfig.Config.ConnectionString;
-            res = SQLToJSON(storedName, connectionString);
-            return res;
+            return SQLToJSON(storedName, connectionString);
         }
 
         /// <summary>
@@ -828,14 +805,14 @@ namespace OpenFramework
         {
             if (string.IsNullOrEmpty(storedName) || string.IsNullOrEmpty(connectionString))
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
             string res = "[]";
-            using (SqlCommand cmd = new SqlCommand(storedName))
+            using (var cmd = new SqlCommand(storedName))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = SQLToJSON(cmd);
@@ -845,9 +822,7 @@ namespace OpenFramework
             return res;
         }
         
-         /// <summary>
-         /// Get JSON format data from SQL command
-         /// </summary>
+         /// <summary>Get JSON format data from SQL command</summary>
          /// <param name="cmd">SQL command</param>
          /// <returns>An "application/json" format of data</returns>
         public static string SQLStreamSimple(SqlCommand cmd)
@@ -857,11 +832,11 @@ namespace OpenFramework
                 return "{}";
             }
 
-            StringBuilder res = new StringBuilder();
+            var res = new StringBuilder();
             try
             {
                 cmd.Connection.Open();
-                using (SqlDataReader rdr = cmd.ExecuteReader())
+                using (var rdr = cmd.ExecuteReader())
                 {
                     if (rdr.HasRows)
                     {
@@ -896,10 +871,10 @@ namespace OpenFramework
         {
             if (cmd == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder();
+            var res = new StringBuilder();
             try
             {
                 cmd.Connection.Open();
@@ -953,10 +928,10 @@ namespace OpenFramework
         {
             if (cmd == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder("[");
+            var res = new StringBuilder("[");
             try
             {
                 cmd.Connection.Open();
@@ -1059,11 +1034,11 @@ namespace OpenFramework
                 return string.Empty;
             }
 
-            StringBuilder res = new StringBuilder();
+            var res = new StringBuilder();
             try
             {
                 cmd.Connection.Open();
-                using (SqlDataReader rdr = cmd.ExecuteReader())
+                using (var rdr = cmd.ExecuteReader())
                 {
                     bool first = true;
                     while (rdr.Read())

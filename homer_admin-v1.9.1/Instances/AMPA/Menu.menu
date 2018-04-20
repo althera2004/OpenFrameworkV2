@@ -1,0 +1,43 @@
+﻿{
+  "Options": [
+    { "ItemName": "Noticia" },
+    { "ItemName": "Alumno" },
+    { "ItemName": "Tutor" },
+    { "ItemName": "Curso" },
+    { "ItemName": "Cargo" },
+    { "ItemName": "Integrante" },
+    {
+      "ItemName": "CodigoBanco",
+      "Label": "Bancos"
+    }
+  ],
+  "SubMenus": [
+    {
+      "Label": "Actividades",
+      "Icon": "users",
+      "Options": [
+        { "ItemName": "Actividad" },
+        { "ItemName": "Proveedor" },
+        { "ItemName": "Monitor" },
+        { "ItemName": "Inscripcion" }
+      ]
+    },
+    {
+      "Label": "Reuniones",
+      "Icon": "users",
+      "Options": [
+        { "ItemName": "Reunion" },
+        { "ItemName": "ReunionTipo" },
+        { "ItemName": "ReunionPeriodicidad" }
+      ]
+    },
+    {
+      "Label": "Instalaciones",
+      "Icon": "users",
+      "Options": [
+        { "ItemName": "Lugar" },
+        { "ItemName": "Ubicacion" }
+      ]
+    }
+  ]
+}

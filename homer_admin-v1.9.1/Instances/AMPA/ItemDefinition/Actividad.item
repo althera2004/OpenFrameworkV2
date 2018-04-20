@@ -1,0 +1,113 @@
+﻿{
+    "ItemName": "Actividad",
+    "MustReload": true,
+  "Layout": {
+    "Icon": "list",
+    "Label": "Actividad extraescolar",
+    "LabelPlural": "Actividades extraescolares",
+    "Description": {
+      "Pattern": "{0}",
+      "Fields": [
+        { "Name": "Nombre" }
+      ]
+    },
+    "EditionType": "inline"
+  },
+  "ForeignValues": [
+    { "ItemName": "Proveedor" },
+    { "ItemName": "Monitor" },
+    { "ItemName": "Lugar" }
+  ],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "LugarId", "Label": "Lugar", "Type": "long", "Required": true },
+        { "Name": "TipoPago", "Label": "Tipo pago", "Type": "FixedList", "FixedListId": "TipoPagoExtraexcolar", "Required": true, "ColumnDataType": "Text" },
+        { "Name": "PrecioUnico", "Label": "Precio único", "Type": "money", "Required": true },
+        { "Name": "Precio2", "Label": "Precio 2", "Type": "money" },
+        { "Name": "Precio3", "Label": "Precio 3", "Type": "money" },
+        { "Name": "ProveedorId", "Label": "Proveedor", "Type": "long", "Required":  true },
+        { "Name": "MonitorId", "Label": "Monitor", "Type": "long", "Required": true },
+        { "Name": "QuorumMin", "Label": "Mínimo", "Type": "int" },
+        { "Name": "QuorumMax", "Label": "Máximo", "Type": "int" }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "Columns": [
+                { "DataProperty": "Nombre" },
+                { "DataProperty": "Lugar" }
+            ]
+
+        },
+        {
+            "Id": "ByAlumno",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "Item_Actividad_GetByAlumno",
+            "Columns": [
+                { "DataProperty": "Nombre" },
+                { "DataProperty": "Lugar" }
+            ]
+
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },
+                                { "Name": "LugarId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "ProveedorId" },
+                                { "Name": "MonitorId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "PrecioUnico" },
+                                { "Name": "TipoPago" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Precio2" },
+                                { "Name": "Precio3" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "QuorumMin" },
+                                { "Name": "QuorumMax" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Inscripciones",
+                    "Rows": [
+                        {
+                            "ItemList": "Inscripcion",
+                            "ListId": "Custom",
+                            "FilterFields": [ { "Field": "Actividad" } ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

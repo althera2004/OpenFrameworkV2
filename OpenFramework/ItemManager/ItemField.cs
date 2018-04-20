@@ -454,6 +454,12 @@ namespace OpenFramework.ItemManager
                             @"'""{0}"":' +  CASE WHEN Item.{0} = 1 THEN 'true' ELSE 'false' END + ','",
                             this.Name);
                         break;
+                    case FieldDataType.Image:
+                        res = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"'""{0}"":' + CASE WHEN Item.{0} IS NULL THEN 'null,' ELSE '""' + Item.{0} + '"",' END",
+                            this.Name);
+                        break;
                     default:
                         res = string.Format(
                             CultureInfo.InvariantCulture,
@@ -502,6 +508,12 @@ namespace OpenFramework.ItemManager
                             @"CASE WHEN Item.{0} = 1 THEN 'true' ELSE 'false' END",
                             this.Name);
                         break;
+                    case FieldDataType.Image:
+                        res = string.Format(
+                            CultureInfo.InvariantCulture,
+                            @"CASE WHEN Item.{0} IS NULL THEN 'null' ELSE '""' + Item.{0} + '""' END",
+                            this.Name);
+                        break;
                     default:
                         res = string.Format(
                             CultureInfo.InvariantCulture,
@@ -523,12 +535,12 @@ namespace OpenFramework.ItemManager
             if (field.Name.EndsWith("id", StringComparison.OrdinalIgnoreCase))
             {
                 var foreignItem = field.Name.Substring(0, field.Name.Length - 2);
-                var foreingRelation = item.Definition.ForeignValues.Where(fv => fv.ItemName.Equals(foreignItem)).FirstOrDefault();
+                var foreingRelation = item.Definition.ForeignValues.FirstOrDefault(fv => fv.ItemName.Equals(foreignItem));
                 if (foreingRelation != null)
                 {
-                    ItemBuilder referedItem = new ItemBuilder(foreignItem, item.InstanceName);
+                    var referedItem = new ItemBuilder(foreignItem, item.InstanceName);
                     var descriptionField = referedItem.Definition.Layout.Description.Fields.First();
-                    var referedField = referedItem.Definition.Fields.Where(f => f.Name.Equals(descriptionField.Name, StringComparison.OrdinalIgnoreCase)).First();
+                    var referedField = referedItem.Definition.Fields.First(f => f.Name.Equals(descriptionField.Name, StringComparison.OrdinalIgnoreCase));
                     if (referedField != null)
                     {
                         return referedField;
@@ -563,7 +575,7 @@ namespace OpenFramework.ItemManager
             switch (this.DataType)
             {
                 case FieldDataType.DateTime:
-                    DateTime dateValue = (DateTime)value;
+                    var dateValue = (DateTime)value;
                     return string.Format(CultureInfo.InvariantCulture, "{0:dd/MM/yyyy}", dateValue);
                 case FieldDataType.Boolean:
                     bool boolValue = (bool)value;

@@ -25,22 +25,12 @@
   line-height: 0.75em;
   vertical-align: -15%;
 }
-.fa-2x {
-  font-size: 2em;
-}
-.fa-3x {
-  font-size: 3em;
-}
-.fa-4x {
-  font-size: 4em;
-}
-.fa-5x {
-  font-size: 5em;
-}
-.fa-fw {
-  width: 1.28571429em;
-  text-align: center;
-}
+.fa-15x{ font-size:1.5em; }
+.fa-2x { font-size: 2em; }
+.fa-3x { font-size: 3em; }
+.fa-4x { font-size: 4em; }
+.fa-5x { font-size: 5em; }
+.fa-fw { width: 1.28571429em; text-align: center; }
 .fa-ul {
   padding-left: 0;
   margin-left: 2.14285714em;

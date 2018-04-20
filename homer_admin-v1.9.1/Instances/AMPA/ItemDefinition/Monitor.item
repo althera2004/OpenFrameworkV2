@@ -1,0 +1,29 @@
+﻿{
+    "ItemName": "Monitor",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Monitor",
+        "LabelPlural": "Monitores",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [
+		{"ItemName": "Proveedor"}
+	],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Telefono", "Label": "Telèfon", "Type": "text", "Length": 15, "Required": true },
+        { "Name": "Email", "Label": "Email", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "ProveedorId", "Label": "Proveedor", "Type": "long" }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

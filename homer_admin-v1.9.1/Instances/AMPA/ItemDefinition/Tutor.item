@@ -1,0 +1,107 @@
+﻿{
+    "ItemName": "Tutor",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Tutor",
+        "LabelPlural": "Tutores de alumnos",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre1" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [],
+    "PrimaryKeys": [],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Email", "Label": "Email", "Type": "email", "Required": true, "Length": 50 },
+        { "Name": "Email2", "Label": "Email2", "Type": "email", "Length": 50 },
+        { "Name": "Nombre1", "Label": "Nombre 1", "Type": "text", "Required": true },
+        { "Name": "DNI1", "Label": "DNI 1", "Type": "text", "Required": true, "Length": 12  },
+        { "Name": "Telefono1", "Label":  "Teléfono 1", "Type": "text", "Length": 15 },
+        { "Name": "Nombre2", "Label": "Nombre2", "Type": "text", "Length": 100 },
+        { "Name": "DNI2", "Label": "DNI 2", "Type": "text" , "Length": 12},
+        { "Name": "Telefono2", "Label":  "Teléfono 2", "Type": "text", "Length": 15 },
+        { "Name": "Nombre3", "Label": "Nombre3", "Type": "text", "Length": 100 },
+        { "Name": "DNI3", "Label": "DNI 3", "Type": "text", "Length": 12 },
+        { "Name": "Telefono3", "Label":  "Teléfono 3", "Type": "text", "Length": 15 },
+        { "Name": "CCExtraescolar", "Label":  "C.C.", "Type": "text", "Length": 50 }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "Columns": [
+                { "DataProperty": "Email" },
+                { "DataProperty": "Nombre1" },
+                { "DataProperty": "Telefono1" },
+                { "DataProperty": "Nombre2" },
+                { "DataProperty": "Telefono2" }
+            ]
+
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Label": "Primer contacto (obligatorio)",
+                            "Fields": [
+                                { "Name": "Nombre1" },
+                                { "Name": "DNI1" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Telefono1" },
+                                { "Name": "Email" }
+                            ]
+                        },
+                        {
+                            "Label": "Segundo contacto <i>(opcional)</i>",
+                            "Fields": [
+                                { "Name": "Nombre2" },
+                                { "Name": "DNI2" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Telefono2" },
+                                { "Name": "Email2" }
+                            ]
+                        },
+                        {
+                            "Label": "Tercer contacto <i>(opcional)</i>",
+                            "Fields": [
+                                { "Name": "Nombre3" },
+                                { "Name": "DNI3" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Telefono3" },
+                                { "Type": 2 }
+                            ]
+                        },
+                        {
+                            "Label": "C.C. para domiciliar cuota AMPA y actividades extraescolares",
+                            "Fields": [
+                                { "Name": "CCExtraescolar" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

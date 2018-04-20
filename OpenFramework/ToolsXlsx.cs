@@ -78,7 +78,6 @@ namespace OpenFramework
             }
 
             object cellValue = null;
-
             switch (typeof(T).FullName.ToUpperInvariant())
             {
                 case "SYSTEM.STRING":
@@ -116,11 +115,9 @@ namespace OpenFramework
                 }
             }
 
-            Type t = typeof(T);
-            t = Nullable.GetUnderlyingType(t) ?? t;
-            return (cellValue == null || DBNull.Value.Equals(cellValue)) ? default(T) : (T)Convert.ChangeType(cellValue, t, CultureInfo.InvariantCulture);
-
-            //// return (T)Convert.ChangeType(cellValue, typeof(T));
+            var valueType = typeof(T);
+            valueType = Nullable.GetUnderlyingType(valueType) ?? valueType;
+            return (cellValue == null || DBNull.Value.Equals(cellValue)) ? default(T) : (T)Convert.ChangeType(cellValue, valueType, CultureInfo.InvariantCulture);
         }
 
         /// <summary>Gets string value of a cell</summary>
@@ -195,8 +192,7 @@ namespace OpenFramework
                     return null;
             }
 
-            double? doubleRes = cell.NumericCellValue as double?;
-
+            var doubleRes = cell.NumericCellValue as double?;
             if (doubleRes.HasValue)
             {
                 return Convert.ToDecimal(doubleRes, CultureInfo.InvariantCulture);
@@ -236,8 +232,7 @@ namespace OpenFramework
                     return null;
             }
 
-            double? doubleRes = cell.NumericCellValue as double?;
-
+            var doubleRes = cell.NumericCellValue as double?;
             if (doubleRes.HasValue)
             {
                 return Convert.ToSingle(doubleRes, CultureInfo.InvariantCulture);
@@ -259,8 +254,6 @@ namespace OpenFramework
             bool? res = null;
             switch (cell.CellType)
             {
-                //// case CellType.Blank:
-                ////    return null;
                 case CellType.Boolean:
                     res = cell.BooleanCellValue;
                     break;

@@ -29,7 +29,6 @@ namespace OpenFramework
         public static void Trace(Exception ex, string source, string extraData)
         {
             int pos = ex.StackTrace.LastIndexOf('\n');
-
             if (pos > 0)
             {
                 source = string.Format(CultureInfo.GetCultureInfo("en-us"), "{0} - {1}", source, ex.StackTrace.Substring(pos));
@@ -62,7 +61,6 @@ namespace OpenFramework
             }
 
             string line = string.Format(CultureInfo.GetCultureInfo("en-us"), "{0}::{1}::{2}::{3}", DateTime.Now.ToString("hh:mm:ss", CultureInfo.GetCultureInfo("es-es")), ex.Message, source, extraData);
-
             using (StreamWriter output = new StreamWriter(path, true))
             {
                 output.WriteLine(line);
@@ -86,7 +84,7 @@ namespace OpenFramework
             }
 
             // Open the log file for append and write the log
-            using (StreamWriter writer = new StreamWriter(path, true))
+            using (var writer = new StreamWriter(path, true))
             {
                 writer.WriteLine("********** {0} **********", DateTime.Now);
                 if (exception.InnerException != null)

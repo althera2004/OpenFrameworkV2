@@ -24,8 +24,7 @@ public partial class Data_DocumentGalleryActions : Page
     public static ActionResult SaveDocument(string instanceName, string galleryFolder, string documentData, string documentFileName)
     {
         var res = ActionResult.NoAction;
-        byte[] bytes = Convert.FromBase64String(documentData);
-
+        var bytes = Convert.FromBase64String(documentData);
         string path = HttpContext.Current.Request.PhysicalApplicationPath;
         if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
         {
@@ -67,7 +66,7 @@ public partial class Data_DocumentGalleryActions : Page
         var res = ActionResult.NoAction;
         try
         {
-            StringBuilder list = new StringBuilder("[");
+            var list = new StringBuilder("[");
             string path = HttpContext.Current.Request.PhysicalApplicationPath;
             if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
             {
@@ -86,7 +85,7 @@ public partial class Data_DocumentGalleryActions : Page
                 documentPattern += "*.*";
             }
 
-            string[] filesName = Directory.GetFiles(path, documentPattern, SearchOption.TopDirectoryOnly);
+            var filesName = Directory.GetFiles(path, documentPattern, SearchOption.TopDirectoryOnly);
             bool first = true;
             foreach (string fileName in filesName)
             {

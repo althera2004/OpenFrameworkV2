@@ -1,0 +1,60 @@
+﻿{
+    "ItemName": "Curso",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Curso",
+        "LabelPlural": "Cursos",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Curso", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Externo", "Label": "Externo", "Type": "boolean", "DataFormat": { "Name": "BooleanCheck" } }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "ITEM_CURSO_GETALL",
+            "Columns": [
+                { "DataProperty": "Nombre",  "ReplacedBy": "N" },
+                { "DataProperty": "Externo", "ReplacedBy": "E" }
+            ]
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },                           
+                                { "Name": "Externo" }
+                            ]
+                        },
+                        {
+                            "ItemList": "Alumno",
+                            "ListId": "ByCurso",
+                            "FilterFields": [ { "Field": "Curso" } ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

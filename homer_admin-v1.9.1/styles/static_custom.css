@@ -267,46 +267,43 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
 }
-
-.imagefolder{
-            background-image:url(/img/ImageUploadBackground.png);
-            height:300px;
-            border:1px solid #333;
-            text-align:center;
-            vertical-align:middle;
-        }
-
-        .imagefolderLeft{
-            background-image:url(/img/ImageUploadBackground.png);
-            height:300px;
-            border:1px solid #333;
-            text-align:center;
-            vertical-align:middle;
-        }
-        .imagefolderRight{
-            background-image:url(/img/ImageUploadBackground.png);
-            height:300px;
-            border:1px solid #333;
-            border-left:none;
-            text-align:center;
-            vertical-align:middle;
-        }
-        .imagefolder img, .imagefolderRight img, .imagefolderLeft img{
-            max-width:90%;
-            max-height:90%;
-        }
-        .inputfile {
-            width: 0.1px;
-            height: 0.1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-        }
-		
-		.ErrorMessage{
-			background-color:#f77;
-			color:#ff0;
-			font-size:14px;
-			margin:8px;
-		}
+.imagefolder {
+    background-image: url(/img/ImageUploadBackground.png);
+    height: 300px;
+    border: 1px solid #333;
+    text-align: center;
+    vertical-align: middle;
+}
+.imagefolderLeft {
+    background-image: url(/img/ImageUploadBackground.png);
+    height: 300px;
+    border: 1px solid #333;
+    text-align: center;
+    vertical-align: middle;
+}
+.imagefolderRight {
+    background-image: url(/img/ImageUploadBackground.png);
+    height: 300px;
+    border: 1px solid #333;
+    border-left: none;
+    text-align: center;
+    vertical-align: middle;
+}
+.imagefolder img, .imagefolderRight img, .imagefolderLeft img {
+    max-width: 90%;
+    max-height: 90%;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.ErrorMessage {
+    background-color: #da2121;
+    color: #ff0;
+    font-size: 14px;
+    margin: 8px;
+}

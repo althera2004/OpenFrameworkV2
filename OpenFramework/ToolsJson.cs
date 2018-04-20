@@ -12,6 +12,8 @@ namespace OpenFramework
 
     public static class ToolsJson
     {
+        public const string EmptyJsonList = "[]";
+
         public static string JsonCompliant(string value)
         {
             if (string.IsNullOrEmpty(value))
@@ -56,7 +58,7 @@ namespace OpenFramework
 
         public static string Json(string key, int? value)
         {
-            if (!value.HasValue)
+            if (value == null)
             {
                 return JsonNull(key);
             }
@@ -66,7 +68,7 @@ namespace OpenFramework
 
         public static string Json(string key, DateTime? value)
         {
-            if (!value.HasValue)
+            if (value == null)
             {
                 return string.Format(CultureInfo.GetCultureInfo("en-us"), @"""{0}"": null", key);
             }
@@ -86,7 +88,7 @@ namespace OpenFramework
 
         public static string Json(string key, long? value)
         {
-            if (!value.HasValue)
+            if (value == null)
             {
                 return JsonNull(key);
             }

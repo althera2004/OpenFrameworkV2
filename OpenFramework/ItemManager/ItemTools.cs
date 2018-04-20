@@ -93,7 +93,7 @@ namespace OpenFramework.ItemManager
             return new ReadOnlyCollection<ItemField>(fields.Where(f => FieldsDescription(item).Select(a => a.Name).ToList().Contains(f.Name) == false).ToList());
         }
 
-        public static string QueryFKList(ItemBuilder item)
+        public static string QueryFKList(ItemBuilder item, Dictionary<string, string> parameters)
         {
             var descriptionFields = FieldsDescription(item);
             var fieldLines = FieldForeingLines(item);
@@ -140,6 +140,25 @@ namespace OpenFramework.ItemManager
                 descriptionFieldLine = descriptionFieldLine.Replace("#" + x.ToString(), descriptionFieldList[x]);
             }
 
+            string additionalWhere = string.Empty;
+            if(parameters.Count > 0)
+            {
+                bool firstParameter = true;
+                foreach(var parameter in parameters)
+                {
+                    if (firstParameter)
+                    {
+                        additionalWhere += " WHERE ";
+                    }
+                    else
+                    {
+                        additionalWhere += " AND ";
+                    }
+
+                    additionalWhere += "Item." + parameter.Key + "='" + parameter.Value + "'";
+                }
+            }
+
             return string.Format(
                 CultureInfo.InvariantCulture,
                 @"SELECT 
@@ -147,13 +166,14 @@ namespace OpenFramework.ItemManager
                       '""Description"":""' {1} + '"",' + 
                       {2}
                       '""Active"":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}}' AS Data
-                      FROM Item_{0} Item WITH(NOLOCK)",
+                      FROM Item_{0} Item WITH(NOLOCK){3}",
                 item.ItemName,
                 descriptionFieldLine,
-                res);
+                res,
+                additionalWhere);
         }
 
-        public static string QueryByListId(ItemBuilder item, string listId)
+        public static string QueryByListId(ItemBuilder item, Dictionary<string, string> parameters, string listId)
         {
             var list = item.Definition.Lists.Where(l => l.Id.Equals(listId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
             if(list == null)
@@ -206,16 +226,36 @@ namespace OpenFramework.ItemManager
                 res.Append(" +");
             }
 
+            string additionalWhere = string.Empty;
+            if (parameters.Count > 0)
+            {
+                bool firstParameter = true;
+                foreach (var parameter in parameters)
+                {
+                    if (firstParameter)
+                    {
+                        additionalWhere += " WHERE ";
+                    }
+                    else
+                    {
+                        additionalWhere += " AND ";
+                    }
+
+                    additionalWhere += "Item." + parameter.Key + "='" + parameter.Value + "'";
+                }
+            }
+
             return string.Format(
                 CultureInfo.InvariantCulture,
                 @"SELECT 
 		              '""Id"":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
 		              {1}
                       '""Active"":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
-                      FROM Item_{0} Item WITH(NOLOCK){2}",
+                      FROM Item_{0} Item WITH(NOLOCK){2}{3}",
                 item.ItemName,
                 res,
-                innerJoin);
+                innerJoin,
+                additionalWhere);
         }
 
         public static string QueryGetAll(ItemBuilder item)

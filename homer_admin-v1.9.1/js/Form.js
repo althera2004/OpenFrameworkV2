@@ -1,37 +1,58 @@
 ﻿var footerButtons = null;
 
-function RenderFooterButtons(tab) {
-    console.log("RenderFooterButtons",tab);
-
-    if (tab.Buttons !== null) {
-
-        tab.Buttons.sort(function (a, b) {
+function RenderFooterButtons(formDefinition) {
+    var res = "";
+    if (typeof formDefinition.Buttons !== "undefined" && formDefinition.Buttons !== null) {
+        formDefinition.Buttons.sort(function (a, b) {
             return a.Group - b.Group;
         });
 
-        var res = "<div class=\"btn-group\"><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\">Acciones2 <span class=\"caret\"></span></button>";
-        res += "<ul class=\"dropdown-menu pull-right pull-top\">";
-        var actualGroup = tab.Buttons[0].Group;
-        for (var x = 0; x < tab.Buttons.length; x++) {
-            if (actualGroup !== tab.Buttons[x].Group) {
-                res += "<li class=\"divider\"></li>";
-            }
+        var noGroupButtons = "";
+        var GroupButtons = "";
 
-            var button = tab.Buttons[x];
-            var icon = typeof button.Icon === "undefined" ? "" : button.Icon;
-            var paddingLeft = typeof button.Icon === "undefined" ? "20" : "10";
-            res += "<li><a style=\"padding:3px 20px 3px " + paddingLeft + "px;\" href=\"#\"><span class=\"fa " + icon + "\" style=\"display:inline;\"></span>&nbsp;&nbsp;" + button.Label + "</a></li>";
-            actualGroup = tab.Buttons[x].Group;
+        var actualGroup = formDefinition.Buttons[0].Group;
+        var firstButtonGroup = true;
+        for (var x = 0; x < formDefinition.Buttons.length; x++) {
+
+            var button = formDefinition.Buttons[x];
+
+            if (typeof button.Group === "undefined") {
+                noGroupButtons += "&nbsp;<button id=\"" + button.Id + "\" class=\"btn btn-primary btn-info\" type=\"button\" onclick=\"" + button.Action + "()\"><i class=\"fa fa-check\"></i>&nbsp" + JavaScriptText(button.Label) + "</button>";
+            }
+            else {
+                if (actualGroup !== formDefinition.Buttons[x].Group && firstButtonGroup === false) {
+                    GroupButtons += "<li class=\"divider\"></li>";
+                }
+
+                var button = formDefinition.Buttons[x];
+                var icon = typeof button.Icon === "undefined" ? "" : button.Icon;
+                var paddingLeft = typeof button.Icon === "undefined" ? "20" : "10";
+                GroupButtons += "<li><a style=\"padding:3px 20px 3px " + paddingLeft + "px;\" href=\"#\"><span class=\"fa " + icon + "\" style=\"display:inline;\"></span>&nbsp;&nbsp;" + JavaScriptText(button.Label) + "</a></li>";
+                actualGroup = formDefinition.Buttons[x].Group;
+                firstButtonGroup = false;
+            }
         }
 
-        res += "</ul></div>";
+        if (GroupButtons !== "") {
+            res = "<div class=\"btn-group\"><button data-toggle=\"dropdown\" class=\"btn btn-info dropdown-toggle\">Acciones&nbsp;<span class=\"caret\"></span></button>";
+            res += "<ul class=\"dropdown-menu pull-right pull-top\">";
+            res += GroupButtons;
+            res += "</ul></div>";
+        }
 
-        res += "&nbsp;<button class=\"btn btn-primary btn-success\" type=\"button\"><i class=\"fa fa-check\"></i>&nbsp;Guardar</button>";
-        res += "&nbsp;<button class=\"btn btn-primary btn-danger\" type=\"button\"><i class=\"fa fa-trash\"></i>&nbsp;Eliminar</button>";
-        res += "&nbsp;<button class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-chevron-circle-left\"></i>&nbsp;Volver</button>";
-
-        $("#footer-button").append(res);
     }
+
+    res += noGroupButtons;
+
+	res += "&nbsp;<button id=\"BtnForm-Save\" class=\"btn btn-primary btn-success\" type=\"button\"><i class=\"fa fa-check\"></i>&nbsp" + Dictionary.Common_Save + "</button>";
+	res += "&nbsp;<button id=\"BtnForm-Delete\" class=\"btn btn-primary btn-danger\" type=\"button\"><i class=\"fa fa-trash\"></i>&nbsp;" + Dictionary.Common_Delete + "</button>";
+	res += "&nbsp;<button id=\"BtnForm-Back\" class=\"btn btn-primary\" type=\"button\"><i class=\"fa fa-chevron-circle-left\"></i>&nbsp;" + Dictionary.Common_Back + "</button>";
+
+	$("#footer-button").append(res);
+	
+	$("#BtnForm-Save").on("click", SaveActualForm);
+	$("#BtnForm-Delete").on("click", DeleteActualForm);
+	$("#BtnForm-Back").on("click", NavigationHistoryBackList);
 }
 
 function CalculateSpan(numFields) {
@@ -56,258 +77,6 @@ function CalculateSpan(numFields) {
     return { "Label": labelSpan, "Field": fieldSpan };
 }
 
-function RenderComboField(fieldDefinition, formFieldDefinition, numFields) {
-
-    var fieldLabel = fieldDefinition.Name;
-    if (typeof fieldDefinition.Label !== "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof formFieldDefinition.Label !== "undefined") {
-        fieldLabel = formFieldDefinition.Label;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    var res = "<label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>";
-    res += "         <div class=\"col-md-" + span.Field + "\">";
-    res += "             <select id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control\"" + readOnly + ">";
-	res += "                 <option value=\"0\">" + Dictionary.Common_Select + "</option>";
-	
-	var itemReferedName = fieldDefinition.Name.substr(0,fieldDefinition.Name.length-2);
-	var referedItemsList = FK[itemReferedName];
-	referedItemsList.sort((a, b) => a.Description < b.Description);
-	for(var x=0;x<referedItemsList.length;x++){
-		res += "   <option value=\"" + referedItemsList[x].Id + "\">" + referedItemsList[x].Description + "</option>";
-    }
-    res += "             </select>";
-    res += "         </div>";
-    return res;
-}
-
-function RenderTextField(fieldDefinition, formFieldDefinition, numFields) {
-
-    var fieldLabel = fieldDefinition.Name;
-    if (typeof fieldDefinition.Label !== "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof formFieldDefinition.Label !== "undefined") {
-        fieldLabel = formFieldDefinition.Label;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "<label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-           "         <div class=\"col-md-" + span.Field + "\">" +
-           "             <input id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control\"" + readOnly + " />" +
-           "         </div>";
-}
-
-function RenderDateField(fieldDefinition, formFieldDefinition, numFields) {
-    /*<div class="input-group date" id="datetimepicker1">
-                                <span class="input-group-addon">
-                                    <span class="fa fa-calendar"></span>
-                                </span>
-                            <input type="text" class="form-control">
-                        </div>*/
-
-    var fieldLabel = fieldDefinition.Name;
-    if (typeof fieldDefinition.Label !== "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof formFieldDefinition.Label !== "undefined") {
-        fieldLabel = formFieldDefinition.Label;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-    return "<label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-        "         <div class=\"col-md-" + span.Field + "\">" +
-        "             <div class=\"input-group date\" id=\"datetimepicker1\">" +
-        "                <span class=\"input-group-addon\" >" +
-        "                   <span class=\"fa fa-calendar\"></span>" +
-        "                                    </span >" +
-        "             <input id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"datepicker form-control\"" + readOnly + " />" +
-        "                            </div>" +
-        "         </div>";
-}
-
-function RenderTextAreaField(fieldDefinition, formFieldDefinition, numFields) {
-    //{ "Name": "CNAEId", "Label": "CNAE", "Type": "long", "ColumnDataType": "Text" },
-
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-    var rows = formFieldDefinition.Rows > 0 ? " rows=\"" + formFieldDefinition.Rows + "\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "         <label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\">" +
-           "             <textarea id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control\"" + readOnly + rows + "></textarea>" +
-           "         </div>";
-}
-
-function RenderIntegerField(fieldDefinition, formFieldDefinition, numFields) {
-    //{ "Name": "CNAEId", "Label": "CNAE", "Type": "long", "ColumnDataType": "Text" },
-
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "         <label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + "</label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\">" +
-           "             <input id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control integerFormated\"" + readOnly + " />" +
-           "         </div>";
-}
-
-function RenderEmailField(fieldDefinition, formFieldDefinition, numFields) {
-    //{ "Name": "CNAEId", "Label": "CNAE", "Type": "long", "ColumnDataType": "Text" },
-
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "         <label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\">" +
-           "             <div class=\"input-group m-b\">" +
-           "                 <span class=\"input-group-addon\">@</span>" +
-           "                 <input id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control\"" + readOnly + " />" +
-           "             </div>" +
-           "         </div>";
-}
-
-function RenderUrlField(fieldDefinition, formFieldDefinition, numFields) {
-    //{ "Name": "CNAEId", "Label": "CNAE", "Type": "long", "ColumnDataType": "Text" },
-
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "         <label id=\"" +fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\">" +
-           "             <div class=\"input-group m-b\">" +
-           "                 <span class=\"input-group-addon\"><i class=\"fa fa-external-link\" onclick=\"GoUrl('" + fieldDefinition.Name + "');\"></i></span>" +
-           "                 <input id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" type=\"text\" placeholder=\"" + fieldLabel + "\" class=\"form-control\"" + readOnly + " />" +
-           "             </div>" +
-           "         </div>";
-}
-
-function RenderBooleanField(fieldDefinition, formFieldDefinition, numFields) {
-    //{ "Name": "CNAEId", "Label": "CNAE", "Type": "long", "ColumnDataType": "Text" },
-
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-
-    return "         <label id=\"" +fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel + "</label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\">" +
-           "             <input type=\"checkbox\" />" +
-           "         </div>";
-}
-
-function RenderImageField(fieldDefinition, formFieldDefinition, numFields) {
-    var fieldLabel = formFieldDefinition.Label;
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Label;
-    }
-
-    if (typeof fieldLabel === "undefined") {
-        fieldLabel = fieldDefinition.Name;
-    }
-
-    var requiredLabel = fieldDefinition.Required === true ? "<span style=\"color:#f00;\">*</span>" : "";
-    var readOnly = formFieldDefinition.ReadOnly === true ? " readonly=\"readonly\"" : "";
-
-    var span = CalculateSpan(numFields);
-	
-	if(typeof fieldDefinition.Zoom !== "undefined" && fieldDefinition.Zoom === true) {
-        return "         <label id=\"" + fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\" onfocus=\"$('" + fieldDefinition.Name + "Butttons').show();\" onblur=\"$('" + fieldDefinition.Name + "Butttons').hide();\">" + fieldLabel + requiredLabel +
-               "             <div style=\"width:32px;float:right;margin-top:20px;\" id=\"" + fieldDefinition.Name + "Butttons\" style=\"display:none;\">" +
-               "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnAdd\"    class=\"btn btn-primary btn-info\"    title=\"Añadir imagen\"   onclick=\"OpenImageUploadPopup($('#" + fieldDefinition.Name + "').attr('src'), '" + fieldLabel + "', '" + fieldDefinition.Name + "');\">  <i class=\"fa fa-plus\"></i></button>" + 
-               "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnChange\" class=\"btn btn-primary btn-success\" title=\"Cambiar imagen\"  onclick=\"OpenImageUploadPopup($('#" + fieldDefinition.Name + "').attr('src'), '" + fieldLabel + "', '" + fieldDefinition.Name + "');\"> <i class=\"fa fa-refresh\"></i></button>" +
-               "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnDelete\" class=\"btn btn-primary btn-danger\"  title=\"Eliminar imagen\" onclick=\"DeleteImage('" + fieldDefinition.Name + "');\"><i class=\"fa fa-remove\"></i></button>" + 
-               "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnView\"   class=\"btn btn-primary\"             title=\"Ver imagen\"      onclick=\"ViewImage('" + fieldDefinition.Name + "');\"><i class=\"fa fa-external-link\"></i></button>" +
-               "             </div>" +
-               "         </label>" +
-               "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\" style=\"text-align:center;max-height:252px;height:252px;border:1px solid #333;background-image:url(/img/ImageUploadBackground.png)\" onfocus=\"$('" + fieldDefinition.Name + "Butttons').show();\" onblur=\"$('" + fieldDefinition.Name + "Butttons').hide();\">" +
-               "             <a href=\"#\" id=\"" + fieldDefinition.Name + "Zoomer\"  class=\"demo-trigger\" style=\"max-width:100%;max-height:250px;\">" +
-               "                 <img id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" src=\"\" style=\"max-width:100%;max-height:250px;\" />" +
-               "             </a>" + 
-               "         </div>";
-	}
-	
-	return "         <label id=\"" +fieldDefinition.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + fieldLabel + requiredLabel +
-           "             <div style=\"width:32px;float:right;margin-top:20px;\" id=\"" + fieldDefinition.Name + "Butttons\" style=\"display:none;\">" + 
-           "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnAdd\"    class=\"btn btn-primary btn-info\"    title=\"Añadir imagen\"   onclick=\"OpenImageUploadPopup($('#" + fieldDefinition.Name + "').attr('src'), '" + fieldLabel + "', '" + fieldDefinition.Name + "');\">  <i class=\"fa fa-plus\"></i></button>" + 
-           "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnChange\" class=\"btn btn-primary btn-success\" title=\"Cambiar imagen\"  onclick=\"OpenImageUploadPopup($('#" + fieldDefinition.Name + "').attr('src'), '" + fieldLabel + "', '" + fieldDefinition.Name + "');\"> <i class=\"fa fa-refresh\"></i></button>" +
-           "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnDelete\" class=\"btn btn-primary btn-danger\"  title=\"Eliminar imagen\" onclick=\"DeleteImage('" + fieldDefinition.Name + "');\"><i class=\"fa fa-remove\"></i></button>" + 
-           "                 <button type=\"button\" style=\"display:block;padding:0;width:30px;margin-top:4px;\" id=\"" + fieldDefinition.Name + "BtnView\"   class=\"btn btn-primary\"             title=\"Ver imagen\"      onclick=\"ViewImage('" + fieldDefinition.Name + "');\"><i class=\"fa fa-external-link\"></i></button>" +
-           "             </div>" +
-           "         </label>" +
-           "         <div id=\"" + fieldDefinition.Name + "Div\" class=\"col-md-" + span.Field + "\" style=\"text-align:center;max-height:252px;height:252px;border:1px solid #333;background-image:url(/img/ImageUploadBackground.png)\">" +
-           "                 <img id=\"" + fieldDefinition.Name + "\" name=\"" + fieldDefinition.Name + "\" src=\"\" style=\"max-width:100%;max-height:250px;\" />" +
-           "         </div>";
-}
-
 function RenderRow(itemDefinition, rowDefinition) {
     var res = "";
 
@@ -317,78 +86,88 @@ function RenderRow(itemDefinition, rowDefinition) {
 
     res += "<div class=\"row\" style=\"padding:4px;\">";
 
-    for (var x = 0; x < rowDefinition.Fields.length; x++) {
-        var fieldName = rowDefinition.Fields[x].Name;
+    if (typeof rowDefinition.Fields !== "undefined") {
+        for (var x = 0; x < rowDefinition.Fields.length; x++) {
+            var fieldName = rowDefinition.Fields[x].Name;
 
-        var type = rowDefinition.Fields[x].Type;
-        if (type === 1) {
-            /*var span = CalculateSpan(rowDefinition.Fields.length);
-            var spanFinal = span.Label + span.Field;
-            res += "<div class=\"col-md-" + spanFinal + "\" style=\"text-alignment:center;\">";
-            res += "<button id=\"" + rowDefinition.Fields[x].Name + "\" class=\"btn btn-info col-md-10\" type=\"button\" ><i class=\"fa fa-paste\"></i> " + rowDefinition.Fields[x].Label + "</button > ";
-            res += "</div>";*/
-            footerButtons.push({ "Id": rowDefinition.Fields[x].Name, "Label": rowDefinition.Fields[x].Label });
-        }
-        else if (type === 2) {
-            var span = CalculateSpan(rowDefinition.Fields.length);
-            var spanFinal = span.Label + span.Field;
-            res += "<div class=\"col-md-" + spanFinal + "\">&nbsp;</div>";
-        }
-        else if (type === 4) {
-            var span = CalculateSpan(rowDefinition.Fields.length);
-            var spanFinal = span.Label + span.Field;
-            res += "<div class=\"col-md-" + spanFinal + "\" id=\"" + fieldName + "\">&nbsp;</div>";
-        }
-        else {
-            var field = GetFieldByName(itemDefinition, fieldName);
-            if (field === null) {
-                field = rowDefinition.Fields[x];
+            var type = rowDefinition.Fields[x].Type;
+            if (type === 1) {
+                /*var span = CalculateSpan(rowDefinition.Fields.length);
+                var spanFinal = span.Label + span.Field;
+                res += "<div class=\"col-md-" + spanFinal + "\" style=\"text-alignment:center;\">";
+                res += "<button id=\"" + rowDefinition.Fields[x].Name + "\" class=\"btn btn-info col-md-10\" type=\"button\" ><i class=\"fa fa-paste\"></i> " + rowDefinition.Fields[x].Label + "</button > ";
+                res += "</div>";*/
+                footerButtons.push({ "Id": rowDefinition.Fields[x].Name, "Label": rowDefinition.Fields[x].Label });
             }
-			
-			if(FieldIsFK(itemDefinition, fieldName) === true) {
-				res += RenderComboField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-			}
-			else
-			{
-				switch (field.Type.toUpperCase()) {
-					case "TEXT":
-						res += RenderTextField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "DECIMAL":
-						res += RenderTextField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "INT":
-					case "INTEGER":
-					case "LONG":
-						res += RenderIntegerField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "EMAIL":
-						res += RenderEmailField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "URL":
-						res += RenderUrlField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "TEXTAREA":
-						res += RenderTextAreaField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "DATETIME":
-						res += RenderDateField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "BOOLEAN":
-					case "BOOL":
-						res += RenderBooleanField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					case "IMAGE":
-						res += RenderImageField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
-						break;
-					default:
-						var span = CalculateSpan(rowDefinition.Fields.length);
-						res += "         <label id=\"" + field.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + field.Label + "</label>" +
-                               "         <label id=\"" + field.Name + "\" class=\"col-sm-" + span.Field + " control-label\">" + field.Type.toUpperCase() + "</label>";
-						break;
-				}
+            else if (type === 2) {
+                var span = CalculateSpan(rowDefinition.Fields.length);
+                var spanFinal = span.Label + span.Field;
+                res += "<div class=\"col-md-" + spanFinal + "\">&nbsp;</div>";
+            }
+            else if (type === 4) {
+                var span = CalculateSpan(rowDefinition.Fields.length);
+                var spanFinal = span.Label + span.Field;
+                res += "<div class=\"col-md-" + spanFinal + "\" id=\"" + fieldName + "\">&nbsp;</div>";
+            }
+            else {
+                var field = GetFieldByName(itemDefinition, fieldName);
+                if (field === null) {
+                    field = rowDefinition.Fields[x];
+                }
+
+                if (FieldIsFK(itemDefinition, fieldName) === true) {
+                    res += RenderComboField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                }
+                else {
+                    switch (field.Type.toUpperCase()) {
+                        case "TEXT":
+                            res += RenderTextField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "DECIMAL":
+                            res += RenderTextField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "INT":
+                        case "INTEGER":
+                        case "LONG":
+                            res += RenderIntegerField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "EMAIL":
+                            res += RenderEmailField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "URL":
+                            res += RenderUrlField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "TEXTAREA":
+                            res += RenderTextAreaField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "DATETIME":
+                            res += RenderDateField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "BOOLEAN":
+                        case "BOOL":
+                            res += RenderBooleanField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "IMAGE":
+                            res += RenderImageField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        case "DOCUMENTFILE":
+                            res += RenderDocumentField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
+                            break;
+                        default:
+                            var span = CalculateSpan(rowDefinition.Fields.length);
+                            res += "         <label id=\"" + field.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + field.Label + "</label>" +
+                                "         <label id=\"" + field.Name + "\" class=\"col-sm-" + span.Field + " control-label\">" + field.Type.toUpperCase() + "</label>";
+                            break;
+                    }
+                }
             }
         }
+    }
+
+    if (typeof rowDefinition.ItemList !== "undefined") {
+        res += rowDefinition.ListId;
+        res += "<pre>" + GetListById(rowDefinition.ItemList, rowDefinition.ListId) + "</pre>";
+
     }
 
     res += "</div>";
@@ -408,9 +187,23 @@ function RenderForm(itemDefinition, formDefinition) {
     footerButtons = [];
     var res = "";
     var resTabs = "";
+    var tabSelector = "";
+
+    if (formDefinition.Tabs.length > 0) {
+        tabSelector = "<ul class=\"nav nav-tabs\" style=\"background-color:#f7f7f7;\">";
+        for (var t = 0; t < formDefinition.Tabs.length; t++) {
+            var label = formDefinition.Tabs[t].Label;
+            if (typeof label === "undefined" || label === null || label === "") {
+                label = Dictionary.Common_MainTab;
+            }
+            var cssClass = t === 0 ? "active" : "";
+            tabSelector += "<li class=\"" + cssClass + "\"><a data-toggle=\"tab\" href=\"#tab-" + (t + 1) + "\">" + label + "</a></li>";
+        }
+
+        tabSelector += "</ul>";
+    }
 
     for (var x = 0; x < formDefinition.Tabs.length; x++) {
-
         resTabs += "<li class=\"" + (x === 0 ? " active" : "") + "\">";
         resTabs += "<a data-toggle=\"tab\" href=\"#tab-" + (x + 1) + "\" aria-expanded=\"false\">";
         if (typeof formDefinition.Tabs[x].Icon !== "undefined" && formDefinition.Tabs[x].Icon !== null) {
@@ -426,13 +219,18 @@ function RenderForm(itemDefinition, formDefinition) {
         res += "</div></div>";
     }
 
+    $("#MainForm").prepend(tabSelector);
+
     $("#LayoutModifiedByFullName").html("El puto amo");
     $("#LayoutModifiedOn").html("Cualquier dia");
     $("#FormTabs").html(resTabs);
+	
+	RenderFooterButtons(formDefinition);
     return res;
 }
 
 function FillForm(data) {
+	console.log("FillForm", data);
     var keys = Object.keys(data);
     for (var x = 0; x < keys.length; x++) {
         console.log(keys[x], data[keys[x]]);
@@ -442,7 +240,7 @@ function FillForm(data) {
 				case "IMAGE":
 				console.log(field.name, data[keys[x]]);
 				
-				if(data[keys[x]] !== "")
+				if(data[keys[x]] !== "" && data[keys[x]] !== null)
 				{
 					$("#" + field.Name).attr("src", "/Instances/" + CustomerName + "/data/img/" + data[keys[x]] );
 					if(typeof field.Zoom !== "undefined" && field.Zoom === true) {
@@ -459,18 +257,19 @@ function FillForm(data) {
 					$("#" + field.Name + "BtnView").hide();
 				}
 					
-				break;
+                break;
+                case "BOOL":
+                case "BOOLEAN":
+                    if (data[keys[x]] === true) {
+                        $("#" + keys[x]).attr("checked", true);
+                    }
+                break;
 				default:
 					$("#" + keys[x]).val(data[keys[x]]);
 					break;
 			}
 		}
     }
-}
-
-function GoUrl(controlId) {
-    var url = $("#" + controlId).val();
-    window.open(url);
 }
 
 function ShowFormErrors(messages) {
@@ -579,7 +378,12 @@ function ViewImage(fieldName) {
 }
 
 function GetFormData() {
-	var data = { "Id" : Data.Id };
+	var itemId = -1;
+	if(typeof Data !== "undefined" && Data !== null){
+		itemId = Data.Id;
+	}
+	
+	var data = { "Id" : itemId };
 	for(var x=0;x<ItemDefinition.Fields.length;x++){		
 		var field = ItemDefinition.Fields[x];
 		
@@ -588,7 +392,15 @@ function GetFormData() {
 		var fieldValue = null;
 		
 		if($("#" + field.Name).length > 0){
-			if(field.Type === "Image") {
+			
+			if(FieldIsFK(ItemDefinition, field.Name))
+			{
+				fieldValue = $("#" + field.Name).val() * 1;
+				if(fieldValue === 0){
+					fieldValue = null;
+				}
+			}
+			else if(field.Type === "Image") {
 				fieldValue = $("#" + field.Name).attr("src");
 				if(fieldValue === "/img/NoImage.png") {
 					fieldValue = null;
@@ -597,6 +409,18 @@ function GetFormData() {
 					var parts = fieldValue.split("/");
 					fieldValue = parts[parts.length - 1].split("?")[0];
 				}
+			}
+			else if(field.Type === "long" || field.Type === "int" || field.Type === "decimal"){
+				if($("#" + field.Name).val() === ""){
+					fieldValue = null;
+				}
+				else{
+					fieldValue = $("#" + field.Name).val() * 1;
+				}
+			}
+			else if(field.Type === "boolean"){
+				var n = $("#" + field.Name + ":checked" ).length;
+				fieldValue = n === 1;
 			}
 			else {
 				fieldValue = $("#" + field.Name).val();
@@ -607,6 +431,7 @@ function GetFormData() {
 		data[field.Name] = fieldValue;
 	}
 	
+	data["Active"] = true;
     console.log("Data", data);
     return data;
 }

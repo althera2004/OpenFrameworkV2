@@ -1,0 +1,28 @@
+﻿{
+    "ItemName": "Ubicacion",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Ubicación",
+        "LabelPlural": "Ubicaciones",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [
+		{"ItemName": "Reunion"},
+		{"ItemName": "User"}
+	],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Propio", "Label": "Propio", "Type": "boolean", "DataFormat": { "Name": "BooleanCheck" } }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

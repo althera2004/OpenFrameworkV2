@@ -4,29 +4,31 @@
 <script type="text/javascript">
 	console.clear();
 	console.log("Coded query", codedQuery);
+	PageType = "list";
 	var MenuOptionId = 3;
 	var queryParams = DecodeEncryptedQuery();;
 	var Data = null;
 	var ItemDefinition = null;
-	console.log("Params", queryParams);
-	
+    console.log("Params", queryParams);
+
 	$.getJSON("/Instances/"+ queryParams.InstanceName + "/ItemDefinition/" + queryParams.Item + ".item?ac=" + guid(), function (json) {
 		console.log(json);
-		ItemDefinition = json;		
-
-		$("#PageTitle").html(ItemDefinition.Layout.LabelPlural);
-		$("#PageSubtitle").html(ItemDefinition.Description);
-		$("#ActualBradCrumb").html(ItemDefinition.Layout.LabelPlural);
-		
+		ItemDefinition = json;	
+    //  ItemDefinition = GetDefinitionByItemName(queryParams.Item);
+		SetHeader();
 		PageAfterLoad();
-	});
+		ResizeWorkArea();
+    });
+
+    $("#footer-button").html("");
+
 </script>
 
 
         
 	<div class="hpanel">
         <div class="hpanel hblue" style="margin-bottom:0;border-bottom:none;">
-            <div class="panel-heading hbuilt" id="filterList" style="background-color:#f0f0f9;">
+            <div class="panel-heading hbuilt" id="filterList" style="background-color:#f0f0f9;display:none;">
                 <div class="panel-tools">
                     <a class="showhide"><i class="fa fa-chevron-down"></i></a>
                 </div>
@@ -78,6 +80,7 @@
 		</div>        
 	</div>
 <script>
+	$("#SerieButton").hide();
 	function fnFormatDetails(d) {
 	    console.log(d);
 	    return "<table cellpadding=\"5\" cellspacing=\"0\" border=\"0\" style=\"padding-left:50px;\">" +
@@ -101,83 +104,19 @@
 	var listSerie = {
 		ids: [],
 		actual: null
-	};
+    };
+	
 	function PageAfterLoad() {
-		RenderTableHeader();
-		
-		var DescriptionIndex = null;
-		for(var x =0; x < ItemDefinition.Lists[0].Columns.length;x++){
-			var column = ItemDefinition.Lists[0].Columns[x];
-			console.log("Column", column);
-			if (x == 0 && ItemDefinition.Lists[0].Expandible) {
-				columns.push({ data: column.DataProperty, "className": "details-control", "sortable": false });
-				RenderColumns += "$(\"td\", row).eq(0).html(\"\");\n";
-			}
-			else {
+        CreateList(ItemDefinition, "Custom", "listTable");
 
-				if (typeof column.Expand !== "undefined" && column.Expand === true) {
-					continue;
-				}
-
-				var field = GetFieldByName(ItemDefinition, column.DataProperty);
-				var dataSource = column.DataProperty;
-				if (typeof column.ReplacedBy !== "undefined") {
-					dataSource =  column.ReplacedBy;
-				}
-
-				if (typeof column.Descriptible !== "undefined" && column.Descriptible === true) {
-					DescriptionIndex = dataSource;
-				}
-				
-				columns.push({ data: dataSource });
-
-				var renderColumn = null;
-
-				if (field.Type === "url") {
-					renderColumn = "$(\"td\", row).eq(" + x + ").html(ToWebPageBlank(data." + dataSource + "))";
-				}
-				else if (field.Type === "email") {
-					console.log("email");
-					renderColumn = "$(\"td\", row).eq(" + x + ").html(ToMail(data." + dataSource + "))";
-				}
-				else if (typeof column.Render !== "undefined") {
-
-					if (column.Render.indexOf("#") !== -1) {
-						var func = column.Render.split("#")[0] + "data." + column.DataProperty + column.Render.split("#")[1];
-						renderColumn = "$(\"td\", row).eq(" + x + ").html(" + func + ")";
-					}
-					else {
-						renderColumn = "$(\"td\", row).eq(" + x + ").html(" + column.Render + ")";
-					}
-				}
-
-
-				if (typeof column.ToolTip !== "undefined") {
-					if (renderColumn === null) {
-						renderColumn = "$(\"td\", row).eq(" + x + ").html(RenderSpanToolTip(data." + dataSource + ",data." + column.ToolTip + "))";
-					}
-					else {
-						toolTipField = column.ToolTip;
-						renderColumn += ".attr(\"title\", \"hola\")";
-					}
-				}
-
-				if (renderColumn !== null) {
-					RenderColumns += renderColumn + ";\n";
+		if(typeof filterList !== "undefined" && filterList !== null) {		
+			for(var x=0; x< filterList.length;x++){
+				var filterItem = filterList[x];
+				if(filterItem.ItemName === ItemDefinition.ItemName){
+					$("#listTable").DataTable().search(filterItem.FilterText);
+					$("#listTable").DataTable().draw();
 				}
 			}
-		}
-
-		console.log("DescriptionIndex", DescriptionIndex);
-		columns.push({ data: "Id", "sortable": false, "width": 150 });
-		RenderColumns += "$(\"td\", row).eq(" + (columns.length - 1) + ").html(buttons(data, '" + DescriptionIndex + "', " + ItemDefinition.Lists[0].Duplicate + "));";
-
-		console.log("RenderColumns", RenderColumns);
-		RenderTable("listTable");
-		
-		if(typeof filterList["FilterText"] !== "undefined" && filterList["FilterText"] !== null) {
-			$('#listTable').DataTable().search(filterList["FilterText"]);
-			$('#listTable').DataTable().draw();
 		}
 	}
 	
@@ -185,11 +124,11 @@
         event.preventDefault();
         var hpanel = $(this).closest("div.hpanel");
         hpanel.remove();
-        if($("body").hasClass("fullscreen-panel-mode")) { $("body").removeClass("fullscreen-panel-mode");}
+        if ($("body").hasClass("fullscreen-panel-mode")) { $("body").removeClass("fullscreen-panel-mode"); }
     });
 	
 	function TableReload(){
-		var table = $('#listTable').DataTable();
+		var table = $("#listTable").DataTable();
 		table.ajax.reload();
 	}
 	
@@ -199,31 +138,6 @@
 		return '<a href="'+data[2].url+'" title="Acceder a la instancia de '+data[0].name+'" target="_blank">'+data[2].name+'</a>&nbsp;<i class="fa fa-external-link"></i>';
 	}
 
-	function RenderTableHeader() {
-	    var res = "";
-		if(ItemDefinition.Lists[0].Expandible === true){
-			res += "<th style=\"width:25px;\">&nbsp;</th>";
-		}
-        for (var x= 0; x < ItemDefinition.Lists[0].Columns.length; x++) {
-            var column = ItemDefinition.Lists[0].Columns[x];
-			console.log("Header column", column);
-            if (typeof column.Expand !== "undefined" && column.Expand === true) {
-                continue;
-            }
-
-            var source = column.DataProperty;
-	        var field = GetFieldByName(ItemDefinition, source);
-            var label = column.Label;
-	        if (typeof label === "undefined") {
-	            label = field.Label;
-	        }
-
-	        res += "<th>" + label + "</th>";
-	    }
-
-        res+= "<th>&nbsp;</th>"
-	    $("#tableHeader").html(res);
-	}
 </script>
 
     

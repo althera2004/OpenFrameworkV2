@@ -1,0 +1,27 @@
+﻿{
+    "ItemName": "ReunionPunto",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Punto reunión",
+        "LabelPlural": "Puntos reunión",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Titulo" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [ {"ItemName": "Reunion"} ],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Titulo", "Label": "Titulo", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Descripcion", "Label": "Descripcion", "Type": "text", "Length": 1000 },
+        { "Name": "Orden", "Label": "Orden", "Type": "integer", "Required": true },
+        { "Name": "ReunionId", "Label": "Reunión", "Type": "long", "Required": true }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

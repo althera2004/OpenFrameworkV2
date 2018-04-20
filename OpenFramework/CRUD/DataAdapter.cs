@@ -47,15 +47,15 @@ namespace OpenFramework.CRUD
         {
             get
             {
-                return new DataAdapter()
+                return new DataAdapter
                 {
-                    inactive = new StoredProcedure() { StoredName = string.Empty },
-                    active = new StoredProcedure() { StoredName = string.Empty },
-                    insert = new StoredProcedure() { StoredName = string.Empty },
-                    update = new StoredProcedure() { StoredName = string.Empty },
-                    getAll = new StoredProcedure() { StoredName = string.Empty },
-                    getById = new StoredProcedure() { StoredName = string.Empty },
-                    getKeyValue = new StoredProcedure() { StoredName = string.Empty }
+                    inactive = new StoredProcedure { StoredName = string.Empty },
+                    active = new StoredProcedure { StoredName = string.Empty },
+                    insert = new StoredProcedure { StoredName = string.Empty },
+                    update = new StoredProcedure { StoredName = string.Empty },
+                    getAll = new StoredProcedure { StoredName = string.Empty },
+                    getById = new StoredProcedure { StoredName = string.Empty },
+                    getKeyValue = new StoredProcedure { StoredName = string.Empty }
                 };
             }
         }

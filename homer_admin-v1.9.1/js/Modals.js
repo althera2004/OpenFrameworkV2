@@ -8,3 +8,10 @@
 function UIInfo(title, text){
 	swal({ "title": title, "text": text });
 }
+
+function Error(title, message, subtitle) {
+    $("#myModalWarning .modal-title").html(title);
+    $("#myModalWarning .modal-body").html(message);
+    $("#myModalWarning .modal-subtitle").html(subtitle);
+    $("#BtnModalWarning").click();
+}

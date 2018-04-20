@@ -1,0 +1,28 @@
+﻿{
+    "ItemName": "Proveedor",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Proveedor",
+        "LabelPlural": "Proveedores",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [	],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Direccion", "Label": "Dirección", "Type": "text", "Required": true },
+        { "Name": "Telefono", "Label": "Teléfono", "Type": "text" ,"Required": true },
+        { "Name": "Email", "Label": "Reunion", "Type": "email" },
+        { "Name": "Web", "Label": "Web", "Type": "url" },
+        { "Name": "CC", "Label": "CC", "Type": "text", "Length": 50 }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

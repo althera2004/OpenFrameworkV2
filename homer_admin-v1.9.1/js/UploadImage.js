@@ -43,7 +43,7 @@ function UploadImageValidation() {
     var source = document.getElementById("UploadImage2");
     if (source.src.indexOf("noimage.png") !== -1) {		
 		$("#MyModalImageErrorMessageDiv").show();
-		$("#MyModalImageErrorMessage").html("Hay que seleccionar una imagen");
+        $("#MyModalImageErrorMessage").html(Dictionary.Common_Error_NoImageSelected);
         return false;
     }
 
@@ -93,6 +93,8 @@ function UploadImageGo() {
 
                     $("#" + UploadImageData.itemField + "Zoomer").data("medium-url", res.url);
                     $("#" + UploadImageData.itemField + "Zoomer").data("large-url", res.url);
+
+                    Data[UploadImageData.itemField] = res.url;
                 },
                 "error": function (xhr, status, msg) {
                     toastr.danger(msg);

@@ -1,9 +1,17 @@
-﻿using System;
-using System.Configuration;
-using System.Globalization;
-
+﻿// --------------------------------
+// <copyright file="CustomerFramework.aspx.cs" company="Sbrinna">
+//     Copyright (c) Sbrinna. All rights reserved.
+// </copyright>
+// <author>Juan Castilla Calderón - jcastilla@sbrinna.com</author>
+// --------------------------------
 namespace OpenFramework.Customer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Configuration;
+    using System.Globalization;
+
     /// <summary>Implements customer framework class</summary>
     public sealed class CustomerFramework
     {
@@ -40,8 +48,11 @@ namespace OpenFramework.Customer
 
         public static CustomerFramework Load(string instanceName)
         {
-            CustomerFramework res = new CustomerFramework();
-            res.Name = instanceName;
+            CustomerFramework res = new CustomerFramework
+            {
+                Name = instanceName
+            };
+
             res.LoadConfig();
             return res;
         }

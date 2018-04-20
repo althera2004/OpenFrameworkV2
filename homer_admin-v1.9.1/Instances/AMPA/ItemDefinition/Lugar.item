@@ -1,0 +1,78 @@
+﻿{
+  "ItemName": "Lugar",
+  "MustReload": true,
+  "Layout": {
+    "Icon": "list",
+    "Label": "Lugar",
+    "LabelPlural": "Lugares",
+    "Description": {
+      "Pattern": "{0}",
+      "Fields": [
+        { "Name": "Nombre" }
+      ]
+    },
+    "EditionType": "inline"
+  },
+  "ForeignValues": [
+    { "ItemName": "Ubicacion" }
+  ],
+  "PrimaryKeys": [],
+  "Fields": [
+    {
+      "Name": "Id",
+      "Type": "long",
+      "Required": true
+    },
+    {
+      "Name": "Nombre",
+      "Label": "Nombre",
+      "Type": "text",
+      "Length": 100,
+      "Required": true
+    },
+    {
+      "Name": "UbicacionId",
+      "Label": "Ubicacion",
+      "Type": "long",
+      "Required": true
+    }
+  ],
+  "Lists": [
+    {
+      "Id": "Custom",
+      "FormId": "Custom",
+      "Layout": 1,
+      "EditAction": 3,
+      "CustomAjaxSource": "ITEM_LUGAR_GETALL",
+      "Columns": [
+        {
+          "DataProperty": "Nombre",
+          "ReplacedBy": "N"
+        },
+        {
+          "DataProperty": "UbicacionId",
+          "ReplacedBy": "U"
+        }
+      ]
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Custom",
+      "FormType": "Custom",
+      "Tabs": [
+        {
+          "Label": "Datos",
+          "Rows": [
+            {
+              "Fields": [
+                { "Name": "Nombre" },
+                { "Name": "UbicacionId" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,43 +1,25 @@
 ﻿function PIEZA_CustomActions() {
-    UPLOADDOCUMENT_Context.Name = true;
-    UPLOADDOCUMENT_Context.Normalize = true;
-    UPLOADDOCUMENT_Context.Serialize = false;
-    UPLOADDOCUMENT_Context.Replace = true;
-    $("#PiezaTxtImagenLabel").parent().remove();
-    $("#PiezaTxtImagen1Label").parent().remove();
-    $("#PiezaTxtImagen2Label").parent().remove();
-	$("#PiezaTxtImagen").hide();
-	$("#PiezaTxtImagen1").hide();
-	$("#PiezaTxtImagen2").hide();
-	$("#PiezaTxtImagen").parent().removeClass("col-3");
-	$("#PiezaTxtImagen1").parent().removeClass("col-3");
-	$("#PiezaTxtImagen2").parent().removeClass("col-3");
-	$("#PiezaTxtImagen").parent().addClass("col-sm-4");
-	$("#PiezaTxtImagen1").parent().addClass("col-sm-4");
-	$("#PiezaTxtImagen2").parent().addClass("col-sm-4");
-	$("#PiezaTxtImagen").next().css("height","250px");
-	$("#PiezaTxtImagen").next().css("max-height","250px");
-	$("#PiezaTxtImagen1").next().css("height","250px");
-	$("#PiezaTxtImagen1").next().css("max-height","250px");
-	$("#PiezaTxtImagen2").next().css("height","250px");
-    $("#PiezaTxtImagen2").next().css("max-height", "250px");
+    console.log("PIEZA_CustomActions");
+}
 
+function PIEZA_AfterLoad() {
+    console.log("PIEZA_AfterLoad");
     PIEZA_LayoutAddToCollection();
 }
 
 function PIEZA_LayoutAddToCollection(){
 	console.log();
-	ReloadFK("MiPieza");
-	$("#btn-Add").remove();
+    ReloadFK("MiPieza");
+    $("#AddToMiPieza").remove();
+    $("#RemoveFromMiPieza").remove();
 	if (typeof Data.Id !== "undefined") {
-        var miPieza = GetByFieldFromList(FK.MiPieza, "Referencia", Data.Referencia);
-
-		if (miPieza === null) {
-			var addButton = "<button type=\"button\" id=\"btn-Add\" class=\"btn btn-primary btn-success\" onclick=\"PIEZA_AddToCollection();\"><i class=\"fa fa-plus\"></i>&nbsp;Añadir a mi colección</button>";
+        var miPieza = GetByFieldFromList(FK.MiPieza, "Description", Data.Referencia + "-" + Data.Nombre);
+        if (miPieza === null || miPieza.Active === false) {
+            var addButton = "<button type=\"button\" id=\"AddToMiPieza\" class=\"btn btn-primary btn-success\" onclick=\"PIEZA_AddToCollection();\"><i class=\"fa fa-plus\"></i>&nbsp;Añadir a mi colección</button>";
 			$("#footer-button").prepend(addButton);
 		}
 		else {
-			var removeButton = "<button type=\"button\" id=\"btn-Remove\" class=\"btn btn-primary btn-warning\" onclick=\"PIEZA_AddToCollection();\"><i class=\"fa fa-minus\"></i>&nbsp;Eliminar de mi colección</button>";
+            var removeButton = "<button type=\"button\" id=\"RemoveFromMiPieza\" class=\"btn btn-primary btn-danger\" onclick=\"PIEZA_RemoveFromCollection();\"><i class=\"fa fa-trash\"></i>&nbsp;Eliminar de mi colección</button>";
 			$("#footer-button").prepend(removeButton);
 		}
     }
@@ -46,14 +28,14 @@ function PIEZA_LayoutAddToCollection(){
 function PIEZA_AddToCollection(){
 	var data = {
         "piezaId": Data.Id,
-        "applicationUserId": User.Id
+        "applicationUserId": actualUser.Id
     };
 
     try { $("#working").click(); } catch (e) { console.log(e); }
 
     $.ajax({
         "type": "POST",
-        "url": "/CustomersFramework/Playmobil/Data/ItemDataBase.aspx/AddToCollection",
+        "url": "/Instances/Playmobil/Data/ItemDataBase.aspx/AddToCollection",
         "contentType": "application/json; charset=utf-8",
         "dataType": "json",
         "data": JSON.stringify(data, null, 2),
@@ -62,13 +44,13 @@ function PIEZA_AddToCollection(){
             if (msg.d.Success === false) {
                 PopupErrorBig(msg.d.MessageError)
             } else {
-                PopupActionResult("Se ha añadido la pieza a tu colección");
+                UIInfo("Operación realizada", "Se ha añadido la pieza a tu colección");
 				PIEZA_LayoutAddToCollection();
             }
         },
         error: function (msg) {
             $(".botTempo").click();
-            PopupErrorSmall(msg.responseText);
+            Error("error", "toma casques", msg.responseText);
         }
     });
 

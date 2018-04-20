@@ -24,7 +24,7 @@ using System.Globalization;
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [ScriptService]
-public partial class Data_ItemDataBase : Page
+public partial class DataItemDataBase : Page
 {
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -37,7 +37,7 @@ public partial class Data_ItemDataBase : Page
     [ScriptMethod]
     public static string GetPhotoGalleryByItemId(string itemName, long itemId, string instanceName)
     {
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
+        var instance = new CustomerFramework { Name = instanceName };
         instance.LoadConfig();
         return PhotoGallery.JsonList(PhotoGallery.GetByItemId(itemName, itemId, instance.Config.ConnectionString));
     }
@@ -46,7 +46,7 @@ public partial class Data_ItemDataBase : Page
     [ScriptMethod]
     public static string GetPhotoGalleryByItemFieldId(string itemName, string itemFieldName, long itemId, string instanceName)
     {
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
+        var instance = new CustomerFramework { Name = instanceName };
         instance.LoadConfig();
         return PhotoGallery.JsonList(PhotoGallery.GetByItemFieldId(itemName, itemFieldName, itemId, instance.Config.ConnectionString));
     }    
@@ -100,14 +100,14 @@ public partial class Data_ItemDataBase : Page
         itemData = itemData.Replace('^', '{');
         dynamic data = JsonConvert.DeserializeObject(itemData);
         ItemBuilder itemBuilder = ItemBuilder.FromJsonObject(itemName, data, instanceName);
-        return itemBuilder.Save(instanceName, applicationUserId, false);
+        return itemBuilder.Save(instanceName, applicationUserId, ItemBuilder.NotFromImport);
     }
 
     [WebMethod]
     [ScriptMethod]
     public static ActionResult Inactive(long itemId, string itemName, string instanceName, long applicationUserId, string userDescription)
     {
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
+        var instance = new CustomerFramework { Name = instanceName };
         instance.LoadConfig();
         return ItemBuilder.Inactive(itemId, itemName, applicationUserId, userDescription, instanceName, instance.Config.ConnectionString);
     }
@@ -116,27 +116,21 @@ public partial class Data_ItemDataBase : Page
     [ScriptMethod]
     public static ItemBuilder GetById(long id, string itemName, string instanceName)
     {
-        ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
-        ItemBuilder data = Read.ById(id, definition, instanceName);
-        return data;
+        return Read.ById(id, ItemDefinition.Load(itemName, instanceName), instanceName);
     }
 
     [WebMethod]
     [ScriptMethod]
     public static ReadOnlyCollection<ItemBuilder> GetAll(string itemName, string instanceName)
     {
-        ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
-        ReadOnlyCollection<ItemBuilder> data = Read.All(definition, instanceName);
-        return data;
+        return Read.All(ItemDefinition.Load(itemName, instanceName), instanceName);
     }
 
     [WebMethod]
     [ScriptMethod]
     public static ReadOnlyCollection<ItemBuilder> GetActive(string itemName,string instanceName)
     {
-        ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
-        ReadOnlyCollection<ItemBuilder> data = Read.Active(definition, instanceName);
-        return data;
+        return Read.Active(ItemDefinition.Load(itemName, instanceName), instanceName);
     }
 
     [WebMethod]
@@ -150,7 +144,7 @@ public partial class Data_ItemDataBase : Page
             return res;
         }
 
-        ItemBuilder item = new ItemBuilder(itemName, instanceName);
+        var item = new ItemBuilder(itemName, instanceName);
         for (var i = 0; i < fieldNames.Length; i++)
         {
             item[fieldNames[i]] = values[i];
@@ -161,7 +155,7 @@ public partial class Data_ItemDataBase : Page
             item["Id"] = 0;
         }
 
-        res = item.Save(instanceName, applicationUserId, false);
+        res = item.Save(instanceName, applicationUserId, ItemBuilder.NotFromImport);
 
         return res;
     }
@@ -171,16 +165,16 @@ public partial class Data_ItemDataBase : Page
     public static ActionResult SqlToJson(string query, string instanceName, bool stored)
     {
         var res = ActionResult.NoAction;
-        CustomerFramework customerConfig = new CustomerFramework() { Name = instanceName };
-        DataTable dt = new DataTable();
+        var customerConfig = CustomerFramework.Load(instanceName);
+        var dt = new DataTable();
         using (SqlConnection con = new SqlConnection(customerConfig.Config.ConnectionString))
         {
             using (SqlCommand cmd = new SqlCommand(query, con))
             {
                 cmd.CommandType = stored ? CommandType.StoredProcedure : CommandType.Text;
                 con.Open();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(dt);
+                var adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
 
                 //convert datatable to list using LINQ. Input datatable is "dt"
                 var lst = dt.AsEnumerable()
@@ -191,11 +185,9 @@ public partial class Data_ItemDataBase : Page
                 //now serialize it
                 var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
 
-                DateTime d1 = DateTime.Now;
+                var d1 = DateTime.Now;
                 serializer.MaxJsonLength = 500000000;
-                string x = serializer.Serialize(lst);
-
-                res.SetSuccess(x);
+                res.SetSuccess(serializer.Serialize(lst));
             }
         }
 

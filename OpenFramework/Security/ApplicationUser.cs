@@ -48,7 +48,7 @@ namespace OpenFramework.Security
         {
             get
             {
-                return new ApplicationUser()
+                return new ApplicationUser
                 {
                     Id = 0,
                     UserInstanceId = 0,

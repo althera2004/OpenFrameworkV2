@@ -59,12 +59,10 @@ public partial class Data_ItemUpload : Page
             string instanceName = string.Empty;
             if (this.Request.Form["InstanceName"] != null)
             {
-                instanceName = this.Request.Form["InstanceName"].ToString();
+                instanceName = this.Request.Form["InstanceName"];
             }
 
-            this.instance = new CustomerFramework() { Name = instanceName };
-            instance.LoadConfig();
-
+            this.instance = CustomerFramework.Load(instanceName);
             res = "No Action";
             this.errors = new List<Error>();
             this.dataFile = new List<DataLine>();
@@ -72,7 +70,7 @@ public partial class Data_ItemUpload : Page
             {
                 if (this.Request.Form["itemName"] != null)
                 {
-                    this.Item = new ItemBuilder(this.Request.Form["itemName"].ToString(), this.instance.Name);
+                    this.Item = new ItemBuilder(this.Request.Form["itemName"], this.instance.Name);
                 }
 
                 string file = SaveUploadedFile(Request.Files);
@@ -87,7 +85,7 @@ public partial class Data_ItemUpload : Page
 
                 res = "{\"file\":\"" + file + "\",\"errors\":[";
                 bool first = true;
-                foreach (Error er in errors)
+                foreach (var er in errors)
                 {
                     if (first)
                     {
@@ -111,7 +109,7 @@ public partial class Data_ItemUpload : Page
                 if (this.errors.Count == 0)
                 {
                     first = true;
-                    foreach (DataLine dl in this.dataFile)
+                    foreach (var dl in this.dataFile)
                     {
                         if (first)
                         {
@@ -135,7 +133,7 @@ public partial class Data_ItemUpload : Page
 
             if (this.errors.Count == 0)
             {
-                HttpContext.Current.Session["Import" + this.importId.ToString()] = this.itemsReaded;
+                HttpContext.Current.Session["Import" + this.importId] = this.itemsReaded;
             }
 
             this.Response.Clear();
@@ -146,7 +144,7 @@ public partial class Data_ItemUpload : Page
         }
         else
         {
-            CodedQuery codedQuery = new CodedQuery();
+            var codedQuery = new CodedQuery();
             codedQuery.SetQuery(this.Request.QueryString);
             string file = codedQuery.GetByKey<string>("file");
             string itemName = codedQuery.GetByKey<string>("item");
@@ -167,27 +165,29 @@ public partial class Data_ItemUpload : Page
     {
         foreach (string fileName in httpFileCollection)
         {
-            HttpPostedFile file = httpFileCollection.Get(fileName);
+            var file = httpFileCollection.Get(fileName);
 
             // Save file content goes here
-            if (file != null && file.ContentLength > 0)
+            if (file == null || file.ContentLength == 0)
             {
-                string path = this.Request.PhysicalApplicationPath;
-                if (!path.EndsWith(@"\"))
-                {
-                    path = string.Format(CultureInfo.InvariantCulture, @"{0}\Temp\", path);
-                }
-                else
-                {
-                    path = string.Format(CultureInfo.InvariantCulture, @"{0}Temp\", path);
-                }
-
-                path = string.Format(CultureInfo.InvariantCulture, "{0}{1}", path, file.FileName);
-                file.SaveAs(path);
-
-                this.ReadXlsx(path, this.instance.Config.ConnectionString);
-                return path;
+                continue;
             }
+
+            string path = this.Request.PhysicalApplicationPath;
+            if (!path.EndsWith(@"\"))
+            {
+                path = string.Format(CultureInfo.InvariantCulture, @"{0}\Temp\", path);
+            }
+            else
+            {
+                path = string.Format(CultureInfo.InvariantCulture, @"{0}Temp\", path);
+            }
+
+            path = string.Format(CultureInfo.InvariantCulture, "{0}{1}", path, file.FileName);
+            file.SaveAs(path);
+
+            this.ReadXlsx(path, this.instance.Config.ConnectionString);
+            return path;
         }
 
         return string.Empty;
@@ -195,13 +195,13 @@ public partial class Data_ItemUpload : Page
 
     public bool ParseHeader(IRow header)
     {
-        DataLine dataHeader = new DataLine() { Line = 0, Data = string.Empty };
-        List<string> requiredNotFound = new List<string>();
-        List<string> fileFields = new List<string>();
+        var dataHeader = new DataLine() { Line = 0, Data = string.Empty };
+        var requiredNotFound = new List<string>();
+        var fileFields = new List<string>();
         this.itemFields = new List<ItemField>();
-        List<string> headerNotField = new List<string>();
+        var headerNotField = new List<string>();
 
-        StringBuilder data = new StringBuilder("[");
+        var data = new StringBuilder("[");
         bool firstLabel = true;
         foreach (ICell cell in header.Cells)
         {
@@ -220,7 +220,7 @@ public partial class Data_ItemUpload : Page
                 }
 
                 data.AppendFormat(CultureInfo.InvariantCulture, @"""{0}""", ToolsJson.JsonCompliant(fieldLabel));
-                itemFields.Add(this.Item.Definition.Fields.Where(f => f.Label.ToUpperInvariant() == fieldLabel.ToUpperInvariant() && f.Name != "Id" && f.Name != "CompanyId").First());
+                itemFields.Add(this.Item.Definition.Fields.First(f => f.Label.ToUpperInvariant() == fieldLabel.ToUpperInvariant() && f.Name != "Id" && f.Name != "CompanyId"));
             }
         }
 
@@ -233,7 +233,7 @@ public partial class Data_ItemUpload : Page
 
         bool errors = false;
         bool allRequired = true;
-        foreach (ItemField field in this.Item.Definition.Fields.Where(f => f.Required == true))
+        foreach (var field in this.Item.Definition.Fields.Where(f => f.Required))
         {
             if (field.Name != "Id" && field.Name != "CompanyId")
             {
@@ -248,8 +248,8 @@ public partial class Data_ItemUpload : Page
 
         if (!allRequired)
         {
-            Error error = new Error { ErrorType = "Structure", Linea = 0 };
-            StringBuilder res = new StringBuilder("Los siguientes campos obligatorios no están en el fichero:");
+            var error = new Error { ErrorType = "Structure", Linea = 0 };
+            var res = new StringBuilder("Los siguientes campos obligatorios no están en el fichero:");
             bool first = true;
             foreach (string r in requiredNotFound)
             {
@@ -272,18 +272,20 @@ public partial class Data_ItemUpload : Page
         bool allHeadersAreFields = true;
         foreach (string h in fileFields)
         {
-            if (!this.Item.Definition.Fields.Any(f => f.Label == h))
+            if (this.Item.Definition.Fields.Any(f => f.Label == h))
             {
-                allHeadersAreFields = false;
-                headerNotField.Add(h);
-                errors = true;
+                continue;
             }
+
+            allHeadersAreFields = false;
+            headerNotField.Add(h);
+            errors = true;
         }
 
         if (!allHeadersAreFields)
         {
-            Error error = new Error() { ErrorType = "Structure", Linea = 0 };
-            StringBuilder res = new StringBuilder();
+            var error = new Error() { ErrorType = "Structure", Linea = 0 };
+            var res = new StringBuilder();
             res.AppendFormat(
                 CultureInfo.InvariantCulture,
                 "Los siguientes datos del fichero no son campos de {0}:",
@@ -310,7 +312,7 @@ public partial class Data_ItemUpload : Page
         if (!errors)
         {
             int contCell = 0;
-            foreach (ItemField field in itemFields)
+            foreach (var field in itemFields)
             {
                 this.typeIndex.Add(field.DataType);
                 if (field.Required)
@@ -338,20 +340,18 @@ public partial class Data_ItemUpload : Page
             path += "LoadTemp\\";
         }
 
-        List<string> errorMessages = new List<string>();
+        var errorMessages = new List<string>();
         this.requiredIndex = new List<int>();
         this.typeIndex = new List<FieldDataType>();
 
         string headerJson = string.Empty;
         XSSFWorkbook hssfwb;
-        using (FileStream file = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+        using (var file = new FileStream(fileName, FileMode.Open, FileAccess.Read))
         {
             hssfwb = new XSSFWorkbook(file);
-            ISheet sheet = hssfwb.GetSheetAt(0);
-
+            var sheet = hssfwb.GetSheetAt(0);
             bool headerError = ParseHeader(sheet.GetRow(0));
-
-            List<IRow> rows = new List<IRow>();
+            var rows = new List<IRow>();
 
             for (int contRows = sheet.FirstRowNum + 1; contRows < sheet.LastRowNum + 1; contRows++)
             {
@@ -359,12 +359,12 @@ public partial class Data_ItemUpload : Page
             }
 
             int parsedRows = sheet.FirstRowNum + 1;
-            List<string> primaryKeys = new List<string>();
+            var primaryKeys = new List<string>();
             try
             {
-                foreach(IRow currentRow in rows)
+                foreach(var currentRow in rows)
                 {
-                    DataLine data = Parse(currentRow, parsedRows, this.Item.Definition, primaryKeys);
+                    var data = Parse(currentRow, parsedRows, this.Item.Definition, primaryKeys);
                     parsedRows++;
                 }
             }
@@ -389,23 +389,23 @@ public partial class Data_ItemUpload : Page
 
     public string ImportXlsx(string fileName, string importId, string itemName)
     {
-        StringBuilder res = new StringBuilder();
-        DateTime d0 = DateTime.Now;
+        var res = new StringBuilder();
+        var d0 = DateTime.Now;
         this.Item = new ItemBuilder(itemName, this.instance.Name);
 
-        if (HttpContext.Current.Session["Import" + importId.ToString()] == null)
+        if (HttpContext.Current.Session["Import" + importId] == null)
         {
             return "No hay fichero de carga.";
         }
 
-        List<ItemBuilder> items = HttpContext.Current.Session["Import" + importId] as List<ItemBuilder>;
+        var items = HttpContext.Current.Session["Import" + importId] as List<ItemBuilder>;
 
         int inserted = 0;
         int updated = 0;
         string errors = string.Empty;
 
         //CustomerFramework customerConfig = Basics.ActualInstance;
-        ApplicationUser user = HttpContext.Current.Session["User"] as ApplicationUser;
+        var user = HttpContext.Current.Session["User"] as ApplicationUser;
 
         res.AppendFormat(
             CultureInfo.InvariantCulture,
@@ -422,8 +422,8 @@ public partial class Data_ItemUpload : Page
 
     private DataLine Parse(IRow data, int index, ItemDefinition definition, List<string> primaryKeys)
     {
-        DateTime d0 = DateTime.Now;
-        DataLine res = new DataLine() { Line = index, Data = string.Empty };
+        var d0 = DateTime.Now;
+        var res = new DataLine() { Line = index, Data = string.Empty };
         if (data.Cells.Count > this.typeIndex.Count)
         {
             this.errors.Add(new Error()
@@ -435,12 +435,12 @@ public partial class Data_ItemUpload : Page
         }
         else
         {
-            StringBuilder message = new StringBuilder("[");
+            var message = new StringBuilder("[");
             int contCell = 0;
-            ItemBuilder itemData = new ItemBuilder(this.Item.ItemName, definition, this.instance.Name);
-            foreach (ItemField field in itemFields)
+            var itemData = new ItemBuilder(this.Item.ItemName, definition, this.instance.Name);
+            foreach (var field in itemFields)
             {
-                ICell cell = data.GetCell(contCell);
+                var cell = data.GetCell(contCell);
                 string cellValue = "null";
                 string testValue = string.Empty;
                 if (cell != null)
@@ -511,7 +511,7 @@ public partial class Data_ItemUpload : Page
                     {
                         if (field.Length.HasValue)
                         {
-                            if (testValue.Length > field.Length.Value)
+                            if (testValue.Length > field.Length)
                             {
                                 this.errors.Add(new Error()
                                 {
@@ -554,7 +554,7 @@ public partial class Data_ItemUpload : Page
                     if (cellValue.Equals("\"FixedList\"", StringComparison.OrdinalIgnoreCase))
                     {
                         string dataCell = cell.StringCellValue;
-                        FixedListItem fixedItem = new FixedListItem();// DataPersistence.FixedListItemGetById(itemData.InstanceName, field.FixedListId, dataCell);
+                        var fixedItem = new FixedListItem();// DataPersistence.FixedListItemGetById(itemData.InstanceName, field.FixedListId, dataCell);
 
                         if (!string.IsNullOrEmpty(cell.StringCellValue) && fixedItem == null)
                         {
@@ -625,7 +625,7 @@ public partial class Data_ItemUpload : Page
             }
 
             // Cofirmar que los campos obligatorios están rellenados
-            foreach (ItemField field in Item.Definition.Fields.Where(f => f.Required == true))
+            foreach (var field in Item.Definition.Fields.Where(f => f.Required))
             {
                 if (field.Name != "Id" && field.Name != "CompanyId")
                 {
@@ -652,9 +652,9 @@ public partial class Data_ItemUpload : Page
 
             if (itemData.Definition.ItemRules.Count > 0)
             {
-                foreach (ItemFieldRules rule in itemData.Definition.ItemRules)
+                foreach (var rule in itemData.Definition.ItemRules)
                 {
-                    ActionResult complains = new SpecialRule(itemData, rule).Complains;
+                    var complains = new SpecialRule(itemData, rule).Complains;
                     if (!complains.Success)
                     {
                         this.errors.Add(new Error()
@@ -697,7 +697,7 @@ public partial class Data_ItemUpload : Page
                 break;
             case FieldDataType.Decimal:
             case FieldDataType.NullableDecimal:
-                decimal? decimalValue = ToolsXlsx.GetValue<decimal?>(cell);
+                var decimalValue = ToolsXlsx.GetValue<decimal?>(cell);
 
                 if (decimalValue.HasValue)
                 {
@@ -727,7 +727,7 @@ public partial class Data_ItemUpload : Page
                 break;
             case FieldDataType.Time:
             case FieldDataType.NullableTime:
-                DateTime? timeValue = ToolsXlsx.GetValue<DateTime?>(cell);
+                var timeValue = ToolsXlsx.GetValue<DateTime?>(cell);
                 if (timeValue.HasValue)
                 {
                     cellValue = string.Format(CultureInfo.InvariantCulture, @"""{0:hh:mm}""", timeValue);
@@ -740,7 +740,7 @@ public partial class Data_ItemUpload : Page
                 break;
             case FieldDataType.DateTime:
             case FieldDataType.NullableDateTime:
-                DateTime? dateTimeValue = ToolsXlsx.GetValue<DateTime?>(cell);
+                var dateTimeValue = ToolsXlsx.GetValue<DateTime?>(cell);
                 if (dateTimeValue.HasValue)
                 {
                     cellValue = string.Format(CultureInfo.InvariantCulture, @"""{0:dd/MM/yyyy}""", dateTimeValue);
@@ -767,12 +767,10 @@ public partial class Data_ItemUpload : Page
                     break;
                 }
 
-                bool? booleanValue = ToolsXlsx.GetBooleanValue(cell);
+                var booleanValue = ToolsXlsx.GetBooleanValue(cell);
                 cellValue = booleanValue.HasValue ? (booleanValue.Value ? ConstantValue.True : ConstantValue.False) : string.Empty;
                 break;
             case FieldDataType.Url:
-                cellValue = ToolsXlsx.GetValue<string>(cell);
-                break;
             case FieldDataType.Email:
                 cellValue = ToolsXlsx.GetValue<string>(cell);
                 break;
@@ -820,8 +818,7 @@ public partial class Data_ItemUpload : Page
                 break;
             case FieldDataType.DateTime:
             case FieldDataType.NullableDateTime:
-                //DateTime? dateTimeValue = ToolsXlsx.GetDateTimeNullable(cell);
-                DateTime? dateTimeValue = ToolsXlsx.GetValue<DateTime?>(cell);
+                var dateTimeValue = ToolsXlsx.GetValue<DateTime?>(cell);
                 if (dateTimeValue.HasValue)
                 {
                     cellValue = string.Format(CultureInfo.InvariantCulture, @"""{0:dd/MM/yyyy}", dateTimeValue);
@@ -830,7 +827,6 @@ public partial class Data_ItemUpload : Page
                 break;
             case FieldDataType.Boolean:
             case FieldDataType.NullableBoolean:
-                //bool? booleanValue = ToolsXlsx.GetBooleanValue(cell);
                 if (cell.CellType == CellType.String)
                 {
                     string cellData = cell.StringCellValue.ToUpperInvariant();

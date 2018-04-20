@@ -11,6 +11,7 @@ namespace OpenFramework.DataAccess
     using System.Data.SqlClient;
     using OpenFramework;
     using OpenFramework.ItemManager;
+    using System.Collections.Generic;
 
     public static class SqlStream
     {
@@ -41,14 +42,14 @@ namespace OpenFramework.DataAccess
             return res;
         }
 
-        public static string GetFKStream(ItemBuilder item, string connectionString)
+        public static string GetFKStream(ItemBuilder item, Dictionary<string,string> parameters, string connectionString)
         {
             if (item.Definition.FKList == null)
             {
                 return GetSqlStreamNoParams("Item_FK_" + item.ItemName, connectionString);
             }
 
-            return GetSqlQueryStreamNoParams(ItemTools.QueryFKList(item), connectionString);
+            return GetSqlQueryStreamNoParams(ItemTools.QueryFKList(item, parameters), connectionString);
         }
 
         public static string GetSqlQueryStreamNoParams(string query, string connectionString)
@@ -135,6 +136,12 @@ namespace OpenFramework.DataAccess
                     cmd.Connection = cnn;
                     res = Basics.SQLStreamSimple(cmd);
                 }
+            }
+
+            // Si no existe se devuelve un item vacío con id -1
+            if (string.IsNullOrEmpty(res))
+            {
+                res = "{Id:-1}";
             }
 
             return res;

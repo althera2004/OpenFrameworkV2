@@ -27,18 +27,17 @@ public partial class Data_DocumentUpload : Page
         {
             if (this.Request.Files != null && this.Request.Files.Count > 0)
             {
-                long itemId = Convert.ToInt64(this.Request.Form["itemId"].ToString());
-                string itemName = this.Request.Form["itemName"].ToString();
-                string instanceName = this.Request.Form["InstanceName"].ToString();
+                long itemId = Convert.ToInt64(this.Request.Form["itemId"]);
+                string itemName = this.Request.Form["itemName"];
+                string instanceName = this.Request.Form["InstanceName"];
 
-                bool name = this.Request.Form["name"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool normalize = this.Request.Form["normalize"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool serialize = this.Request.Form["serialize"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool replace = this.Request.Form["replace"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool name = this.Request.Form["name"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool normalize = this.Request.Form["normalize"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool serialize = this.Request.Form["serialize"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool replace = this.Request.Form["replace"].Equals("1", StringComparison.OrdinalIgnoreCase);
 
-                this.instance = new CustomerFramework() { Name = instanceName };
-                instance.LoadConfig();
-                HttpPostedFile file = this.Request.Files[0];
+                this.instance = CustomerFramework.Load(instanceName);
+                var file = this.Request.Files[0];
                 if (file != null)
                 {
                     if (!path.EndsWith("\\"))
@@ -52,7 +51,7 @@ public partial class Data_DocumentUpload : Page
                         itemId,
                         file.FileName);
 
-                    if(normalize)
+                    if (normalize)
                     {
                         string extension = Path.GetExtension(fileName);
                         if (name)
@@ -62,7 +61,7 @@ public partial class Data_DocumentUpload : Page
                             "{0}_{1}_{2}{3}",
                             itemName.ToUpperInvariant(),
                             itemId,
-                            this.Request.Form["fieldName"].ToString().ToUpperInvariant(),
+                            this.Request.Form["fieldName"].ToUpperInvariant(),
                             extension);
                         }
                         else
@@ -76,11 +75,11 @@ public partial class Data_DocumentUpload : Page
                         }
                     }
 
-                    if(serialize)
+                    if (serialize)
                     {
                         string serializePath = string.Format(
                            CultureInfo.InvariantCulture,
-                           @"{0}\CustomersFramework\{1}\Data\{2}\",
+                           @"{0}\Instances\{1}\Data\{2}\",
                            path,
                            instance.Name,
                            itemName);
@@ -93,7 +92,7 @@ public partial class Data_DocumentUpload : Page
                         {
                             string removePath = string.Format(
                                 CultureInfo.InvariantCulture,
-                                @"{0}\CustomersFramework\{1}\Data\{2}\",
+                                @"{0}\Instances\{1}\Data\{2}\",
                                 path,
                                 instance.Name,
                                 itemName);
@@ -103,7 +102,7 @@ public partial class Data_DocumentUpload : Page
 
                     path = string.Format(
                         CultureInfo.InvariantCulture,
-                        @"{0}\CustomersFramework\{1}\Data\{2}\{3}",
+                        @"{0}\Instances\{1}\Data\{2}\{3}",
                         path,
                         instance.Name,
                         itemName,
@@ -111,33 +110,34 @@ public partial class Data_DocumentUpload : Page
 
                     file.SaveAs(path);
 
-                    ExecuteQuery query = new ExecuteQuery();
                     string fieldNameDB = "Archivo";
                     if (name)
                     {
-                        fieldNameDB = this.Request.Form["fieldName"].ToString().ToUpperInvariant();
+                        fieldNameDB = this.Request.Form["fieldName"].ToUpperInvariant();
                     }
 
-                    query.QueryText = string.Format(
-                        CultureInfo.InvariantCulture,
-                        "UPDATE Item_{2} SET {3} = '{0}' WHERE Id = {1}",
-                        fileName,
-                        itemId,
-                        itemName,
-                        fieldNameDB);
+                    var query = new ExecuteQuery()
+                    {
+                        ConnectionString = instance.Config.ConnectionString,
+                        QueryText = string.Format(
+                            CultureInfo.InvariantCulture,
+                            "UPDATE Item_{2} SET {3} = '{0}' WHERE Id = {1}",
+                            fileName,
+                            itemId,
+                            itemName,
+                            fieldNameDB)
+                    };
 
                     res = query.ExecuteCommand;
-
                     if (res.Success)
                     {
                         res.ReturnValue = fileName;
                         ActionLog.Trace(itemName.ToUpperInvariant() + "_", itemId, fieldNameDB + ":" + fileName, this.instance.Name, this.instance.Config.ConnectionString);
-                        // DataPersistence.ReloadItemExternal(instance.Name, itemName);
                     }
                 }
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             res.SetFail(ex);
         }
@@ -153,8 +153,7 @@ public partial class Data_DocumentUpload : Page
     {
         string extension = Path.GetExtension(filename);
         string res = filename.Replace(extension, string.Empty);
-
-        List<String> files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
+        var files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
         if (files.Count > 0)
         {
            foreach(string file in files)
@@ -169,8 +168,7 @@ public partial class Data_DocumentUpload : Page
         string extension = Path.GetExtension(filename);
         string res = filename.Replace(extension, string.Empty);
         string counter = "0001";
-
-        List<String> files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
+        var files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
         if(files.Count > 0)
         {
             counter = string.Format(CultureInfo.InvariantCulture, @"{0:0000}", files.Count + 1);

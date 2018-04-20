@@ -6,10 +6,12 @@
 // --------------------------------
 using System;
 using System.Globalization;
+using System.Linq;
 using System.Web.UI;
 using OpenFramework.DataAccess;
 using OpenFramework.ItemManager;
 using OpenFramework.Customer;
+using System.Collections.Generic;
 
 /// <summary>Implements retrieve data for foreing keyssummary>
 public partial class Data_FKScript : Page
@@ -19,12 +21,12 @@ public partial class Data_FKScript : Page
     /// <param name="e">Event arguments</param>
     protected void Page_Load(object sender, EventArgs e)
     {
-        DateTime d0 = DateTime.Now;
+        var d0 = DateTime.Now;
         string itemName = this.Request.QueryString["ItemName"];
         string instanceName = this.Request.QueryString["InstanceName"];
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
+        var instance = CustomerFramework.Load(instanceName);
         instance.LoadConfig();
-        ItemBuilder item = new ItemBuilder(itemName, instanceName);
+        var item = new ItemBuilder(itemName, instanceName);
         this.Response.Clear();
         this.Response.ContentType = "application/json";
 
@@ -47,10 +49,10 @@ public partial class Data_FKScript : Page
         }
         else
         {
-            this.Response.Write(SqlStream.GetFKStream(item, instance.Config.ConnectionString));
+            var parameters = Request.QueryString.Keys.Cast<string>().ToDictionary(k => k, v => Request.QueryString[v]);
+            parameters = parameters.Where(p => p.Key != "ac" && p.Key != "r" && p.Key != "itemName" && p.Key != "InstanceName").ToDictionary(v => v.Key, v => v.Value);            
+            this.Response.Write(SqlStream.GetFKStream(item, parameters, instance.Config.ConnectionString));
         }
-
-
 
         if (this.Request.QueryString["r"] == null)
         {

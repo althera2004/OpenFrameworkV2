@@ -1,0 +1,96 @@
+﻿{
+    "ItemName": "Alumno",
+	  "Description": "Alumnos asociados al AMPA",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Alumno",
+        "LabelPlural": "Alumnos",
+        "Description": {
+            "Pattern": "{0} {1}",
+            "Fields": [ { "Name": "Nombre" }, { "Name": "Apellidos" } ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [ { "ItemName": "Curso" }, { "ItemName": "Tutor" } ],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Apellidos", "Label": "Apellidos", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "CursoId", "Label": "Curso", "Type": "long", "ColumnDataType": "Text", "FK": true },
+        { "Name": "TutorId", "Label": "Tutor", "Type": "long", "ColumnDataType": "Text", "FK": true },
+        { "Name": "CuotaAmpa", "Label": "Cuota", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheckNull" } }
+    ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "ITEM_ALUMNO_GETALL",
+            "Columns": [
+                { "DataProperty": "Nombre",  "ReplacedBy": "N" },
+                { "DataProperty": "CursoId", "ReplacedBy":"C" },
+                { "DataProperty": "TutorId", "ReplacedBy":"T" },
+                { "DataProperty": "CuotaAmpa", "ReplacedBy": "Cu" }
+            ], 
+            "CustomAjaxSource": "ITEM_PIEZA_GETALL",
+            "Sorting": [{"Index":1, "SortingType": "asc"}],
+            "GridMode": "_default"
+        },
+        {
+            "Id": "ByCurso",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 6,
+            "CustomAjaxSource": "ITEM_ALUMNO_GETBYCURSO",
+            "Columns": [
+                { "DataProperty": "Nombre",  "ReplacedBy": "N" },
+                { "DataProperty": "CursoId", "ReplacedBy":"C" },
+                { "DataProperty": "TutorId", "ReplacedBy":"T" },
+                { "DataProperty": "CuotaAmpa", "ReplacedBy": "Cu" }
+            ]
+        }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },                           
+                                { "Name": "Apellidos" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "CursoId" },
+                                { "Name": "CuotaAmpa" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "TutorId" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Inscripciones",
+                    "Rows": [
+                        {
+                            "ItemList": "Inscripcion",
+                            "ListId": "ByAlumno",
+                            "FilterFields": [ { "Field": "Alumno" } ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

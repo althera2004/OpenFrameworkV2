@@ -28,8 +28,8 @@ public partial class Data_DocumentGalleryUpload : Page
                 bool serialize = this.Request.Form["serialize"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
                 bool replace = this.Request.Form["replace"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
 
-                CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-                HttpPostedFile file = this.Request.Files[0];
+                var instance = CustomerFramework.Load(instanceName);
+                var file = this.Request.Files[0];
                 if (file != null)
                 {
                     if (!path.EndsWith("\\"))
@@ -112,8 +112,7 @@ public partial class Data_DocumentGalleryUpload : Page
     {
         string extension = Path.GetExtension(filename);
         string res = filename.Replace(extension, string.Empty);
-
-        List<String> files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
+        var files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
         if (files.Count > 0)
         {
             foreach (string file in files)
@@ -128,8 +127,7 @@ public partial class Data_DocumentGalleryUpload : Page
         string extension = Path.GetExtension(filename);
         string res = filename.Replace(extension, string.Empty);
         string counter = "0001";
-
-        List<String> files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
+        var files = Directory.GetFiles(path, res + "*.*").OrderBy(f => f).ToList();
         if (files.Count > 0)
         {
             counter = string.Format(CultureInfo.InvariantCulture, @"{0:0000}", files.Count + 1);

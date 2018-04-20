@@ -10,10 +10,9 @@ namespace OpenFramework.CRUD
     using System.Data;
     using System.Data.SqlClient;
     using System.Globalization;
-    using System.Linq;
+    using OpenFramework.Customer;
     using OpenFramework.ItemManager;
     using OpenFramework.Security;
-    using OpenFramework.Customer;
 
     /// <summary>Implements save actions for item into database</summary>
     public static class Save
@@ -31,11 +30,11 @@ namespace OpenFramework.CRUD
 
         /// <summary>Inserts item data into database</summary>
         /// <param name="itemBuilder">Item instance</param>
-        /// <param name="connectionString">String connection to database</param>
+        /// <param name="instanceName">String connection to database</param>
         /// <param name="userId">User identifier</param> 
         /// <param name="fromImport">Indicates if insert is from import (not required)</param>
         /// <returns>Result of action</returns>
-        public static ActionResult Insert(ItemBuilder itemBuilder, string connectionString, long userId, bool fromImport = false)
+        public static ActionResult Insert(ItemBuilder itemBuilder, string instanceName, long userId, bool fromImport = false)
         {
             if (itemBuilder == null)
             {
@@ -63,9 +62,10 @@ namespace OpenFramework.CRUD
                 }
             }*/
 
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                var instance = CustomerFramework.Load(instanceName);
+                using (var cnn = new SqlConnection(instance.Config.ConnectionString))
                 {
                     cmd.Connection = cnn;
                     try
@@ -89,7 +89,7 @@ namespace OpenFramework.CRUD
                         res.SetSuccess();
                         res.MessageError = itemBuilder.ItemName;
                         res.ReturnValue = string.Format(CultureInfo.InvariantCulture, "INSERT|{0}", id);
-                        ActionLog.Trace(itemBuilder.ItemName + "_", itemBuilder.Id, itemBuilder.Json, itemBuilder.InstanceName, connectionString);
+                        ActionLog.Trace(itemBuilder.ItemName + "_", itemBuilder.Id, itemBuilder.Json, itemBuilder.InstanceName, instanceName);
                     }
                     catch (Exception ex)
                     {
@@ -142,7 +142,7 @@ namespace OpenFramework.CRUD
             }
 
             string query = SqlServerWrapper.UpdateQuery(itemBuilder, userId);
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
                 try
                 {
@@ -151,8 +151,8 @@ namespace OpenFramework.CRUD
                         return ActionResult.NoAction;
                     }
 
-                    CustomerFramework instance = CustomerFramework.Load(instanceName);
-                    using (SqlConnection cnn = new SqlConnection(instance.Config.ConnectionString))
+                    var instance = CustomerFramework.Load(instanceName);
+                    using (var cnn = new SqlConnection(instance.Config.ConnectionString))
                     {
                         var old = Read.ById(itemBuilder.Id, itemBuilder.Definition, instanceName);                        
                         cmd.Connection = cnn;
@@ -160,21 +160,9 @@ namespace OpenFramework.CRUD
                         cmd.ExecuteNonQuery();
                         res.SetSuccess();
                         string differences = ItemBuilder.Differences(old, itemBuilder);
-                        /* //Persistent data
-                        res = DataPersistence.Update(itemBuilder);
-                        if (!string.IsNullOrEmpty(itemBuilder.Definition.ParentItem))
-                        {
-                            res = DataPersistence.ReloadItem(itemBuilder.InstanceName, itemBuilder.Definition.ParentItem, itemBuilder.ItemName, true);
-                        }
-
-                        if (itemBuilder.Definition.InheritedItems.Count > 0)
-                        {
-                            res = DataPersistence.ReloadItem(itemBuilder.InstanceName, itemBuilder.ItemName, string.Empty, false);
-                        }*/
-
                         if (res.Success)
                         {
-                            ApplicationUser user = ApplicationUser.GetById(userId, instance.Config.ConnectionString);
+                            var user = ApplicationUser.GetById(userId, instance.Config.ConnectionString);
                             ActionLog.Trace(itemBuilder.ItemName + "_", itemBuilder.Id, differences, itemBuilder.ItemName, user.TraceDescription);
                             res.ReturnValue = "UPDATE";
                         }
@@ -209,9 +197,9 @@ namespace OpenFramework.CRUD
         {
             var res = ActionResult.NoAction;
             string query = SqlServerWrapper.ActiveQuery(itemId, userId, itemName, instanceName);
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     try
@@ -243,9 +231,9 @@ namespace OpenFramework.CRUD
         {
             var res = ActionResult.NoAction;
             string query = SqlServerWrapper.InactiveQuery(itemId, userId, itemName, instanceName);
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     try
@@ -293,11 +281,11 @@ namespace OpenFramework.CRUD
         {
             var res = ActionResult.NoAction;
             string query = SqlServerWrapper.DeleteQuery(itemId, userId, itemName, instanceName);
-            var instance = new CustomerFramework() { Name = instanceName };
+            var instance = CustomerFramework.Load(instanceName);
             instance.LoadConfig();
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
-                using (SqlConnection cnn = new SqlConnection(instance.Config.ConnectionString))
+                using (var cnn = new SqlConnection(instance.Config.ConnectionString))
                 {
                     cmd.Connection = cnn;
                     try

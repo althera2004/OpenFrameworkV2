@@ -24,11 +24,11 @@ namespace OpenFramework.CRUD
         public static string InactiveQuery(long itemId, long applicationUserId, string itemName, string instanceName)
         {
             string res = string.Empty;
-            ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
+            var definition = ItemDefinition.Load(itemName, instanceName);
             if (!string.IsNullOrEmpty(definition.DataAdapter.Inactive.StoredName))
             {
                 res = string.Format(
-                    CultureInfo.GetCultureInfo("en-us"),
+                    CultureInfo.InvariantCulture,
                     "{0} @Id = {1}, @ModifiedBy = {2}", 
                     definition.DataAdapter.Inactive.StoredName, 
                     itemId, 
@@ -51,7 +51,7 @@ namespace OpenFramework.CRUD
         public static string DeleteQuery(long itemId, long applicationUserId, string itemName, string instanceName)
         {
             string res = string.Empty;
-            ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
+            var definition = ItemDefinition.Load(itemName, instanceName);
             if (!string.IsNullOrEmpty(definition.DataAdapter.Inactive.StoredName))
             {
                 res = string.Format(
@@ -126,7 +126,7 @@ namespace OpenFramework.CRUD
         public static string ActiveQuery(long itemId, long applicationUserId, string itemName, string instanceName)
         {
             string res = string.Empty;
-            ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
+            var definition = ItemDefinition.Load(itemName, instanceName);
             if (!string.IsNullOrEmpty(definition.DataAdapter.Active.StoredName))
             {
                 res = string.Format(
@@ -149,13 +149,13 @@ namespace OpenFramework.CRUD
         /// <returns>Insert query for item</returns>
         private static string DefaultInsertQuery(ItemBuilder item, long applicationUserId)
         {
-            StringBuilder fields = new StringBuilder();
-            StringBuilder values = new StringBuilder();
+            var fields = new StringBuilder();
+            var values = new StringBuilder();
             bool first = true;
 
-            foreach (ItemField field in item.Definition.Fields.Where(f => f.Referencial != true))
+            foreach (var field in item.Definition.Fields.Where(f => f.Referencial != true))
             {
-                /*if (field.Name != "Id" && string.IsNullOrEmpty(foreignData.LinkField))
+                if (field.Name != "Id")
                 {
                     string realField = string.Empty;
                     if (item.Definition.SqlMappings.Any(m => m.ItemField == field.Name))
@@ -165,7 +165,7 @@ namespace OpenFramework.CRUD
                     }
                     else
                     {
-                        //realField = GetRealField(item, field.Name);
+                        realField = field.Name;
                     }
 
                     if (first)
@@ -180,14 +180,13 @@ namespace OpenFramework.CRUD
 
                     fields.AppendFormat(@"[{0}]", realField);
                     values.AppendFormat(@"{0}", SqlValue.Value(field, item[field.Name]));
-                }*/
+                }
             }
 
             fields.Append(InsertQueryFieldsEnd());
             values.Append(InsertQueryValuesEnd(applicationUserId));
 
-            // TODO: Pasar usuario a CreatedBy
-            StringBuilder res = new StringBuilder("INSERT INTO Item_").Append(item.ItemName);
+            var res = new StringBuilder("INSERT INTO Item_").Append(item.ItemName);
             res.Append("(");
             res.Append(fields);
             res.Append(") VALUES(");
@@ -204,8 +203,8 @@ namespace OpenFramework.CRUD
         {
             if (item.Definition.DataAdapter.Insert.StoredName == "#_insert")
             {
-                StringBuilder fields = new StringBuilder();
-                StringBuilder values = new StringBuilder();
+                var fields = new StringBuilder();
+                var values = new StringBuilder();
                 bool first = true;
 
                 foreach (StoredParameter param in item.Definition.DataAdapter.Insert.Parameters)
@@ -221,25 +220,24 @@ namespace OpenFramework.CRUD
                     }
 
                     fields.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "[{0}]", param.Parameter);
-                    values.Append(SqlValue.Value(item.Definition.Fields.Where(f => f.Name == param.Field).First(), item[param.Field]));
+                    values.Append(SqlValue.Value(item.Definition.Fields.First(f => f.Name == param.Field), item[param.Field]));
                 }
 
                 fields.Append(InsertQueryFieldsEnd());
                 values.Append(InsertQueryValuesEnd(applicationUserId));
-                StringBuilder res = new StringBuilder().AppendFormat("INSERT INTO Item_{0} ({1}) VALUES({2})", item.ItemName, fields.ToString(), values.ToString());
+                var res = new StringBuilder().AppendFormat("INSERT INTO Item_{0} ({1}) VALUES({2})", item.ItemName, fields.ToString(), values.ToString());
                 return res.ToString();
             }
             else
             {
-                StringBuilder values = new StringBuilder();
-
-                foreach (StoredParameter param in item.Definition.DataAdapter.Insert.Parameters)
+                var values = new StringBuilder();
+                foreach (var param in item.Definition.DataAdapter.Insert.Parameters)
                 {
-                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "@{0} = {1},", param.Parameter, SqlValue.Value(item.Definition.Fields.Where(f => f.Name == param.Field).First(), item[param.Field]));
+                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "@{0} = {1},", param.Parameter, SqlValue.Value(item.Definition.Fields.First(f => f.Name == param.Field), item[param.Field]));
                 }
 
                 values.AppendFormat("@CreatedBy = {0}, @ModifiedBy = {0}", applicationUserId);
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "EXEC [{0}] {1}", item.Definition.DataAdapter.Insert.StoredName, values);
                 return res.ToString();
             }
@@ -251,14 +249,12 @@ namespace OpenFramework.CRUD
         /// <returns>Update query for item</returns>
         private static string DefaultUpdateQuery(ItemBuilder item, long applicationUserId)
         {
-            StringBuilder values = new StringBuilder();
+            var values = new StringBuilder();
             bool first = true;
-
-            foreach (ItemField field in item.Definition.Fields)
+            foreach (var field in item.Definition.Fields)
             {
                 if (field.Name != "Id")
-                {
-                    
+                {                    
                     if (first)
                     {
                         first = false;
@@ -274,7 +270,7 @@ namespace OpenFramework.CRUD
 
             values.Append(UpdateQueryValuesEnd(applicationUserId));
 
-            StringBuilder res = new StringBuilder("UPDATE Item_").Append(item.ItemName);
+            var res = new StringBuilder("UPDATE Item_").Append(item.ItemName);
             res.Append(" SET ");
             res.Append(values);
             res.AppendFormat(" WHERE Id = {0}", item["Id"]);
@@ -289,10 +285,9 @@ namespace OpenFramework.CRUD
         {
             if (item.Definition.DataAdapter.Update.StoredName == "#_update")
             {
-                StringBuilder values = new StringBuilder();
+                var values = new StringBuilder();
                 bool first = true;
-
-                foreach (StoredParameter param in item.Definition.DataAdapter.Update.Parameters)
+                foreach (var param in item.Definition.DataAdapter.Update.Parameters)
                 {
                     if (first)
                     {
@@ -303,19 +298,19 @@ namespace OpenFramework.CRUD
                         values.Append(",");
                     }
 
-                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "[{0}] = {1}", param.Parameter, SqlValue.Value(item.Definition.Fields.Where(f => f.Name == param.Field).First(), item[param.Field]));
+                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "[{0}] = {1}", param.Parameter, SqlValue.Value(item.Definition.Fields.First(f => f.Name == param.Field), item[param.Field]));
                 }
 
                 values.Append(UpdateQueryValuesEnd(applicationUserId));
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "UPDATE Item_{0} SET{1} WHERE Id = {2}", item.ItemName, values, item["Id"]);
                 return res.ToString();
             }
             else
             {
-                StringBuilder values = new StringBuilder();
+                var values = new StringBuilder();
                 bool first = true;
-                foreach (StoredParameter param in item.Definition.DataAdapter.Update.Parameters)
+                foreach (var param in item.Definition.DataAdapter.Update.Parameters)
                 {
                     if (first)
                     {
@@ -326,14 +321,14 @@ namespace OpenFramework.CRUD
                         values.Append(",");
                     }
 
-                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "@{0} = {1}", param.Parameter, SqlValue.Value(item.Definition.Fields.Where(f => f.Name == param.Field).First(), item[param.Field]));
+                    values.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "@{0} = {1}", param.Parameter, SqlValue.Value(item.Definition.Fields.First(f => f.Name == param.Field), item[param.Field]));
                 }
 
                 values.AppendFormat(
                     CultureInfo.InvariantCulture,
                     ", @ModifiedBy = {0}",
                     applicationUserId);
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "EXEC [{0}] {1}", item.Definition.DataAdapter.Update.StoredName, values);
                 return res.ToString();
             }
@@ -346,9 +341,12 @@ namespace OpenFramework.CRUD
         /// <returns>Deactivate query for item</returns>
         private static string DefaultInactiveQuery(long itemId, long applicationUserId, string itemName)
         {
-            StringBuilder res = new StringBuilder();
-            res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "UPDATE Item_{0} SET Active = 0, ModifiedBy = {1}, ModifiedOn = GETDATE() WHERE Id = {2}", itemName, applicationUserId, itemId);
-            return res.ToString();
+            return string.Format(
+                CultureInfo.GetCultureInfo("en-us"),
+                "UPDATE Item_{0} SET Active = 0, ModifiedBy = {1}, ModifiedOn = GETDATE() WHERE Id = {2}", 
+                itemName, 
+                applicationUserId, 
+                itemId);
         }
 
         /// <summary>Creates default deletion for item</summary>
@@ -357,9 +355,11 @@ namespace OpenFramework.CRUD
         /// <returns>Deactivate query for item</returns>
         private static string DefaultDeleteQuery(long itemId, string itemName)
         {
-            StringBuilder res = new StringBuilder();
-            res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "DELETE FROM Item_{0} WHERE Id = {1}", itemName, itemId);
-            return res.ToString();
+            return string.Format(
+                CultureInfo.GetCultureInfo("en-us"),
+                "DELETE FROM Item_{0} WHERE Id = {1}",
+                itemName, 
+                itemId);
         }
 
         /// <summary>Creates default activation for item</summary>
@@ -369,9 +369,12 @@ namespace OpenFramework.CRUD
         /// <returns>Activate query for item</returns>
         private static string DefaultActiveQuery(long itemId, long applicationUserId, string itemName)
         {
-            StringBuilder res = new StringBuilder();
-            res.AppendFormat(CultureInfo.GetCultureInfo("en-us"), "UPDATE Item_{0} SET Active = 1, ModifiedBy = {1} WHERE Id = {2}", itemName, applicationUserId, itemId);
-            return res.ToString();
+            return string.Format(
+                CultureInfo.GetCultureInfo("en-us"),
+                "UPDATE Item_{0} SET Active = 1, ModifiedBy = {1} WHERE Id = {2}",
+                itemName,
+                applicationUserId,
+                itemId);
         }
 
         /// <summary>Creates last fields for insert query</summary>

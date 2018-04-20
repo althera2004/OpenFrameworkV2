@@ -29,15 +29,11 @@ public partial class Data_DataTableGetData : Page
         var d0 = DateTime.Now;
         string itemName = this.Request.QueryString["ItemName"];
         string instanceName = this.Request.QueryString["InstanceName"];
-        ReadOnlyCollection<ItemBuilder> data;
-
         bool external = false;
-        CustomerFramework instance = new CustomerFramework() { Name = instanceName };
-        instance.LoadConfig();
+        var instance = CustomerFramework.Load(instanceName);
+        var definition = ItemDefinition.Load(itemName, instanceName);
 
-        ItemDefinition definition = ItemDefinition.Load(itemName, instanceName);
-
-        data = Read.Active(definition, instance.Name);
+        var data = Read.Active(definition, instance.Name);
         if (this.Request.QueryString.AllKeys.Count() > 3)
         {
             var temporalData = data.ToList();
@@ -46,30 +42,32 @@ public partial class Data_DataTableGetData : Page
                 external = true;
                 foreach (string key in this.Request.QueryString.AllKeys.Where(k => k != "ItemName"))
                 {
-                    if (key.Equals("ItemName", StringComparison.OrdinalIgnoreCase))
+                    if (!key.Equals("ItemName", StringComparison.OrdinalIgnoreCase))
                     {
-                        var localKey = key.Remove('_');
-                        object query = this.Request.QueryString[localKey];
-                        if (query.ToString().Contains("EXCLUDE"))
+                        continue;
+                    }
+
+                    var localKey = key.Remove('_');
+                    object query = this.Request.QueryString[localKey];
+                    if (query.ToString().Contains("EXCLUDE"))
+                    {
+                        long val = Convert.ToInt64(query.ToString().Split('/')[1]);
+                        temporalData = temporalData.Where(d => Convert.ToInt64(d[localKey]) != val).ToList();
+                    }
+                    else if (query.GetType().ToString().ToUpperInvariant() == "SYSTEM.STRING")
+                    {
+                        if (query.ToString().Trim().ToUpperInvariant().Equals("NULL", StringComparison.OrdinalIgnoreCase) || query.ToString().Trim().ToUpperInvariant().Equals("0", StringComparison.OrdinalIgnoreCase))
                         {
-                            long val = Convert.ToInt64(query.ToString().Split('/')[1]);
-                            temporalData = temporalData.Where(d => Convert.ToInt64(d[localKey]) != val).ToList();
-                        }
-                        else if (query.GetType().ToString().ToUpperInvariant() == "SYSTEM.STRING")
-                        {
-                            if (query.ToString().Trim().ToUpperInvariant().Equals("NULL", StringComparison.OrdinalIgnoreCase) || query.ToString().Trim().ToUpperInvariant().Equals("0", StringComparison.OrdinalIgnoreCase))
-                            {
-                                temporalData = temporalData.Where(d => d[localKey] == null || d[localKey].ToString().Trim().Equals("0", StringComparison.OrdinalIgnoreCase)).ToList();
-                            }
-                            else
-                            {
-                                temporalData = temporalData.Where(d => d[localKey] != null && d[localKey].ToString().Equals(query.ToString())).ToList();
-                            }
+                            temporalData = temporalData.Where(d => d[localKey] == null || d[localKey].ToString().Trim().Equals("0", StringComparison.OrdinalIgnoreCase)).ToList();
                         }
                         else
                         {
-                            temporalData = temporalData.Where(d => d[localKey] != null && Convert.ToInt64(d[localKey]) == Convert.ToInt64(query)).ToList();
+                            temporalData = temporalData.Where(d => d[localKey] != null && d[localKey].ToString().Equals(query.ToString())).ToList();
                         }
+                    }
+                    else
+                    {
+                        temporalData = temporalData.Where(d => d[localKey] != null && Convert.ToInt64(d[localKey]) == Convert.ToInt64(query)).ToList();
                     }
                 }
 
@@ -125,10 +123,10 @@ public partial class Data_DataTableGetData : Page
             }
         }
 
-        DateTime d1 = DateTime.Now;
+        var d1 = DateTime.Now;
         this.Response.Clear();
         this.Response.ContentType = "application/json";
-        DateTime d2 = DateTime.Now;
+        var d2 = DateTime.Now;
         if (external)
         {
             string res = string.Format(

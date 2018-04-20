@@ -33,7 +33,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                return new ForeignList()
+                return new ForeignList
                 {
                     ItemName = string.Empty,
                     fieldRetrieved = string.Empty,

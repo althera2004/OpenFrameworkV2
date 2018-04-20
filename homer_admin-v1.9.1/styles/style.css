@@ -1505,7 +1505,7 @@ html {
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #fff;
-  font-size: 11px;
+  font-size: 12px;
   color: #444;
   margin: 0;
   padding: 0;
@@ -1747,7 +1747,7 @@ body {
   border-radius: 2px;
 }
 .hpanel .panel-body {
-  background: #fff;
+  _background: #fff;
   _border: 1px solid #e4e5e7;
   border-radius: 2px;
   padding: 20px;
@@ -1871,6 +1871,7 @@ body {
     -webkit-box-shadow: 3px 0px 8px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 3px 0px 8px 0px rgba(0,0,0,0.75);
     box-shadow: 3px 0px 8px 0px rgba(0,0,0,0.75);
+	background-color:#fff;
 }
 .panel-body h5,
 .panel-body h4 {
@@ -1887,11 +1888,11 @@ body {
 }
 .hbreadcrumb {
   padding: 2px 0px;
-  margin-top: 6px;
+  margin-top: 2px;
   margin-bottom: 0px;
   list-style: none;
   background-color: #fff;
-  font-size: 11px;
+  font-size: 13px;
 }
 .hbreadcrumb > li {
   display: inline-block;
@@ -1901,7 +1902,8 @@ body {
   color: #34495e;
 }
 .hbreadcrumb > .active {
-  color: #9d9fa2;
+  color: #333;
+  font-weight:bold;
 }
 .wrapper {
   padding: 10px 20px;
@@ -1943,12 +1945,13 @@ body.fullscreen-panel-mode {
 .hpanel.fullscreen .panel-body {
   min-height: calc(100% - 77px);
 }
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
+.nav-tabs > li > a,
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
   border: 1px solid #e4e5e7;
   border-bottom-color: transparent;
 }
+.nav-tabs > li.active  > a{ border-top:3px solid #ccf;}
 .nav-tabs {
   border-bottom: 1px solid #e4e5e7;
 }

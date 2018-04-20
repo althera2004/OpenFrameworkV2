@@ -1,0 +1,30 @@
+﻿{
+    "ItemName": "HistoricoCargo",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Histórico cargo",
+        "LabelPlural": "Histórico Cargos",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "CargoId" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [
+      { "ItemName": "Cargo" },
+      { "ItemName": "Integrante" }
+	],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "CargoId", "Label": "Cargo", "Type": "long", "Required": true },
+        { "Name": "FechaIni", "Label": "Inicio", "Type": "datetime", "Required": true },
+        { "Name": "FechaFin", "Label": "Final", "Type": "datetime", "Required": true },
+        { "Name": "IntegranteId", "Label": "Integrante", "Type": "long" ,"Required": true }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

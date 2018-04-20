@@ -1,0 +1,25 @@
+﻿{
+    "ItemName": "Noticia",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Noticia",
+        "LabelPlural": "Noticias",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Titulo" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Titulo", "Label": "Titulo", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Fecha", "Label": "Fecha", "Type": "date", "Required": true }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

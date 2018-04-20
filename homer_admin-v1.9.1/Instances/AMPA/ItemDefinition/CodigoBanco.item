@@ -1,0 +1,29 @@
+﻿{
+    "ItemName": "CodigoBanco",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "bank",
+        "Label": "Código banco",
+        "LabelPlural": "Códigos banco",
+        "Description": {
+            "Pattern": "{0} - {1}",
+            "Fields": [
+                { "Name": "Codigo" },
+                { "Name": "Banco" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [
+		{"ItemName": "Reunion"},
+		{"ItemName": "User"}
+	],
+    "PrimaryKeys": [ { "Id": "BANKCode", "Values": [ "Codigo" ] } ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Codigo", "Label": "Código", "Type": "text", "Length": 4, "Required": true },
+        { "Name": "Banco", "Label": "Banco", "Type": "text", "length": 100, "Required": true }
+    ],
+    "Lists": [ ],
+    "Forms": [ ]
+}

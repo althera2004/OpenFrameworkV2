@@ -1,0 +1,72 @@
+﻿{
+    "ItemName": "Cargo",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Cargo",
+        "LabelPlural": "Cargos",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [
+		{"ItemName": "Reunion"},
+		{"ItemName": "Integrante"}
+	],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "Fecha", "Label": "Fecha", "Type": "datetime" },
+        { "Name": "ReunionId", "Label": "Acta", "Type": "long" },
+        { "Name": "IntegranteId", "Label": "Miembro", "Type": "long" ,"Required": true, "ColumnDataType": "Text" }
+    ],
+    "Lists": [
+      {
+        "Id": "Custom",
+        "FormId": "Custom",
+        "Layout": 1,
+        "EditAction": 3,
+        "CustomAjaxSource": "ITEM_CARGO_GETALL",
+        "Columns": [
+          {
+            "DataProperty": "Nombre",
+            "ReplacedBy": "N"
+          },
+          {
+            "DataProperty": "IntegranteId",
+            "ReplacedBy": "I"
+          }
+        ]
+      }
+    ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },                           
+                                { "Name": "IntegranteId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "ReunionId" },
+                                { "Name": "Fecha" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -29,6 +29,9 @@ namespace OpenFramework.ItemManager
     [Serializable]
     public sealed class ItemBuilder : IDictionary<string, object>, ICollection
     {
+        public const bool NotResolveForeignKeys = false;
+        public const bool NotFromImport = false;
+
         /// <summary>Values of item</summary>
         private Dictionary<string, object> source;
 
@@ -70,9 +73,8 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                List<ItemField> res = new List<ItemField>();
-                //Dictionary<string, string> fk = this.FieldsForeignKeys();
-                foreach (ItemField field in this.Definition.Fields)
+                var res = new List<ItemField>();
+                foreach (var field in this.Definition.Fields)
                 {
                     if (field.Name != "Id" && !this.Definition.LinkedField(field.Name))
                     {
@@ -144,8 +146,7 @@ namespace OpenFramework.ItemManager
                 return string.Empty;
             }
 
-            CustomerFramework customer = new CustomerFramework() { Name = instanceName };
-            customer.LoadConfig();
+            var customer = CustomerFramework.Load(instanceName);
             if (customer == null)
             {
                 return string.Empty;
@@ -153,7 +154,7 @@ namespace OpenFramework.ItemManager
 
             string path = string.Format(
                 CultureInfo.GetCultureInfo("en-us"),
-                ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString(),
+                ConfigurationManager.AppSettings["ItemsDefinitionPath"],
                 customer.Name);
 
             path = path.ToUpperInvariant().Replace("ITEMDEFINITION", string.Empty);
@@ -175,7 +176,7 @@ namespace OpenFramework.ItemManager
         {
             string path = string.Format(
                 CultureInfo.InvariantCulture,
-                ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString(),
+                ConfigurationManager.AppSettings["ItemsDefinitionPath"],
                 instanceName);
 
             path = path.ToUpperInvariant().Replace("ITEMDEFINITION", string.Empty);
@@ -243,7 +244,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                string path = ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString();
+                string path = ConfigurationManager.AppSettings["ItemsDefinitionPath"];
                 if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
                 {
                     path = string.Format(CultureInfo.GetCultureInfo("en-us"), @"{0}\{1}.item", path, this.ItemName);
@@ -409,7 +410,7 @@ namespace OpenFramework.ItemManager
 
             if (this.Definition.Lists.Any(li => li.Id.ToUpperInvariant() == id.ToUpperInvariant()))
             {
-                return this.Definition.Lists.Where(li => li.Id.ToUpperInvariant() == id.ToUpperInvariant()).First();
+                return this.Definition.Lists.First(li => li.Id.ToUpperInvariant() == id.ToUpperInvariant());
             }
 
             return ListDefinition.Empty;
@@ -427,7 +428,7 @@ namespace OpenFramework.ItemManager
 
             if (this.Definition.Forms.Any(f => f.Id.ToUpperInvariant() == id.ToUpperInvariant()))
             {
-                return this.Definition.Forms.Where(f => f.Id.ToUpperInvariant() == id.ToUpperInvariant()).First();
+                return this.Definition.Forms.First(f => f.Id.ToUpperInvariant() == id.ToUpperInvariant());
             }
 
             return FormDefinition.Empty;
@@ -441,7 +442,7 @@ namespace OpenFramework.ItemManager
         {
             if (this.Definition.Forms.Any(f => f.FormType == type))
             {
-                return this.Definition.Forms.Where(f => f.FormType == type).First();
+                return this.Definition.Forms.First(f => f.FormType == type);
             }
 
             return FormDefinition.Empty;
@@ -451,9 +452,8 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                //// this.ResolveDescription();
                 this.Add("Status", "Unchanged");
-                Dictionary<string, object> res = new Dictionary<string, object>();
+                var res = new Dictionary<string, object>();
                 foreach (KeyValuePair<string, object> itemData in this)
                 {
                     if (itemData.Value == null)
@@ -507,18 +507,18 @@ namespace OpenFramework.ItemManager
 
         public static ItemBuilder FromJsonObject(string itemName, dynamic data, string instanceName)
         {
-            ItemBuilder res = new ItemBuilder(itemName, instanceName);
+            var res = new ItemBuilder(itemName, instanceName);
             if (data != null)
             {
                 var values = data.ToObject<Dictionary<string, object>>();
-                foreach (KeyValuePair<string, object> pair in values)
+                foreach (var pair in values)
                 {
-                    KeyValuePair<string, object> finalData = pair;
+                    var finalData = pair;
                     if (pair.Value == null)
                     {
                         if (res.Definition.SqlMappings.Any(s => s.ItemField == pair.Key))
                         {
-                            finalData = new KeyValuePair<string, object>(pair.Key, res.Definition.SqlMappings.Where(s => s.ItemField == pair.Key).First().DefaultValue);
+                            finalData = new KeyValuePair<string, object>(pair.Key, res.Definition.SqlMappings.First(s => s.ItemField == pair.Key).DefaultValue);
                         }
                     }
 
@@ -562,7 +562,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                ReadOnlyCollection<string> primaryFields = this.Definition.PrimaryFields;
+                var primaryFields = this.Definition.PrimaryFields;
                 if (primaryFields == null)
                 {
                     return string.Empty;
@@ -641,7 +641,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(
                     CultureInfo.InvariantCulture,
                     @"    <{0} Id=""{1}"">{2}",
@@ -649,7 +649,7 @@ namespace OpenFramework.ItemManager
                     this.Id,
                     Environment.NewLine);
 
-                foreach (KeyValuePair<string, object> data in this.source)
+                foreach (var data in this.source)
                 {
                     if (!string.IsNullOrEmpty(data.Value as string))
                     {
@@ -675,7 +675,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(CultureInfo.InvariantCulture, "\tId ==> {0}{1}", this.Id, Environment.NewLine);
                 res.AppendFormat(CultureInfo.InvariantCulture, "\tDescription ==> {0}{1}", this.Description, Environment.NewLine);
                 foreach (ItemField field in this.Definition.Fields.Where(f => !f.Name.Equals("Id", StringComparison.OrdinalIgnoreCase)))
@@ -710,8 +710,8 @@ namespace OpenFramework.ItemManager
 
         public static string CsvHeader(string itemName, ItemDefinition definition, string instanceName)
         {
-            ItemBuilder item = new ItemBuilder(itemName, definition, instanceName);
-            StringBuilder res = new StringBuilder();
+            var item = new ItemBuilder(itemName, definition, instanceName);
+            var res = new StringBuilder();
             res.Append("Id;Description;");
 
             foreach (ItemField field in item.Definition.Fields)
@@ -729,7 +729,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 res.AppendFormat(
                     CultureInfo.InvariantCulture,
                     @"{0};",
@@ -768,7 +768,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                List<object> dataList = new List<object>();
+                var dataList = new List<object>();
 
                 // Coge la composicion de la definicion
                 /*  "Description": {
@@ -783,7 +783,7 @@ namespace OpenFramework.ItemManager
                 {
                     if (this.ContainsKey(field.Name))
                     {
-                        object obj = this[field.Name];
+                        var obj = this[field.Name];
 
                         if (obj == null)
                         {
@@ -792,7 +792,7 @@ namespace OpenFramework.ItemManager
 
                         if (obj != null)
                         {
-                            if (obj.GetType() == typeof(JObject))
+                            if (obj is JObject)
                             {
                                 obj = ((JObject)obj)["Description"];
                             }
@@ -834,7 +834,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                StringBuilder res = new StringBuilder();
+                var res = new StringBuilder();
                 foreach (string key in this.Keys)
                 {
                     res.Append(this[key] as string).Append('|');
@@ -887,7 +887,7 @@ namespace OpenFramework.ItemManager
         {
             string path = string.Format(
                 CultureInfo.InvariantCulture,
-                ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString(),
+                ConfigurationManager.AppSettings["ItemsDefinitionPath"],
                 instanceName);
 
             if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
@@ -931,7 +931,7 @@ namespace OpenFramework.ItemManager
 
             string path = string.Format(
                 CultureInfo.GetCultureInfo("en-us"),
-                ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString().Replace("ItemDefinition", "Scripts"),
+                ConfigurationManager.AppSettings["ItemsDefinitionPath"].Replace("ItemDefinition", "Scripts"),
                 instanceName);
 
             if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
@@ -955,7 +955,7 @@ namespace OpenFramework.ItemManager
 
             string path = string.Format(
                 CultureInfo.GetCultureInfo("en-us"),
-                ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString().Replace("ItemDefinition", "Scripts"),
+                ConfigurationManager.AppSettings["ItemsDefinitionPath"].Replace("ItemDefinition", "Scripts"),
                 instanceName);
 
             if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
@@ -972,7 +972,7 @@ namespace OpenFramework.ItemManager
 
         public static ItemBuilder Empty(string itemName, bool withDefaults, string instanceName)
         {
-            ItemBuilder res = new ItemBuilder(itemName, instanceName)
+            var res = new ItemBuilder(itemName, instanceName)
             {
                 { "Id", (long)0 },
                 { "Description", string.Empty }
@@ -980,9 +980,8 @@ namespace OpenFramework.ItemManager
 
             if (withDefaults)
             {
-                List<ItemField> properties = res.Definition.Fields.Where(p => p.Name != "Id" && p.Name != "Description").ToList();
-
-                foreach (ItemField property in properties)
+                var properties = res.Definition.Fields.Where(p => p.Name != "Id" && p.Name != "Description").ToList();
+                foreach (var property in properties)
                 {
                     string label = property.Name;
                     switch (property.DataType)
@@ -991,8 +990,6 @@ namespace OpenFramework.ItemManager
                             res.Add(label, false);
                             break;
                         case FieldDataType.Integer:
-                            res.Add(label, 0);
-                            break;
                         case FieldDataType.Decimal:
                             res.Add(label, 0);
                             break;
@@ -1008,8 +1005,7 @@ namespace OpenFramework.ItemManager
 
         public static ActionResult Inactive(long itemId, string itemName, long userId, string userDescription, string instanceName, string stringConnection)
         {
-            CustomerFramework customerConfig = new CustomerFramework() { Name = instanceName };
-            customerConfig.LoadConfig();
+            var customerConfig = CustomerFramework.Load(instanceName);            
             if (customerConfig.Config.DeleteAction == DeleteAction.Delete)
             {
                 return OpenFramework.CRUD.Save.Delete(itemId, userId, userDescription, itemName, instanceName, stringConnection);
@@ -1040,12 +1036,11 @@ namespace OpenFramework.ItemManager
             }
 
             // Se ha creado una colección intermedia para evitar un "InvalidOperationException" debido a unna modificación en item durante el foreach
-            List<KeyValuePair<string, object>> values = new List<KeyValuePair<string, object>>();
+            var values = new List<KeyValuePair<string, object>>();
 
-            foreach (KeyValuePair<string, object> pair in item)
+            foreach (var pair in item)
             {
                 values.Add(pair);
-                //// this.Add(pair);
             }
 
             foreach (KeyValuePair<string, object> pair in values)
@@ -1056,7 +1051,7 @@ namespace OpenFramework.ItemManager
 
         public void ReadById(long value, string connectionString)
         {
-            this.ReadById(value, false, connectionString);
+            this.ReadById(value, NotResolveForeignKeys, connectionString);
         }
 
         public void ReadById(long value, bool resolveForeignKeys, string connectionString)
@@ -1066,7 +1061,7 @@ namespace OpenFramework.ItemManager
 
         public string GetKeyValue
         {
-            get
+            get 
             {
                 return ItemValueJson(this);
             }
@@ -1135,9 +1130,7 @@ namespace OpenFramework.ItemManager
             return this.source.TryGetValue(key, out value);
         }
 
-        /// <summary>
-        /// Add a KeyValuePair into item's values
-        /// </summary>
+        /// <summary>Add a KeyValuePair into item's values</summary>
         /// <param name="item">KeyValuePair to add</param>
         void ICollection<KeyValuePair<string, object>>.Add(KeyValuePair<string, object> item)
         {
@@ -1148,8 +1141,7 @@ namespace OpenFramework.ItemManager
         /// <summary>Clear values of item</summary>
         void ICollection<KeyValuePair<string, object>>.Clear()
         {
-            ICollection<KeyValuePair<string, object>> collection = this.source;
-            collection.Clear();
+            this.source.Clear();
         }
 
         /// <summary>Retrieve if key is in item's values</summary>
@@ -1191,10 +1183,10 @@ namespace OpenFramework.ItemManager
         {
             if (items == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder("[");
+            var res = new StringBuilder("[");
             bool first = true;
             foreach (ItemBuilder item in items)
             {
@@ -1219,10 +1211,10 @@ namespace OpenFramework.ItemManager
         {
             if (items == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder("[");
+            var res = new StringBuilder("[");
             bool first = true;
             foreach (ItemBuilder item in items.OrderBy(i => i.Description))
             {
@@ -1247,10 +1239,10 @@ namespace OpenFramework.ItemManager
         {
             if (items == null)
             {
-                return "[]";
+                return ToolsJson.EmptyJsonList;
             }
 
-            StringBuilder res = new StringBuilder("[");
+            var res = new StringBuilder("[");
             bool first = true;
             foreach (ItemBuilder item in items.OrderBy(i => i.Description))
             {
@@ -1326,7 +1318,7 @@ namespace OpenFramework.ItemManager
             {
                 if (this.Definition.Fields.Any(f => f.Name == key))
                 {
-                    FieldDataType dataType = this.Definition.Fields.Where(f => f.Name == key).First().DataType;
+                    var dataType = this.Definition.Fields.First(f => f.Name == key).DataType;
                     if (dataType == FieldDataType.Textarea || dataType == FieldDataType.Text)
                     {
                         if (this[key] != null && (this[key].ToString().ToUpperInvariant()).IndexOf(text, StringComparison.OrdinalIgnoreCase) != -1)
@@ -1345,7 +1337,7 @@ namespace OpenFramework.ItemManager
             string query = string.Empty;
             if (this.Definition.DataAdapter.GetKeyValue.StoredName == "#_getParams")
             {
-                StringBuilder result = new StringBuilder("SELECT ");
+                var result = new StringBuilder("SELECT ");
                 bool first = true;
                 foreach (StoredParameter param in this.Definition.DataAdapter.GetAll.Parameters)
                 {
@@ -1381,7 +1373,7 @@ namespace OpenFramework.ItemManager
             string query = string.Empty;
             if (this.Definition.DataAdapter.GetAll.StoredName == "#_getParams")
             {
-                StringBuilder result = new StringBuilder("SELECT ");
+                var result = new StringBuilder("SELECT ");
                 bool first = true;
                 foreach (StoredParameter param in this.Definition.DataAdapter.GetAll.Parameters)
                 {
@@ -1452,9 +1444,7 @@ namespace OpenFramework.ItemManager
             return ItemDefinition.Load(this.ItemName, instanceName);
         }
 
-        /// <summary>
-        /// Initialize the basics properties of an ItemBuilder instance
-        /// </summary>
+        /// <summary>Initialize the basics properties of an ItemBuilder instance</summary>
         /// <param name="itemName">Item name</param>
         /// <param name="resolveForeign">Indicates if must resolve foreign keys</param>
         /// <param name="instanceName">Name of instance</param>
@@ -1465,7 +1455,7 @@ namespace OpenFramework.ItemManager
             this.source = new Dictionary<string, object>();
             if (HttpContext.Current.Session["Items"] is Dictionary<string, ItemBuilder> items && items.ContainsKey(itemName.ToUpperInvariant()))
             {
-                ItemBuilder found = items[itemName.ToUpperInvariant()];
+                var found = items[itemName.ToUpperInvariant()];
                 this.Definition = found.Definition;
 
                 foreach (KeyValuePair<string, object> data in found.Values)
@@ -1485,8 +1475,8 @@ namespace OpenFramework.ItemManager
         /// <returns>Strign description of differences beetween two items</returns>
         public static string Differences(ItemBuilder old, ItemBuilder actual)
         {
-            StringBuilder res = new StringBuilder();
-            foreach(ItemField field in actual.Definition.Fields)
+            var res = new StringBuilder();
+            foreach(var field in actual.Definition.Fields)
             {
                 string oldValue = string.Empty;
                 string actualValue = string.Empty;
@@ -1585,10 +1575,10 @@ namespace OpenFramework.ItemManager
             // Prepara los campos vinculados
             if (this.Definition.Fields.Any(f => !string.IsNullOrEmpty(f.VinculatedTo)))
             {
-                List<ItemField> vinculados = this.Definition.Fields.Where(f => !string.IsNullOrEmpty(f.VinculatedTo)).ToList();
-                foreach (ItemField vinculado in vinculados)
+                var vinculados = this.Definition.Fields.Where(f => !string.IsNullOrEmpty(f.VinculatedTo)).ToList();
+                foreach (var vinculado in vinculados)
                 {
-                    object value = this[vinculado.VinculatedTo];
+                    var value = this[vinculado.VinculatedTo];
                     if (value == null)
                     {
                         this[vinculado.Name] = 0;

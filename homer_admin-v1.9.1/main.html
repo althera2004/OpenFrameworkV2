@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>    
 	
 	<!-- Vendor styles -->
@@ -15,12 +15,11 @@
     <link type="text/css" rel="stylesheet" href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link type="text/css" rel="stylesheet" href="/fonts/pe-icon-7-stroke/css/helper.css" />
     <link type="text/css" rel="stylesheet" href="/styles/style.css" />
-    <link type="text/css" rel="stylesheet" href="/styles/static_custom.css" />
-	
+    <link type="text/css" rel="stylesheet" href="/styles/static_custom.css" />	
 	
     <link type="text/css" rel="stylesheet" href="/vendor/sweetalert/lib/sweet-alert.css" />
     <link type="text/css" rel="stylesheet" href="/vendor/toastr/build/toastr.min.css" />
-
+	<link rel="stylesheet" type="text/css" href="/css/jquery.leroy-zoom.css">
 
 	<style type="text/css">
 		.dt-toolbar-footer{border-top:1px solid #ddd;}
@@ -91,6 +90,14 @@
 		.profile-picture { display:none; }
 		
 		.toast-message { color:#000!important;}
+		
+		#myModalDirtyResults TH { background-color:#e0e0e0; border:1px solid #ddd;padding:2px;}
+		#myModalDirtyResults TD { background-color:#fff; border:1px solid #ddd;padding:2px;}
+			.dataTables_scrollBody { background-color:#fff;
+			-webkit-box-shadow: inset 0px 0px 0px 1px rgba(221,221,221,1);
+			-moz-box-shadow: inset 0px 0px 0px 1px rgba(221,221,221,1);
+			box-shadow: inset 0px 0px 0px 1px rgba(221,221,221,1);
+		}
 	</style>
 
     <script type="text/javascript" src="/Dicc/common-es-es.js"></script>
@@ -98,33 +105,34 @@
     <script type="text/javascript" src="/vendor/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="/js/app.config.js"></script>
     <script type="text/javascript" src="/js/app.min.js"></script>
-    <script type="text/javascript" src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.js"></script>
-    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.resize.js"></script>
-    <script type="text/javascript" src="vendor/jquery-flot/jquery.flot.pie.js"></script>
-    <script type="text/javascript" src="vendor/flot.curvedlines/curvedLines.js"></script>
-    <script type="text/javascript" src="vendor/jquery.flot.spline/index.js"></script>
-    <script type="text/javascript" src="vendor/metisMenu/dist/metisMenu.min.js"></script>
-    <script type="text/javascript" src="vendor/iCheck/icheck.min.js"></script>
-    <script type="text/javascript" src="vendor/peity/jquery.peity.min.js"></script>
-    <script type="text/javascript" src="vendor/sparkline/index.js"></script>
+    <script type="text/javascript" src="/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/jquery-flot/jquery.flot.js"></script>
+    <script type="text/javascript" src="/vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="/vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script type="text/javascript" src="/vendor/flot.curvedlines/curvedLines.js"></script>
+    <script type="text/javascript" src="/vendor/jquery.flot.spline/index.js"></script>
+    <script type="text/javascript" src="/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script type="text/javascript" src="/vendor/iCheck/icheck.min.js"></script>
+    <script type="text/javascript" src="/vendor/peity/jquery.peity.min.js"></script>
+    <script type="text/javascript" src="/vendor/sparkline/index.js"></script>
     <!-- DataTables -->
-    <script type="text/javascript" src="vendor/datatables/media/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables/media/js/dataTables.colVis.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables/media/js/dataTables.colReorder.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables/media/js/dataTables.colVis.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables/media/js/dataTables.colReorder.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <!-- DataTables buttons scripts -->
-    <script type="text/javascript" src="vendor/pdfmake/build/pdfmake.min.js"></script>
-    <script type="text/javascript" src="vendor/pdfmake/build/vfs_fonts.js"></script>
-    <script type="text/javascript" src="vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" src="vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script type="text/javascript" src="/vendor/pdfmake/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="/vendor/pdfmake/build/vfs_fonts.js"></script>
+    <script type="text/javascript" src="/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="/vendor/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
 
     <!-- App scripts -->
-    <script type="text/javascript" src="scripts/homer.js"></script>
-    <script type="text/javascript" src="scripts/charts.js"></script>
+    <script type="text/javascript" src="/scripts/homer.js"></script>
+    <script type="text/javascript" src="/scripts/charts.js"></script>
+    <script type="text/javascript" src="/js/Layout.js"></script>
     <script type="text/javascript" src="/js/DataColumnFormat.js"></script>
     <script type="text/javascript" src="/js/Tools.js"></script>
     <script type="text/javascript" src="/js/base64.js"></script>
@@ -134,22 +142,27 @@
     <script type="text/javascript" src="/js/DataTable.js"></script>
     <script type="text/javascript" src="/js/ListColumn.js"></script>
     <script type="text/javascript" src="/js/Form.js"></script>
+    <script type="text/javascript" src="/js/FormFields.js"></script>
     <script type="text/javascript" src="/js/Navigation.js"></script>
     <script src="//cdn.jsdelivr.net/alasql/0.2/alasql.min.js"></script>
     <script type="text/javascript" src="/vendor/mask/jquery.maskedinput.js"></script>
 	
-	<link rel="stylesheet" type="text/css" href="/css/jquery.leroy-zoom.css">
 	<script type="text/javascript" src="/js/jquery.leroy-zoom.js"></script>
 	<script type="text/javascript" src="/js/Modals.js"></script>
-	<script type="text/javascript" src="/js/UploadImage.js"></script>	
+    <script type="text/javascript" src="/js/UploadImage.js"></script>	
+    <script type="text/javascript" src="/js/UploadDocument.js"></script>	
 	<script type="text/javascript" src="/vendor/sweetalert/lib/sweet-alert.min.js"></script>
 	<script type="text/javascript" src="/vendor/toastr/build/toastr.min.js"></script>
 	<script type="text/javascript" src="/js/3deye.min.js"></script>
-
+    <script src="/vendor/iCheck/icheck.min.js"></script>
 
     <script type="text/javascript">
+        $("#side-menu a").hide();
+		var PageType = "list";
+		var navigationHistory = [];
 		var filterList = [];
-		var FK = [];
+        var FK = [];
+        var ItemDefinitions = [];
         toastr.options = {
             "debug": true,
             "newestOnTop": false,
@@ -168,7 +181,7 @@
 		var CustomerName = "Playmobil";
         var MenuOptionId = 1;
         var queryParams = null;
-        var Data = null;//{ "Id": 84, "CompanyId": 1, "EnterpriseId": 134, "BusinessName": "Sorigue", "Tradename": "Sorigue", "ShortName": "Sorigue", "Adress": "Jaen, 10 - 4ºB", "TownId": 1433, "PostalCode": "48012", "ProvinceId": 1, "ProvinceDescription": "Barcelona", "CountryId": 1, "Webpage": "http://www.portalssgg.com", "Email": "", "Phone1": "946722083", "Phone2": "", "FaxNumber": "", "NIF": "B95646642", "FoundationYear": null, "CapitalStock": null, "CompanyGroup": "", "Notes": "", "Agent1Id": "", "Agent2Id": "", "ActivitySectorId": 25, "Activity": "Ingeniería Eléctrica", "CNAEId": null, "EmployeeNumber": null, "AnualBilling": null, "RegularSchedule": "", "SummerSchedule": "", "MarketingSelected": false, "MarketingSegmentation": "", "IsCustomer": false, "IsProvider": true, "Blocked": true, "IsIVACost": false, "ProviderApprovalEvaluation": "No Apto             ", "ProviderApprovalDate": "2014-01-30T00:00:00", "ApprovalScore": 0.00, "ApprovalScoreUpdateDate": "2014-12-30T00:00:00", "EnvironmentalCommitmentDate": "2011-07-22T00:00:00", "ServerFolder": "", "ClientFolder": "", "AuditorySubfolder": "", "IVACostPercentage": null, "Active": true, "CNAE": null,  "Description": "134 - AIELEK, S.L." };
+        var Data = null;
         var ItemDefinition = null;
 
         var itemNames = [];
@@ -182,11 +195,16 @@
             };
             console.log(actualUser);
 
+            $("#MyModalDocumentBtnClose").html("<i class=\"fa fa-close\"></i>&nbsp;" + Dictionary.Common_Close);
+            $("#MyModalDocumentBtnSave").html("<i class=\"fa fa-save\"></i>&nbsp;" + Dictionary.Common_Save);
+            $("#MyModalImageBtnClose").html("<i class=\"fa fa-close\"></i>&nbsp;" + Dictionary.Common_Close);
+            $("#MyModalImageBtnSave").html("<i class=\"fa fa-save\"></i>&nbsp;" + Dictionary.Common_Save);
+
             $(".profile-picture").html(LayoutMenuRender(actualUser));
 			$("#DivUserFullName").html(actualUser.FullName);
 			$("#DivUserJobPosition").html(actualUser.JobPosition);
 
-            $.getJSON("/api/menu.json?ac=" + guid(), function (json) {
+            $.getJSON("/Instances/" + CustomerName + "/menu.json?ac=" + guid(), function (json) {
                 $("#side-menu").html(MenuRender(json));
                 $('#side-menu').metisMenu();			
 
@@ -218,30 +236,32 @@
 			
 
             GetItemNames();
+
+            $("#search").attr("placeholder", Dictionary.Common_Search + "...");
         }
 
 		window.onresize = function () {
-			$("#main").height($(window).height() - $(".panel-body").height() - $(".footer").height() - $("#header").height() - 60);
-				$(".dataTables_scrollBody").css("height",($(window).height() - 330));
-				$("#thumbs_container").css("height",($(window).height() - 330));
+			ResizeWorkArea();
 		}
 		
-		function guid() {
-		  function s4() {
-			return Math.floor((1 + Math.random()) * 0x10000)
-			  .toString(16)
-			  .substring(1);
-		  }
-		  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+		function ResizeWorkArea() {
+			$("#main").height($(window).height() - $(".panel-body").height() - $(".footer").height() - $("#header").height() - 60);
+			$(".dataTables_scrollBody").css("height",($(window).height() - 310));
+			$("#thumbs_container").css("height",($(window).height() - 310));
 		}
 		
 		function ListFilterChanged(e) {
-			filterList["FilterText"] = e.currentTarget.value;
-			console.log(filterList["FilterText"]);			
+			var filterItem = {
+				"ItemName": ItemDefinition.ItemName,
+				"FilterText": e.currentTarget.value,
+			};
+			
+			filterList.push(filterItem);
+			console.log(filterItem);			
 		}
     </script>
 </head>
-<body class="fixed-sidebar fixed-navbar fixed-footer fixed-small-header">
+<body class="fixed-sidebar fixed-navbar fixed-footer fixed-small-header" oncontextmenu="return false;" onselectstart="return false;">
     <div id="header">
         <div class="color-line">
         </div>
@@ -252,7 +272,7 @@
             </div>
             <form role="search" class="navbar-form-custom" method="post" action="#">
                 <div class="form-group">
-                    <input type="text" placeholder="Buscar..." class="form-control" name="search">
+                    <input type="text" class="form-control" name="search" id="search" style="height:30px;margin-top:6px;">
                 </div>
             </form>
             <div class="mobile-menu">
@@ -405,11 +425,6 @@
                             <i class="pe-7s-upload pe-7s-news-paper"></i>
                         </a>
                     </li>
-                    <!--<li class="dropdown">
-                        <a href="login.html">
-                            <i class="pe-7s-upload pe-rotate-90"></i>
-                        </a>
-                    </li>-->
                 </ul>
             </div>
         </nav>
@@ -419,14 +434,20 @@
         <div id="navigation">
             <ul class="nav" id="side-menu"></ul>
         </div>
-
-        <div style="float:left;width:70%;border:1px solid #333;">
-            <button id="BtnModal"        type="button" data-toggle="modal" data-target="#myModal">modal</button>
-            <button id="BtnModalSucess"  type="button" data-toggle="modal" data-target="#myModalSuccess">Success</button>
-            <button id="BtnModalInfo"    type="button" data-toggle="modal" data-target="#myModalInfo">Info</button>
-            <button id="BtnModalWarning" type="button" data-toggle="modal" data-target="#myModalWarning">Warning</button>
-            <button id="BtnModalDelete"  type="button" data-toggle="modal" data-target="#myModalDelete">Danger</button>
-            <button id="BtnModalImage"   type="button" data-toggle="modal" data-target="#myModalImage">Image</button>
+		<div id="copyrightdiv" class="pull-leftt col-sm-2" style="bottom:0;position:fixed;">
+			Open<strong>Framework</strong>&nbsp;v3<br />
+			<i>Althera2004&nbsp;&copy;&nbsp;2015-2020</i>
+		</div>
+                
+        <div style="display:none;">
+            <button id="BtnModal"         type="button" data-toggle="modal" data-target="#myModal">modal</button>
+            <button id="BtnModalSucess"   type="button" data-toggle="modal" data-target="#myModalSuccess">Success</button>
+            <button id="BtnModalInfo"     type="button" data-toggle="modal" data-target="#myModalInfo">Info</button>
+            <button id="BtnModalWarning"  type="button" data-toggle="modal" data-target="#myModalWarning">Warning</button>
+            <button id="BtnModalDelete"   type="button" data-toggle="modal" data-target="#myModalDelete">Danger</button>
+            <button id="BtnModalImage"    type="button" data-toggle="modal" data-target="#myModalImage">Image</button>
+            <button id="BtnModalDocument" type="button" data-toggle="modal" data-target="#myModalDocument">Document</button>
+            <button id="BtnModalDirty"    type="button" data-toggle="modal" data-target="#myModalDirty">Dirty</button>
         </div>
     </aside>
 
@@ -435,6 +456,10 @@
             <!-- Panel de presentación de contenido -->
             <div class="hpanel" id="BreadCrumbDiv">
                 <div class="panel-body">
+					<div id="SerieButton" class="pull-right" style="margin-left:8px;display:none;">
+						<button class="btn btn-primary btn-success" style="height:20px;margin-top:2px;padding:0;" onclick="SerieShowPrevious();">&nbsp;&lt;&lt;&nbsp;</button>
+						<button class="btn btn-primary btn-success" style="height:20px;margin-top:2px;padding:0;" onclick="SerieShowNext();">&nbsp;&gt;&gt;&nbsp;</button>
+					</div>
                     <div id="hbreadcrumb" class="pull-right">
                         <ol class="hbreadcrumb breadcrumb">
                             <li><a href="index.html">Inicio</a></li>
@@ -443,13 +468,10 @@
                             </li>
                         </ol>
                     </div>
-                    <i class="fa fa-gears fa-2x"></i>
-                    <div style="display:inline-block;margin-left:8px;">
-                        <h2 class="font-light m-b-xs" id="PageTitle">
-                            Instancias
-                        </h2>
-                        <small id="PageSubtitle" style="font-size:12px!important;"></small>
-						<span id="SerieButton"><button onclick="SerieShowPrevious();">&lt;&lt;</button><button onclick="SerieShowNext();">&gt;&gt;</button></span>
+                    <i class="fa fa-gears fa-15x"></i>
+                    <div style="display:inline-block;margin-left:8px;margin-top:3px;">
+                        <h2 class="font-light m-b-xs pull-left" id="PageTitle" style="margin-top:2px;font-size:16px;"></h2>
+						<small id="PageSubtitle" style="font-size:14px!important;"></small>
                     </div>
                 </div>
             </div>
@@ -582,23 +604,9 @@
             </div>
 
             <!-- Footer-->
-            <footer class="footer">
-                <span class="pull-right" id="footer-button">
-                    <div class="btn-group">
-                        <button data-toggle="dropdown" class="btn btn-info dropdown-toggle">Acciones <span class="caret"></span></button>
-                        <ul class="dropdown-menu pull-right pull-top">
-                            <li><a href="#">Exportar lista a Excel&reg;</a></li>
-                            <li><a href="#">Imprimir en PDF</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Importar datos</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Configurar lista <i>(requires admin)</i></a></li>
-                        </ul>
-                    </div>
-                    <button class="btn btn-primary btn-success " type="button"><i class="fa fa-check"></i>&nbsp;Guardar</button>
-                </span>
-                Open<strong>Framework</strong>&nbsp;v3<br />
-                <i>Althera2004&nbsp;&copy;&nbsp;2015-2020</i>
+            <footer id="main-footer" class="footer" style="min-height:55px;">
+					<div class="col-sm-12" id="footer-left"></div>
+					<div class="col-sm-10" id="footer-right"><span id="footer-button" class="pull-right"></span></div>
             </footer>
         </div>
     </div>
@@ -665,6 +673,23 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade hmodal-warning" id="myModalDirty" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header">
+                    <h4 class="modal-title">Cambios sin grabar</h4>
+                    <small class="font-bold modal-subtitle">Hay modificaciones en los datos que no se han guardado.</small>
+                </div>
+                <div class="modal-body" id="myModalDirtyResults"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="myModalDirtyCancel" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="GoUrl();">Continuar</button>
+                    <button type="button" class="btn btn-primary" onclick="Save(GetFormData());GoUrl();">Guardar y continuar</button>
                 </div>
             </div>
         </div>
@@ -745,17 +770,60 @@
 						</div>
 					</div>
 					<div class="row" id="MyModalImageErrorMessageDiv">
-						<div class="ErrorMessage col-sm-12" id="MyModalImageErrorMessage"></span>
+						<div class="ErrorMessage col-sm-12" id="MyModalImageErrorMessage"></div>
 					</div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="UploadImageValidation();">Save changes</button>
+                    <button type="button" class="btn" id="MyModalImageBtnClose" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="MyModalImageBtnSave" onclick="UploadImageValidation();">Save changes</button>
                 </div>
             </div>
         </div>
     </div>
-	
-	
+    <div class="modal fade" id="myModalDocument" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="color-line"></div>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title"><span id="MyModalDocumentAction"></span>&nbsp;documento</h4>
+                    <small class="font-bold modal-subtitle" style="font-size:11px;">*Al terminar la acción no es necesario guardar el ítem.</small>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <span class="col-sm-12" style="font-size:12px;">Seleccionar documento para el campo <strong id="UploadDocumentFieldName"></strong></span>
+                    </div>
+                    <div class="row" style="padding:8px;display:none;">
+                        <label class="col-sm-2">Actual:</label>
+                        <label class="col-sm-10" id="MyModalDocumentActualName"></label>
+                    </div>
+                    <div class="row" style="padding:8px;">
+                        <label class="col-sm-2">Nombre:</label>
+                        <label class="col-sm-10" id="MyModalDocumentNuevoName"><i style="cursor:pointer;color:#777;" onclick="$('#UploadDocumentFile').click();">Seleccionar...</i></label>
+                        <label class="col-sm-2">Tipo:</label>
+                        <label class="col-sm-10" id="MyModalDocumentNuevoType">&nbsp;</label>
+                        <label class="col-sm-2">Tamaño:</label>
+                        <label class="col-sm-10" id="MyModalDocumentNuevoSize">&nbsp;</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">&nbsp;</div>
+                        <div class="col-sm-6">
+                            <input type="file" name="UploadDocumentFile" id="UploadDocumentFile" class="inputfile" />
+                            <label class="col-sm-12 btn btn-primary btn-success" for="UploadDocumentFile"><i class="fa fa-file"></i>&nbsp;Seleccionar documento</label>
+                        </div>
+                    </div>
+                    <div class="row" id="MyModalDocumentErrorMessageDiv">
+                        <div class="ErrorMessage col-sm-12" id="MyModalDocumentErrorMessage"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" id="MyModalDocumentBtnClose" data-dismiss="modal"></button>
+                        <button type="button" class="btn btn-primary" id="MyModalDocumentBtnSave" onclick="UploadDocumentValidation();">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </body>
 </html>

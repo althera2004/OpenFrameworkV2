@@ -54,7 +54,7 @@ namespace OpenFramework.ItemManager
         {
             get
             {
-                return new FKList()
+                return new FKList
                 {
                     fields = new List<string>(),
                     filter = null

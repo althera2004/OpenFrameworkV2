@@ -1,5 +1,6 @@
 {
     "ItemName": "MiPieza",
+	"Description": "Piezas de mi colección",
     "MustReload": true,
 	"Layout": 
 	{
@@ -43,9 +44,9 @@
             "FormId": "Custom",
             "Layout": 1,
             "EditAction": 3,
-			"Title": "Piezas de mi colección",
+			      "Title": "Piezas de mi colección",
             "CustomAjaxSource": "ITEM_MIPIEZA_GETALL",
-            "Parameters": [ {"Name": "ApplicationUserId", "Value": "#actualUser#"} ],
+            "Parameters": [ {"Name": "Owner", "Value": "#ApplicationUserId"} ],
             "Columns": [
                 { "DataProperty": "Nombre",  "ReplacedBy": "N", "Descriptible": true },
                 { "DataProperty": "Referencia",  "ReplacedBy": "R" }

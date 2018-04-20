@@ -29,8 +29,7 @@ public partial class Data_AsynchronousMessages : Page
     public static ActionResult SaveImage(string instanceName, string itemName, string itemField, long itemId, string image)
     {
         var res = ActionResult.NoAction;
-        byte[] bytes = Convert.FromBase64String(image);
-
+        var bytes = Convert.FromBase64String(image);
         string path = HttpContext.Current.Request.PhysicalApplicationPath;
         if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
         {
@@ -105,12 +104,11 @@ public partial class Data_AsynchronousMessages : Page
     }
 
     [WebMethod]
-    [ScriptMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static ActionResult SaveFile(string instanceName, string itemName, string fileName, long itemId, string data)
     {
         var res = ActionResult.NoAction;
-        byte[] bytes = Convert.FromBase64String(data);
-
+        var bytes = Convert.FromBase64String(data);
         string path = HttpContext.Current.Request.PhysicalApplicationPath;
         if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))
         {
@@ -127,7 +125,6 @@ public partial class Data_AsynchronousMessages : Page
             fileName);
 
         File.WriteAllBytes(path, bytes);
-        //imageBits.Save(path, ImageFormat.Png);
 
         string result = string.Format(
             CultureInfo.InvariantCulture,
@@ -143,22 +140,17 @@ public partial class Data_AsynchronousMessages : Page
     public static ActionResult RequestData()
     {
         var res = ActionResult.NoAction;
-
-        var IPAddress = string.Empty;
-        IPHostEntry Host = default(IPHostEntry);
-        string Hostname = null;
-        Hostname = System.Environment.MachineName;
-        Host = Dns.GetHostEntry(Hostname);
-        foreach (IPAddress IP in Host.AddressList)
+        var address = string.Empty;
+        var host = Dns.GetHostEntry(System.Environment.MachineName);
+        foreach (var ip in host.AddressList)
         {
-            if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
             {
-                IPAddress = Convert.ToString(IP);
+                address = Convert.ToString(ip);
             }
         }
 
-        res.SetSuccess(IPAddress);
-
+        res.SetSuccess(address);
         return res;
     }
 
@@ -169,11 +161,10 @@ public partial class Data_AsynchronousMessages : Page
         var res = ActionResult.NoAction;
 		try
 		{
-            CustomerFramework instance = CustomerFramework.Load(instanceName);
+            var instance = CustomerFramework.Load(instanceName);
 			string path = instance.DefinitionPath;
 			var filesPath = Directory.GetFiles(path, "*.item").ToList();
 			var files = new List<string>();
-
 			foreach (string fileName in filesPath)
 			{
 				files.Add(Path.GetFileNameWithoutExtension(fileName));

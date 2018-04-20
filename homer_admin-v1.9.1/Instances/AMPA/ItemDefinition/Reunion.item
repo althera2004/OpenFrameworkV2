@@ -1,0 +1,85 @@
+﻿{
+    "ItemName": "Reunion",
+    "MustReload": true,
+    "Layout": {
+        "Icon": "list",
+        "Label": "Reunión",
+        "LabelPlural": "Reuniones",
+        "Description": {
+            "Pattern": "{0}",
+            "Fields": [
+                { "Name": "Nombre" }
+            ]
+        },
+        "EditionType": "inline"
+    },
+    "ForeignValues": [ {"ItemName": "Integrante"}, { "ItemName": "ReunionTipo"} ],
+    "PrimaryKeys": [ ],
+    "Fields": [
+        { "Name": "Id", "Type": "long", "Required": true },
+        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+        { "Name": "FechaConvocacion", "Label": "Convocación", "Type": "datetime" },
+        { "Name": "FechaConvocatoria", "Label": "Convocatoria", "Type": "datetime" },
+        { "Name": "IntegranteId", "Label": "Convocante", "Type": "long", "Required": true, "ColumnDataType": "Text" },
+        { "Name": "ReunionTipoId", "Label": "Tipo", "Type": "long", "Required": true, "ColumnDataType": "Text" },
+        { "Name": "Abierta", "Label": "Abierta", "Type": "bool" }
+    ],
+  "Lists": [
+    {
+      "Id": "Custom",
+      "FormId": "Custom",
+      "Layout": 1,
+      "EditAction": 3,
+      "CustomAjaxSource": "ITEM_REUNION_GETALL",
+      "Columns": [
+        {
+          "DataProperty": "Nombre",
+          "ReplacedBy": "N"
+        },
+        {
+          "DataProperty": "FechaConvocatoria",
+          "ReplacedBy": "F"
+        },
+        {
+          "DataProperty": "ReunionTipoId",
+          "ReplacedBy": "T"
+        },
+        {
+          "DataProperty": "IntegranteId",
+          "ReplacedBy": "I"
+        }
+      ]
+    }
+  ],
+  "Forms": [
+    {
+      "Id": "Custom",
+      "FormType": "Custom",
+      "Tabs": [
+        {
+          "Label": "Datos",
+          "Rows": [
+            {
+              "Fields": [
+                { "Name": "Nombre" },
+                { "Name": "IntegranteId" }
+              ]
+            },
+            {
+              "Fields": [
+                { "Name": "FechaConvocacion" },
+                { "Name": "FechaConvocatoria" }
+              ]
+            },
+            {
+              "Fields": [
+                { "Name": "ReunionTipoId" },
+                { "Name": "Abierta" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

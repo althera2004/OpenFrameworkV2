@@ -1,17 +1,17 @@
-{
+﻿{
     "ItemName": "Pieza",
-	"Description": "Piezas de playmobil",
+	  "Description": "Piezas de playmobil",
     "MustReload": true,
-	"Layout": {
-    "Icon": "list",
-    "Label": "Pieza",
-    "LabelPlural": "Piezas",
-    "Description": {
-		"Pattern": "{0}",
-		"Fields": [ { "Name": "Nombre" } ]
+	  "Layout": {
+        "Icon": "list",
+        "Label": "Pieza",
+        "LabelPlural": "Piezas",
+        "Description": {
+		        "Pattern": "{0}",
+		        "Fields": [ { "Name": "Nombre" } ]
+        },
+        "EditionType": "inline"
     },
-    "EditionType": "inline"
-  },
     "ForeignValues": [ { "ItemName": "Tematica" } , { "ItemName":"Formato" } ],
     "PrimaryKeys": [ ],
     "Fields": [
@@ -25,13 +25,13 @@
         { "Name": "Imagen1", "Label": "Imagen1", "Type": "Image", "Zoom": true  },
         { "Name": "Imagen2", "Label": "Imagen2", "Type": "Image" },
         { "Name": "Year", "Label": "A&ntilde;o", "Type": "int" },
-		{ "Name": "Instrucciones", "Label": "Intrucciones", "Type": "DocumentFile" },
+		    { "Name": "Instrucciones", "Label": "Intrucciones", "Type": "DocumentFile", "MIME": ["image/png", "application/pdf"] },
         { "Name": "EdicionLimitada", "Label": "EdicionLimitada", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheckNull" } }
     ],
-	"FKList": {
-		"Fields": [ "Nombre", "Referencia", "TematicaId", "FormatoId" ],
-		"Filter": []
-	},
+	  "FKList": {
+        "Fields": [ "Nombre", "Referencia", "TematicaId", "FormatoId" ],
+        "Filter": []
+	  },
     "Lists": [
         {
             "Id": "Custom",
@@ -39,14 +39,13 @@
             "Layout": 1,
             "EditAction": 3,
             "CustomAjaxSource": "ITEM_PIEZA_GETALL",
-            "Sorting": [{"Index":1, "SortingType": "asc"}],
+            "Sorting": [{"Index": 2, "SortingType": "desc"}],
             "GridMode": "_default",
             "Columns": [
                 { "DataProperty": "Nombre",  "ReplacedBy": "N" },
                 { "DataProperty": "Referencia",  "ReplacedBy": "R" },
                 { "DataProperty": "TematicaId",  "ReplacedBy": "T" },
                 { "DataProperty": "FormatoId",  "ReplacedBy": "F" },
-                { "DataProperty": "EdicionLimitada",  "ReplacedBy": "E", "Render": "ToBooleanCheckNull" },
                 { "DataProperty": "Imagen", "ReplacedBy": "I", "Render": "ToSingleImageList" }
             ]
         }
@@ -55,6 +54,9 @@
         {
             "Id": "Custom",
             "FormType": "Custom",
+            "Buttons": [
+              {"Id": "AddToMiPieza", "Label": "Añadir a mi coleccion", "Action": "PIEZA_AddToCollection" }
+            ],
             "Tabs": [
                 {
                     "Rows": [
