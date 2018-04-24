@@ -2,7 +2,7 @@
     "ItemName": "Proveedor",
     "MustReload": true,
     "Layout": {
-        "Icon": "list",
+        "Icon": "suitcase",
         "Label": "Proveedor",
         "LabelPlural": "Proveedores",
         "Description": {
@@ -19,10 +19,22 @@
         { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
         { "Name": "Direccion", "Label": "Dirección", "Type": "text", "Required": true },
         { "Name": "Telefono", "Label": "Teléfono", "Type": "text" ,"Required": true },
-        { "Name": "Email", "Label": "Reunion", "Type": "email" },
+        { "Name": "Email", "Label": "Email", "Type": "email" },
         { "Name": "Web", "Label": "Web", "Type": "url" },
         { "Name": "CC", "Label": "CC", "Type": "text", "Length": 50 }
     ],
-    "Lists": [ ],
+    "Lists": [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "Columns": [
+                { "DataProperty": "Nombre" },
+                { "DataProperty": "Telefono" },
+                { "DataProperty": "Email" }
+            ]
+
+        } ],
     "Forms": [ ]
 }

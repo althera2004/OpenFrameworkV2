@@ -225,8 +225,6 @@ namespace OpenFramework.ItemManager
             {
                 switch (this.TypeName.ToUpperInvariant())
                 {
-                    case "TEXT":
-                        return FieldDataType.Text;
                     case "LONG":
                         if (this.Required == false)
                         {
@@ -296,9 +294,10 @@ namespace OpenFramework.ItemManager
                         return FieldDataType.DocumentFile;
                     case "FOLDER":
                         return FieldDataType.Folder;
+                    case "TEXT":
+                    default:
+                        return FieldDataType.Text;
                 }
-
-                return FieldDataType.Undefined;
             }
         }
 
@@ -400,9 +399,9 @@ namespace OpenFramework.ItemManager
                         return "Documento";
                     case FieldDataType.FixedList:
                         return "Lista fija";
+                    default:
+                        return "No definido";
                 }
-
-                return "No definido";
             }
         }
 
@@ -427,6 +426,7 @@ namespace OpenFramework.ItemManager
                 string res = string.Empty;
                 switch (this.DataType)
                 {
+                    case FieldDataType.FixedList:
                     case FieldDataType.Integer:
                     case FieldDataType.Long:
                     case FieldDataType.Decimal:
@@ -444,7 +444,7 @@ namespace OpenFramework.ItemManager
                     case FieldDataType.NullableDateTime:
                         res = string.Format(
                             CultureInfo.InvariantCulture,
-                            @"'""{0}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0},102) + '""', 'null') + '"",')",
+                            @"'""{0}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0}, 103) + '""', 'null') + ','",
                             this.Name);
                         break;
                     case FieldDataType.Boolean:
@@ -498,7 +498,7 @@ namespace OpenFramework.ItemManager
                     case FieldDataType.NullableDateTime:
                         res = string.Format(
                             CultureInfo.InvariantCulture,
-                            @"ISNULL('""' + CONVERT(varchar(11),Item.{0},102) + '""', 'null')",
+                            @"ISNULL('""' + CONVERT(varchar(11),Item.{0}, 102) + '""', 'null')",
                             this.Name);
                         break;
                     case FieldDataType.Boolean:
@@ -528,13 +528,12 @@ namespace OpenFramework.ItemManager
 
         /// <summary>Gets field refered by a foreign key</summary>
         /// <param name="item">Item source</param>
-        /// <param name="field">Field source</param>
         /// <returns>Field refered by a foreign key</returns>
-        public static ItemField GetReferedField(ItemBuilder item, ItemField field)
+        public ItemField GetReferedField(ItemBuilder item)
         {
-            if (field.Name.EndsWith("id", StringComparison.OrdinalIgnoreCase))
+            if (this.Name.EndsWith("id", StringComparison.OrdinalIgnoreCase))
             {
-                var foreignItem = field.Name.Substring(0, field.Name.Length - 2);
+                var foreignItem = this.Name.Substring(0, this.Name.Length - 2);
                 var foreingRelation = item.Definition.ForeignValues.FirstOrDefault(fv => fv.ItemName.Equals(foreignItem));
                 if (foreingRelation != null)
                 {
@@ -611,7 +610,7 @@ namespace OpenFramework.ItemManager
                 case FieldDataType.NullableDateTime:
                     res = string.Format(
                         CultureInfo.InvariantCulture,
-                        @"'""{1}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0},102) + '""', 'null') + '"",')",
+                        @"'""{1}"":' + ISNULL('""' + CONVERT(varchar(11),Item.{0}, 103) + '""', 'null') + ','",
                         this.Name,
                         replacedBy);
                     break;

@@ -1,1 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DataTableGetData.aspx.cs" Inherits="Data_DataTableGetData" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DataTableGetData.aspx.cs" Inherits="DataDataTableGetData" %>

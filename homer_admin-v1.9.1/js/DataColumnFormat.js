@@ -100,12 +100,11 @@ function ToBooleanIcon(value) {
 }
 
 function ToBooleanCheck(value) {
-    if (typeof value === "undefined") { return ""; }
-    if (value === null) { return ""; }
-    if (value === "") { return ""; }
-    if (value === true) { return "<i class=\"fa fa-lg fa-fw fa-check-square-o\"></i>"; }
-        if (value === false) { return "<i class=\"fa fa-lg fa-fw fa-square-o\"></i>"; }
-    return "";
+    if (typeof value !== "undefined" && value !== null && value === true) {
+        return "<i class=\"fa fa-lg fa-fw fa-check-square-o\"></i>";
+    }
+
+    return "<i class=\"fa fa-lg fa-fw fa-square-o\"></i>";
 }
 
 function ToBooleanCheckNull(value) {

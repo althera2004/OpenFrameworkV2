@@ -13,13 +13,26 @@
         },
         "EditionType": "inline"
     },
-    "ForeignValues": [],
+    "ForeignValues": [ ],
     "PrimaryKeys": [ ],
     "Fields": [
         { "Name": "Id", "Type": "long", "Required": true },
         { "Name": "Titulo", "Label": "Titulo", "Type": "text", "Length": 100, "Required": true },
-        { "Name": "Fecha", "Label": "Fecha", "Type": "date", "Required": true }
+        { "Name": "Contenido", "Label": "Contenido", "Type": "text", "Length": 2000, "Required": true },
+        { "Name": "Fecha", "Label": "Fecha", "Type": "datetime", "Required": true }
     ],
-    "Lists": [ ],
+    "Lists":  [
+        {
+            "Id": "Custom",
+            "FormId": "Custom",
+            "Layout": 1,
+            "EditAction": 3,
+            "CustomAjaxSource": "ITEM_ALUMNO_GETALL",
+            "Columns": [
+                { "DataProperty": "Titulo",  "ReplacedBy": "T" },
+                { "DataProperty": "Fecha", "ReplacedBy": "F"  }
+            ], 
+            "Sorting": [{"Index":1, "SortingType": "desc"}]
+        } ],
     "Forms": [ ]
 }

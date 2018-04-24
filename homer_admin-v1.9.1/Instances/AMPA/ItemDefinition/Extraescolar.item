@@ -1,10 +1,10 @@
 ﻿{
-    "ItemName": "Actividad",
+    "ItemName": "Extraescolar",
     "MustReload": true,
   "Layout": {
     "Icon": "list",
-    "Label": "Actividad",
-    "LabelPlural": "Actividades",
+    "Label": "Actividad extraescolar",
+    "LabelPlural": "Actividades extraescolares",
     "Description": {
       "Pattern": "{0}",
       "Fields": [
@@ -25,13 +25,13 @@
         { "Name": "LugarId", "Label": "Lugar", "Type": "long", "Required": true, "FK": true },
         { "Name": "TipoPago", "Label": "Tipo pago", "Type": "FixedList", "FixedListId": "TipoPagoExtraexcolar", "Required": true, "ColumnDataType": "Text" },
         { "Name": "PrecioUnico", "Label": "Precio único", "Type": "money", "Required": true },
+        { "Name": "Precio2", "Label": "Precio 2", "Type": "money" },
+        { "Name": "Precio3", "Label": "Precio 3", "Type": "money" },
         { "Name": "ProveedorId", "Label": "Proveedor", "Type": "long", "Required":  true },
         { "Name": "MonitorId", "Label": "Monitor", "Type": "long", "Required": true },
         { "Name": "QuorumMin", "Label": "Mínimo", "Type": "int" },
         { "Name": "QuorumMax", "Label": "Máximo", "Type": "int" },
-        { "Name": "FechaInicio", "Label": "Inicio", "Type": "datetime" },
-        { "Name": "Cesion", "Label": "Cesión", "Type": "document" },
-        { "Name": "Observaciones", "Label": "Observaciones", "Type": "text", "length": 2000 }
+        { "Name": "Cesion", "Label": "Cesión", "Type": "DocumentFile" }
     ],
     "Lists": [
         {
@@ -94,6 +94,12 @@
                             "Fields": [
                                 { "Name": "QuorumMin" },
                                 { "Name": "QuorumMax" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                              { "Name": "Cesion" },
+                              { "Type": 2 }
                             ]
                         }
                     ]

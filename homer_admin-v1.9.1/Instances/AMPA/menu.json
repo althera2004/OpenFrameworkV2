@@ -14,7 +14,7 @@
   },
   {
     "Leaf": true,
-    "Item": "Actividad",
+    "Item": "Extraescolar",
     "Label": "Actividades",
     "ListId": "Custom",
     "Id": 4
@@ -45,19 +45,25 @@
     "Options": [
       {
         "Type": "Leaf",
-        "Item": "Tematica",
-        "Label": "Temática",
+        "Item": "Cargo",
+        "Label": "Cargo",
         "ListId": "Custom",
         "Id": 2
       },
       {
         "Type": "Leaf",
-        "Item": "Formato",
-        "Label": "Formatos",
+        "Item": "Integrante",
+        "Label": "Integrantes",
         "ListId": "Custom",
         "Id": 3
+      },
+      {
+        "Type": "Leaf",
+        "Item": "Proveedor",
+        "Label": "Proveedores",
+        "ListId": "Custom",
+        "Id": 2
       }
-
     ]
   }
 ]

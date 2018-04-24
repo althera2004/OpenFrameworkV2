@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Data_DocumentGalleryUpload : Page
+public partial class DataDocumentGalleryUpload : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,14 +19,14 @@ public partial class Data_DocumentGalleryUpload : Page
         {
             if (this.Request.Files != null && this.Request.Files.Count > 0)
             {
-                long itemId = Convert.ToInt64(this.Request.Form["itemId"].ToString());
-                string itemName = this.Request.Form["itemName"].ToString();
-                string instanceName = this.Request.Form["InstanceName"].ToString();
-                string userDescription = this.Request.Form["UserDescription"].ToString();
-                bool name = this.Request.Form["name"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool normalize = this.Request.Form["normalize"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool serialize = this.Request.Form["serialize"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
-                bool replace = this.Request.Form["replace"].ToString().Equals("1", StringComparison.OrdinalIgnoreCase);
+                long itemId = Convert.ToInt64(this.Request.Form["itemId"]);
+                string itemName = this.Request.Form["itemName"];
+                string instanceName = this.Request.Form["InstanceName"];
+                string userDescription = this.Request.Form["UserDescription"];
+                bool name = this.Request.Form["name"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool normalize = this.Request.Form["normalize"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool serialize = this.Request.Form["serialize"].Equals("1", StringComparison.OrdinalIgnoreCase);
+                bool replace = this.Request.Form["replace"].Equals("1", StringComparison.OrdinalIgnoreCase);
 
                 var instance = CustomerFramework.Load(instanceName);
                 var file = this.Request.Files[0];
@@ -53,7 +53,7 @@ public partial class Data_DocumentGalleryUpload : Page
                             "{0}_{1}_{2}{3}",
                             itemName.ToUpperInvariant(),
                             itemId,
-                            file.FileName.ToString().ToUpperInvariant(),
+                            file.FileName.ToUpperInvariant(),
                             extension);
                         }
                         else

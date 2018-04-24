@@ -176,7 +176,7 @@
             GoEncryptedView("Pieza", 2, null);
         }
 
-        var codedQuery = "";
+        var codedQuery = document.location.toString();
 		var actualUser = null;
 		var CustomerName = "Playmobil";
         var MenuOptionId = 1;
@@ -193,7 +193,12 @@
                 "FullName": "Juan Castilla",
                 "JobPosition": "MegaMaster"
             };
+            console.log("queryParams", queryParams);
             console.log(actualUser);
+
+            if (typeof queryParams.instanceName !== "undefined") {
+                CustomerName = queryParams.instanceName;
+            }
 
             $("#MyModalDocumentBtnClose").html("<i class=\"fa fa-close\"></i>&nbsp;" + Dictionary.Common_Close);
             $("#MyModalDocumentBtnSave").html("<i class=\"fa fa-save\"></i>&nbsp;" + Dictionary.Common_Save);
@@ -285,7 +290,7 @@
                             <a class="" href="login.html">Login</a>
                         </li>
                         <li>
-                            <a class="" href="login.html">Logout</a>
+                            <a class="" onclick="document.location = '/login.html';">Logout</a>
                         </li>
                         <li>
                             <a class="" href="profile.html">Profile</a>
@@ -413,7 +418,7 @@
 								<a class="" href="login.html">Login</a>
 							</li>
 							<li>
-								<a class="" href="login.html">Logout</a>
+                                <span class="" onclick="document.location = '/login.html';">Logout</span>
 							</li>
 							<li>
 								<a class="" href="profile.html">Profile</a>

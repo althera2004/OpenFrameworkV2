@@ -14,7 +14,7 @@ using OpenFramework.Customer;
 using System.Collections.Generic;
 
 /// <summary>Implements retrieve data for foreing keyssummary>
-public partial class Data_FKScript : Page
+public partial class DataFKScript : Page
 {
     /// <summary>Page load event</summary>
     /// <param name="sender">This page</param>

@@ -22,7 +22,7 @@ using OpenFramework.Customer;
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [ScriptService]
-public partial class Data_AsynchronousMessages : Page
+public partial class DataAsynchronousMessages : Page
 {
     [WebMethod]
     [ScriptMethod]

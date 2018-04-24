@@ -11,7 +11,7 @@ using OpenFramework;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [ScriptService]
 
-public partial class Data_LogActions : Page
+public partial class DataLogActions : Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -48,7 +48,7 @@ public partial class Data_LogActions : Page
             }
             else
             {
-                using(StreamReader input = new StreamReader(finalPath))
+                using(var input = new StreamReader(finalPath))
                 {
                     res.ReturnValue = input.ReadToEnd();
                 }

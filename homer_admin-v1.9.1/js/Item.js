@@ -23,7 +23,7 @@ function GetListById(itemName, listId) {
     }
 
     for (var l = 0; l < item.Lists.length; l++) {
-        if (item.Lists[l].Id = listId) {
+        if (item.Lists[l].Id === listId) {
             return item.Lists[l];
         }
     }
@@ -106,13 +106,13 @@ function GetListDefinitionById(itemDefinition, listId) {
 function GetItemNames() {
 	console.log("GetItemNames");
     $.ajax({
-        type: "POST",
-        url: "/Data/AsynchronousMessages.aspx/GetAllItems",
-        data: JSON.stringify({ "instanceName": CustomerName }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: false,
-        success: function (msg) {            
+        "type": "POST",
+        "url": "/Data/AsynchronousMessages.aspx/GetAllItems",
+        "data": JSON.stringify({ "instanceName": CustomerName }),
+        "contentType": "application/json; charset=utf-8",
+        "dataType": "json",
+        "async": false,
+        "success": function (msg) {            
             console.log(msg.d.ReturnValue);
 			itemNames = msg.d.ReturnValue;
 			for(var x=0;x<itemNames.length;x++){
@@ -124,7 +124,7 @@ function GetItemNames() {
 				LoadItem(itemNames[n]);
 			}
         },
-        error: function (msg, text) {
+        "error": function (msg, text) {
             alert(text);
         }
     });
@@ -229,78 +229,77 @@ function Save(data) {
 
     console.log(sendData);
     $.ajax({
-        type: "POST",
-        url: "/Data/ItemDataBase.aspx/Save",
-        data: JSON.stringify(sendData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        async: false,
-        success: function (msg) {
+        "type": "POST",
+        "url": "/Data/ItemDataBase.aspx/Save",
+        "data": JSON.stringify(sendData),
+        "contentType": "application/json; charset=utf-8",
+        "dataType": "json",
+        "async": false,
+        "success": function (msg) {
             console.log(msg.d.ReturnValue);
             if (Data === null || Data.Id < 0) {
                 Data.Id = msg.d.ReturnValue.split('|')[1] * 1;
             }
             GetById(ItemDefinition.ItemName, Data.Id);
         },
-        error: function (msg, text) {
+        "error": function (msg, text) {
             console.log(msg);
         }
     });
 }
 
 function GetDifferences(obj1, obj2, _Q) {
-		_Q = (_Q == undefined)? new Array : _Q;        
+		_Q = (typeof _Q === "undefined")? new Array : _Q;        
 
-		function size(obj) {
-	        var size = 0;
-	        for (var keyName in obj){
-	        	if(keyName != null) size++;
-	        }
-	        return size;
-	    };
+        function size(obj) {
+            var size = 0;
+            for (var keyName in obj) {
+                if (keyName !== null) size++;
+            }
+            return size;
+        };
  
-		if (size(obj1) != size(obj2)) {
+		if (size(obj1) !== size(obj2)) {
 			//console.log('JSON compare - size not equal > '+keyName)
 		};
  
-		var newO2 = jQuery.extend(true, {}, obj2);
+        var newO2 = jQuery.extend(true, {}, obj2);
+
+        for (var keyName in obj1) {
+            var value1 = obj1[keyName], value2 = obj2[keyName];
+
+            delete newO2[keyName];
+
+            if (typeof value1 !== typeof value2 && value2 === undefined) {
+                _Q.push(["missing", keyName, value1, value2])
+            } else if (typeof value1 !== typeof value2) {
+                _Q.push(["diffType", keyName, value1, value2])
+            } else {
+                // For jQuery objects:
+                if (value1 && value1.length && (value1[0] !== undefined && value1[0].tagName)) {
+                    if (!value2 || value2.length !== value1.length || !value2[0].tagName || value2[0].tagName !== value1[0].tagName) {
+                        _Q.push(["diffJqueryObj", keyName, value1, value2])
+                    }
+                } else if (value1 && value1.length && (value1.tagName !== value2.tagName)) {
+                    _Q.push(["diffHtmlObj", keyName, value1, value2])
+                } else if (typeof value1 === "function" || typeof value2 === "function") {
+                    _Q.push(["function", keyName, value1, value2])
+                } else if (typeof value1 === "object") {
+                    var equal = GetDifferences(value1, value2, _Q);
+                } else if (value1 !== value2 && keyName !== "Active") {
+                    _Q.push(["diffValue", keyName, value1, value2])
+                }
+            };
+        }
  
-	    for(var keyName in obj1){
-	        var value1 = obj1[keyName],
-	        	value2 = obj2[keyName];
- 
-			delete newO2[keyName];
- 
-			if (typeof value1 != typeof value2 && value2 == undefined) {
-				_Q.push(['missing', keyName, value1, value2])
-			}else if (typeof value1 != typeof value2) {
-				_Q.push(['diffType', keyName, value1, value2])
-			}else{
-		        // For jQuery objects:
-		        if (value1 && value1.length && (value1[0] !== undefined && value1[0].tagName)) {
-					if (!value2 || value2.length != value1.length || !value2[0].tagName || value2[0].tagName != value1[0].tagName) {
-						_Q.push(['diffJqueryObj', keyName, value1, value2])
-					}
-				}else if(value1 && value1.length && (value1.tagName !== value2.tagName)){
-					_Q.push(['diffHtmlObj', keyName, value1, value2])
-				}else if (typeof value1 == 'function' || typeof value2 == 'function') {
-					_Q.push(['function', keyName, value1, value2])
-				}else if(typeof value1 == 'object'){
-					var equal = GetDifferences(value1, value2, _Q);
-				}else if (value1 != value2 && keyName !== "Active") {
-					_Q.push(['diffValue', keyName, value1, value2])
-				}
-			};
-	    }
- 
-        for (var keyName in newO2) {
+        for (var key_Name in newO2) {
             var oldValue = "";
 
             // si es nuevo no hay obj1
             if (obj1 !== null) {
-                oldValue = obj1[keyName];
+                oldValue = obj1[key_Name];
             }
-			_Q.push(['new', keyName, oldValue, newO2[keyName]])
+            _Q.push(["new", key_Name, oldValue, newO2[key_Name]])
 		}
  
 		/*
@@ -317,13 +316,13 @@ function GetDifferences(obj1, obj2, _Q) {
         };
 
         $.ajax({
-            type: "POST",
-            url: "/Data/ItemDataBase.aspx/GetByIdJson",
-            data: JSON.stringify(dataSent),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: false,
-            success: function (msg) {
+            "type": "POST",
+            "url": "/Data/ItemDataBase.aspx/GetByIdJson",
+            "data": JSON.stringify(dataSent),
+            "contentType": "application/json; charset=utf-8",
+            "dataType": "json",
+            "async": false,
+            "success": function (msg) {
                 eval("Data=" + msg.d + ";");
                 console.log(Data);
                 FillForm(Data);
@@ -343,7 +342,7 @@ function GetDifferences(obj1, obj2, _Q) {
                 });
 
             },
-            error: function (msg, text) {
+            "error": function (msg, text) {
                 alert(text);
             }
         });

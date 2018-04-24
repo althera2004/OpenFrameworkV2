@@ -2,13 +2,13 @@
 
 function RenderFooterButtons(formDefinition) {
     var res = "";
+    var noGroupButtons = "";
+    var GroupButtons = "";
     if (typeof formDefinition.Buttons !== "undefined" && formDefinition.Buttons !== null) {
         formDefinition.Buttons.sort(function (a, b) {
             return a.Group - b.Group;
         });
 
-        var noGroupButtons = "";
-        var GroupButtons = "";
 
         var actualGroup = formDefinition.Buttons[0].Group;
         var firstButtonGroup = true;
@@ -24,7 +24,6 @@ function RenderFooterButtons(formDefinition) {
                     GroupButtons += "<li class=\"divider\"></li>";
                 }
 
-                var button = formDefinition.Buttons[x];
                 var icon = typeof button.Icon === "undefined" ? "" : button.Icon;
                 var paddingLeft = typeof button.Icon === "undefined" ? "20" : "10";
                 GroupButtons += "<li><a style=\"padding:3px 20px 3px " + paddingLeft + "px;\" href=\"#\"><span class=\"fa " + icon + "\" style=\"display:inline;\"></span>&nbsp;&nbsp;" + JavaScriptText(button.Label) + "</a></li>";
@@ -39,7 +38,6 @@ function RenderFooterButtons(formDefinition) {
             res += GroupButtons;
             res += "</ul></div>";
         }
-
     }
 
     res += noGroupButtons;
@@ -91,6 +89,8 @@ function RenderRow(itemDefinition, rowDefinition) {
             var fieldName = rowDefinition.Fields[x].Name;
 
             var type = rowDefinition.Fields[x].Type;
+            var span = CalculateSpan(rowDefinition.Fields.length);
+            var spanFinal = span.Label + span.Field;
             if (type === 1) {
                 /*var span = CalculateSpan(rowDefinition.Fields.length);
                 var spanFinal = span.Label + span.Field;
@@ -100,13 +100,9 @@ function RenderRow(itemDefinition, rowDefinition) {
                 footerButtons.push({ "Id": rowDefinition.Fields[x].Name, "Label": rowDefinition.Fields[x].Label });
             }
             else if (type === 2) {
-                var span = CalculateSpan(rowDefinition.Fields.length);
-                var spanFinal = span.Label + span.Field;
                 res += "<div class=\"col-md-" + spanFinal + "\">&nbsp;</div>";
             }
             else if (type === 4) {
-                var span = CalculateSpan(rowDefinition.Fields.length);
-                var spanFinal = span.Label + span.Field;
                 res += "<div class=\"col-md-" + spanFinal + "\" id=\"" + fieldName + "\">&nbsp;</div>";
             }
             else {
@@ -154,7 +150,6 @@ function RenderRow(itemDefinition, rowDefinition) {
                             res += RenderDocumentField(field, rowDefinition.Fields[x], rowDefinition.Fields.length);
                             break;
                         default:
-                            var span = CalculateSpan(rowDefinition.Fields.length);
                             res += "         <label id=\"" + field.Name + "Label\" class=\"col-sm-" + span.Label + " control-label\">" + field.Label + "</label>" +
                                 "         <label id=\"" + field.Name + "\" class=\"col-sm-" + span.Field + " control-label\">" + field.Type.toUpperCase() + "</label>";
                             break;
@@ -165,8 +160,10 @@ function RenderRow(itemDefinition, rowDefinition) {
     }
 
     if (typeof rowDefinition.ItemList !== "undefined") {
+        console.log("RenderRow", rowDefinition.ItemList )
         res += rowDefinition.ListId;
-        res += "<pre>" + GetListById(rowDefinition.ItemList, rowDefinition.ListId) + "</pre>";
+        res += "<pre>" + JSON.stringify(GetListById(rowDefinition.ItemList, rowDefinition.ListId)) + "</pre>";
+        res += "<div class=\"panel-body\" id=\"List" + rowDefinition.ItemList + "_" + rowDefinition.ListId + "\">hola</div>";
 
     }
 
@@ -183,25 +180,39 @@ function RenderTab(itemDefinition, tabDefinition) {
     return res;
 }
 
-function RenderForm(itemDefinition, formDefinition) {
-    footerButtons = [];
+function RenderTabsSelector(formDefinition) {
+    // Render tabs selector
     var res = "";
-    var resTabs = "";
-    var tabSelector = "";
-
     if (formDefinition.Tabs.length > 0) {
-        tabSelector = "<ul class=\"nav nav-tabs\" style=\"background-color:#f7f7f7;\">";
+        res = "<ul class=\"nav nav-tabs\" style=\"background-color:#f7f7f7;\">";
         for (var t = 0; t < formDefinition.Tabs.length; t++) {
             var label = formDefinition.Tabs[t].Label;
             if (typeof label === "undefined" || label === null || label === "") {
                 label = Dictionary.Common_MainTab;
             }
+            var style = t === 0 ? " style=\"margin-left:12px;margin-top:12px;\"" : " style=\"margin-left:4px;margin-top:12px;\"";
             var cssClass = t === 0 ? "active" : "";
-            tabSelector += "<li class=\"" + cssClass + "\"><a data-toggle=\"tab\" href=\"#tab-" + (t + 1) + "\">" + label + "</a></li>";
+            res += "<li class=\"" + cssClass + "\"" + style + "><a data-toggle=\"tab\" href=\"#tab-" + (t + 1) + "\">" + label + "</a></li>";
         }
 
-        tabSelector += "</ul>";
+        res += "</ul>";
     }
+
+    return res;
+}
+
+function RenderForm(itemDefinition, formDefinition) {
+    console.clear();
+    console.log("RenderForm", formDefinition);
+
+    if (typeof formDefinition === "undefined" || formDefinition === null) {
+        formDefinition = CreateDefaultForm(ItemDefinition);
+    }
+
+    footerButtons = [];
+    var res = "";
+    var resTabs = "";
+    var tabSelector = RenderTabsSelector(formDefinition);
 
     for (var x = 0; x < formDefinition.Tabs.length; x++) {
         resTabs += "<li class=\"" + (x === 0 ? " active" : "") + "\">";
@@ -218,6 +229,22 @@ function RenderForm(itemDefinition, formDefinition) {
         res += RenderTab(itemDefinition, formDefinition.Tabs[x]);
         res += "</div></div>";
     }
+
+    //Renderizar listas internas
+    var formLists = [];
+    for (var t = 0; t < formDefinition.Tabs.length; t++) {
+        for (var r = 0; r < formDefinition.Tabs[t].Rows.length; r++) {
+            if (typeof formDefinition.Tabs[t].Rows[r].ItemList !== "undefined") {
+                formLists.push(formDefinition.Tabs[t].Rows[r]);
+            }
+        }
+    }
+
+    for (var l = 0; l < formLists.length; l++) {
+        $("#List" + formLists[l].ItemList + "_" + formLists[l].ListId).html("wwwwww");
+    }
+
+    console.log("formlists", formLists);
 
     $("#MainForm").prepend(tabSelector);
 
@@ -323,15 +350,15 @@ function HideAlertPanel() {
 
 function DeleteImage(fieldName) {
 	swal({
-		title: "Are you sure?",
-		text: "Your will not be able to recover this imaginary file!",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Yes, delete it!",
-		cancelButtonText: "No, cancel plx!",
-		closeOnConfirm: true,
-		closeOnCancel: false },
+		"title": "Are you sure?",
+		"text": "Your will not be able to recover this imaginary file!",
+		"type": "warning",
+		"showCancelButton": true,
+		"confirmButtonColor": "#DD6B55",
+		"confirmButtonText": "Yes, delete it!",
+		"cancelButtonText": "No, cancel plx!",
+		"closeOnConfirm": true,
+		"closeOnCancel": false },
 	function (isConfirm) {
 		if (isConfirm) {
 			DeleteImageConfirmed(fieldName);
@@ -421,7 +448,17 @@ function GetFormData() {
 			else if(field.Type === "boolean"){
 				var n = $("#" + field.Name + ":checked" ).length;
 				fieldValue = n === 1;
-			}
+            }
+            else if (field.Type === "datetime") {
+                if ($("#" + field.Name).val() === "") {
+                    fieldValue = null;
+                }
+                else {
+                    fieldValue = $("#" + field.Name).val();
+                }
+
+                console.log("GetFormData Datetime", fieldValue);
+            }
 			else {
 				fieldValue = $("#" + field.Name).val();
 			}
@@ -434,4 +471,81 @@ function GetFormData() {
 	data["Active"] = true;
     console.log("Data", data);
     return data;
+}
+
+function CreateDefaultForm(definition) {
+
+    var res = {
+        "Id": "Custom",
+        "FormType": "Custom",
+        "Tabs":
+        [
+            {
+                "Label": "Datos principales",
+                "Rows": []
+            }
+        ]
+    }
+
+    var pair = false;
+    for (var f = 0; f <definition.Fields.length; f++){
+        var row = {
+            "Fields": [{ "Name": definition.Fields[f].Name }]
+        }
+        res.Tabs[0].Rows.push(row);
+    }
+
+    /*{
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },
+                                { "Name": "LugarId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "ProveedorId" },
+                                { "Name": "MonitorId" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "PrecioUnico" },
+                                { "Name": "TipoPago" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Precio2" },
+                                { "Name": "Precio3" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "QuorumMin" },
+                                { "Name": "QuorumMax" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Label": "Inscripciones",
+                    "Rows": [
+                        {
+                            "ItemList": "Inscripcion",
+                            "ListId": "Custom",
+                            "FilterFields": [ { "Field": "Actividad" } ]
+                        }
+                    ]
+                }
+            ]
+        }*/
+
+    return res;
 }

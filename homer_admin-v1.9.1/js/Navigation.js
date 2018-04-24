@@ -1,7 +1,7 @@
 ﻿var urlDestination = null;
-function PreventDirty(url){
+function PreventDirty(url, directLink){
 	urlDestination = url;
-	if(PageType === "form"){
+    if (typeof PageType !== "undefined" && PageType !== null && PageType === "form"){
 		var origin = Data;
 		var actual = GetFormData();
 		if(JSON.stringify(origin) !== JSON.stringify(actual))
@@ -18,9 +18,16 @@ function PreventDirty(url){
 					"</tr></thead>";
 					
             for (var x = 0; x < differences.length; x++){
+                if (differences[x][1] === "Active") {
+                    continue;
+                }
                 var field = GetFieldByName(ItemDefinition, differences[x][1]);
 
-                var label = field.Label;
+                var label = field.Name;
+                if (typeof field.Label !== "undefined" && field.Label !== null) {
+                    label = field.Label;
+                }
+
                 var oldValue = differences[x][2];
                 var newValue = differences[x][3];
 
@@ -59,18 +66,26 @@ function PreventDirty(url){
 		}
 	}
 	
-	GoUrl(url);
+	GoUrl(url, directLink);
 }
 
-function GoUrl(url) {
+function GoUrl(url, directLink) {
 	$("#myModalDirtyCancel").click()
 	if(typeof url === "undefined"){
 		url = urlDestination;
 	}
 	
-	urlDestination = null;
-	navigationHistory.push(url);
-	loadURL(url, $("#main"));
+    urlDestination = null;
+    if (typeof navigationHistory !== "undefined" && navigationHistory !== null) {
+        navigationHistory.push(url);
+    }
+
+    if (typeof directLink !== "undefined" && directLink !== null && directLink === true) {
+        document.location = url;
+    }
+    else {
+        loadURL(url, $("#main"));
+    }
 }
 
 function ViewImagePage(controlId) {
@@ -123,6 +138,23 @@ function GoEncryptedList(ItemName, listId) {
 	
 	var url = "ItemList.html?" + query;
 	PreventDirty(url);
+}
+
+function GoEncryptedUrl(url, params, directLink) {
+    console.log("GoEncryptedUrl");
+    var query = "";
+    //Añadir el id de la lista a la query
+    if (typeof params !== "undefined" && params !== null && params) {
+        //var paramstext = JSON.stringify(params).toString().split('":').join('=').split('\':').join('=').split('"').join('&').split('\'').join('&').split(',').join('').split('{').join('').split('}').join('');
+        var paramstext = JSON.stringify(params).toString().split('":').join('=').split('\':').join('=').split(',"').join('&').split('\'').join('&').split(',').join('').split('{').join('&').split('}').join('').split('"').join('').split('\'').join('');
+        query = $.base64.encode(guid() + paramstext);
+    }
+    else {
+        query = $.base64.encode(guid());
+    }
+
+    var finalUrl = url + "?" + query;
+    PreventDirty(finalUrl, directLink);
 }
 
 function DecodeEncryptedQuery() {

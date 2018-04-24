@@ -20,7 +20,7 @@
         { "Name": "Apellidos", "Label": "Apellidos", "Type": "text", "Length": 100, "Required": true },
         { "Name": "CursoId", "Label": "Curso", "Type": "long", "ColumnDataType": "Text", "FK": true },
         { "Name": "TutorId", "Label": "Tutor", "Type": "long", "ColumnDataType": "Text", "FK": true },
-        { "Name": "CuotaAmpa", "Label": "Cuota", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheckNull" } }
+        { "Name": "CuotaAmpa", "Label": "Cuota", "Type": "boolean", "DataFormat": { "Name": "ToBooleanCheck" } }
     ],
     "Lists": [
         {
@@ -33,11 +33,9 @@
                 { "DataProperty": "Nombre",  "ReplacedBy": "N" },
                 { "DataProperty": "CursoId", "ReplacedBy":"C" },
                 { "DataProperty": "TutorId", "ReplacedBy":"T" },
-                { "DataProperty": "CuotaAmpa", "ReplacedBy": "Cu" }
+                { "DataProperty": "CuotaAmpa", "ReplacedBy": "Cu"  }
             ], 
-            "CustomAjaxSource": "ITEM_PIEZA_GETALL",
-            "Sorting": [{"Index":1, "SortingType": "asc"}],
-            "GridMode": "_default"
+            "Sorting": [{"Index":1, "SortingType": "asc"}]
         },
         {
             "Id": "ByCurso",
@@ -81,13 +79,13 @@
                     ]
                 },
                 {
-                    "Label": "Inscripciones",
+                    "Label": "Extraescolares",
                     "Rows": [
-                        {
-                            "ItemList": "Inscripcion",
-                            "ListId": "ByAlumno",
-                            "FilterFields": [ { "Field": "Alumno" } ]
-                        }
+                      {
+                        "ItemList": "Inscripcion",
+                        "ListId": "ByAlumno",
+                        "FilterFields": [ { "Field": "Alumno" } ]
+                      }
                     ]
                 }
             ]

@@ -21,7 +21,7 @@ using OpenFramework.ItemManager;
 using OpenFramework.Security;
 using OpenFramework.Customer;
 
-public partial class Data_ItemUpload : Page
+public partial class DataItemUpload : Page
 {
     private CustomerFramework instance;
 
@@ -775,7 +775,7 @@ public partial class Data_ItemUpload : Page
                 cellValue = ToolsXlsx.GetValue<string>(cell);
                 break;
             default:
-                cellValue = string.Format(CultureInfo.InvariantCulture, @"""{0}""", dataType.ToString());
+                cellValue = string.Format(CultureInfo.InvariantCulture, @"""{0}""", dataType);
                 break;
         }
 

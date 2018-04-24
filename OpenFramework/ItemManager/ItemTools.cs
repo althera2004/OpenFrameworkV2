@@ -22,7 +22,7 @@ namespace OpenFramework.ItemManager
                 return string.Empty;
             }
 
-            StringBuilder query = new StringBuilder("SELECT Id,CompanyId,");
+            var query = new StringBuilder("SELECT Id,CompanyId,");
             foreach (ItemField field in item.Definition.Fields.Where(f => f.DataType != FieldDataType.Image))
             {
                 if (!item.Definition.ForeignValues.Any(l => !string.IsNullOrEmpty(l.LinkField) && l.LocalName == field.Name))
@@ -67,10 +67,10 @@ namespace OpenFramework.ItemManager
 
         public static ReadOnlyCollection<ItemField> FieldsDescription(ItemBuilder item)
         {
-            List<ItemField> res = new List<ItemField>();
+            var res = new List<ItemField>();
             if (item.Definition.Layout.Description != null)
             {
-                foreach (ItemDescriptionField field in item.Definition.Layout.Description.Fields)
+                foreach (var field in item.Definition.Layout.Description.Fields)
                 {
                     foreach(var fieldData in item.Definition.Fields)
                     {
@@ -89,7 +89,7 @@ namespace OpenFramework.ItemManager
 
         public static ReadOnlyCollection<ItemField> FieldForeingLines(ItemBuilder item)
         {
-            List<ItemField> fields = item.Definition.Fields.Where(i => item.Definition.FKList.Fields.Contains(i.Name)).ToList();
+            var fields = item.Definition.Fields.Where(i => item.Definition.FKList.Fields.Contains(i.Name)).ToList();
             return new ReadOnlyCollection<ItemField>(fields.Where(f => FieldsDescription(item).Select(a => a.Name).ToList().Contains(f.Name) == false).ToList());
         }
 
@@ -118,7 +118,7 @@ namespace OpenFramework.ItemManager
             var nfield = item.Definition.Layout.Description.Pattern.ToCharArray().Count(c => c.Equals('{'));
             for (var x = 0; x < nfield; x++)
             {
-                descriptionFieldLine = descriptionFieldLine.Replace("{" + x.ToString() + "}", "#" + x.ToString() + " ");
+                descriptionFieldLine = descriptionFieldLine.Replace("{" + x + "}", "#" + x + " ");
             }
 
             var parts = descriptionFieldLine.Split(' ');
@@ -137,7 +137,7 @@ namespace OpenFramework.ItemManager
 
             for (var x = 0; x < nfield; x++)
             {
-                descriptionFieldLine = descriptionFieldLine.Replace("#" + x.ToString(), descriptionFieldList[x]);
+                descriptionFieldLine = descriptionFieldLine.Replace("#" + x, descriptionFieldList[x]);
             }
 
             string additionalWhere = string.Empty;
@@ -175,7 +175,7 @@ namespace OpenFramework.ItemManager
 
         public static string QueryByListId(ItemBuilder item, Dictionary<string, string> parameters, string listId)
         {
-            var list = item.Definition.Lists.Where(l => l.Id.Equals(listId, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var list = item.Definition.Lists.FirstOrDefault(l => l.Id.Equals(listId, StringComparison.OrdinalIgnoreCase));
             if(list == null)
             {
                 return QueryGetAll(item);
@@ -187,8 +187,8 @@ namespace OpenFramework.ItemManager
 
             foreach (var column in list.Columns)
             {
-                var field = item.Definition.Fields.Where(f => f.Name.Equals(column.DataProperty, StringComparison.OrdinalIgnoreCase)).First();
-                var referedField = ItemField.GetReferedField(item, field);
+                var field = item.Definition.Fields.First(f => f.Name.Equals(column.DataProperty, StringComparison.OrdinalIgnoreCase));
+                var referedField = field.GetReferedField(item);
 
                 var queryField = string.Empty;
                 if (referedField != null)
@@ -201,11 +201,12 @@ namespace OpenFramework.ItemManager
                         Environment.NewLine);
                     innerJoin.Append(joinClause);
 
-                    var referedFieldQuery = referedField.SqlFieldExtractor.Replace("Item.", "J" + joinCount.ToString() + ".");
+                    var referedFieldQuery = referedField.SqlFieldExtractor.Replace("Item.", "J" + joinCount + ".");
+                    referedFieldQuery = referedFieldQuery.Replace("\"" + referedField.Name + "\"", "\"" + field.Name + "\"");
 
                     if (!string.IsNullOrEmpty(column.ReplacedBy))
                     {
-                        referedFieldQuery = referedFieldQuery.Replace(@"""" + referedField.Name + @""":", @"""" + column.ReplacedBy + @""":");
+                        referedFieldQuery = referedFieldQuery.Replace(@"""" + field.Name + @""":", @"""" + column.ReplacedBy + @""":");
                     }
 
                     res.Append(referedFieldQuery);

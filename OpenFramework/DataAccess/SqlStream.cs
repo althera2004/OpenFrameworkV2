@@ -18,21 +18,21 @@ namespace OpenFramework.DataAccess
         public static string GetSqlStream(string storedName, ReadOnlyCollection<SqlParameter> parameters, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(storedName))
+            using (var cmd = new SqlCommand(storedName))
             {
                 if (parameters != null)
                 {
                     if (parameters.Count > 0)
                     {
-                        foreach (SqlParameter p in parameters)
+                        foreach (var parameter in parameters)
                         {
-                            cmd.Parameters.Add(p);
+                            cmd.Parameters.Add(parameter);
                         }
                     }
                 }
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLJSONStream(cmd);
@@ -55,10 +55,10 @@ namespace OpenFramework.DataAccess
         public static string GetSqlQueryStreamNoParams(string query, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
                 cmd.CommandType = CommandType.Text;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLJSONStream(cmd);
@@ -71,10 +71,10 @@ namespace OpenFramework.DataAccess
         public static string GetSqlStreamNoParams(string storedName, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(storedName))
+            using (var cmd = new SqlCommand(storedName))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLJSONStream(cmd);
@@ -87,7 +87,7 @@ namespace OpenFramework.DataAccess
         public static string GetSqlStream(string storedName, bool core, string scopeViewList, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(storedName))
+            using (var cmd = new SqlCommand(storedName))
             {
                 if (core)
                 {
@@ -99,7 +99,7 @@ namespace OpenFramework.DataAccess
                 }
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLJSONStream(cmd);
@@ -112,10 +112,10 @@ namespace OpenFramework.DataAccess
         public static string GetbyStored(string storedName, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(storedName))
+            using (var cmd = new SqlCommand(storedName))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLToJSON(cmd);
@@ -128,10 +128,10 @@ namespace OpenFramework.DataAccess
         public static string GetByQuerySimple(string query, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
                 cmd.CommandType = CommandType.Text;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLStreamSimple(cmd);
@@ -150,10 +150,10 @@ namespace OpenFramework.DataAccess
         public static string GetByQuery(string query, string connectionString)
         {
             string res = ConstantValue.EmptyJsonList;
-            using (SqlCommand cmd = new SqlCommand(query))
+            using (var cmd = new SqlCommand(query))
             {
                 cmd.CommandType = CommandType.Text;
-                using (SqlConnection cnn = new SqlConnection(connectionString))
+                using (var cnn = new SqlConnection(connectionString))
                 {
                     cmd.Connection = cnn;
                     res = Basics.SQLStreamList(cmd);

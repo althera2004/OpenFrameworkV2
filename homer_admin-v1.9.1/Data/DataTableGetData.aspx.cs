@@ -13,7 +13,7 @@ using OpenFramework.ItemManager;
 using OpenFramework.CRUD;
 using OpenFramework.Customer;
 
-public partial class Data_DataTableGetData : Page
+public partial class DataDataTableGetData : Page
 {
     /// <summary>Page load event</summary>
     /// <param name="sender">This page</param>

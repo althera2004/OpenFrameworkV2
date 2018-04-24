@@ -42,7 +42,7 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
     {
         if (this.Request.QueryString["InstanceName"] != null)
         {
-            this.instance = new CustomerFramework() { Name = this.Request.QueryString["InstanceName"].ToString() };
+            this.instance = new CustomerFramework { Name = this.Request.QueryString["InstanceName"] };
             this.instance.LoadConfig();
         }
 
@@ -74,8 +74,8 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
     private void GoScript()
     {
         string res = string.Empty;
-        string action = this.Request.QueryString["GetScript"].ToString().Trim().ToUpperInvariant();
-        string variable = this.Request.QueryString["var"].ToString().Trim();
+        string action = this.Request.QueryString["GetScript"].Trim().ToUpperInvariant();
+        string variable = this.Request.QueryString["var"].Trim();
         switch (action)
         {
         }
@@ -92,9 +92,9 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
     /// <summary>Gets JSON array</summary>
     private void GoAction()
     {
-        DateTime d0 = DateTime.Now;
+        var d0 = DateTime.Now;
         string res = string.Empty;
-        string action = this.Request.QueryString["Action"].ToString().Trim().ToUpperInvariant();
+        string action = this.Request.QueryString["Action"].Trim().ToUpperInvariant();
 
         switch (action)
         {
@@ -112,11 +112,11 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
                 break;
         }
 
-        DateTime d1 = DateTime.Now;
+        var d1 = DateTime.Now;
         this.Response.Clear();
         this.Response.Write(@"{""data"":");
         this.Response.Write(res);
-        DateTime d2 = DateTime.Now;
+        var d2 = DateTime.Now;
         this.Response.Write(string.Format(CultureInfo.GetCultureInfo("en-us"), @",""Time"":""{0:#,##0} - {1:#,##0}""}}", (d1 - d0).TotalMilliseconds, (d2 - d1).TotalMilliseconds));
         this.Response.Flush();
         this.Response.SuppressContent = true;
@@ -129,7 +129,7 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
         string res = "[]";
         var parameters = new List<SqlParameter>
         {
-            DataParameter.Input("@AlumnoId", Convert.ToInt64(this.Request.QueryString["AlumnoId"].ToString()))
+            DataParameter.Input("@AlumnoId", Convert.ToInt64(this.Request.QueryString["AlumnoId"]))
         };
 
         try
@@ -138,7 +138,7 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
         }
         catch (Exception ex)
         {
-            ExceptionManager.Trace(ex, "Item_Actividad_GetByAlumno(" + Convert.ToInt64(this.Request.QueryString["AlumnoId"].ToString()) + ")");
+            ExceptionManager.Trace(ex, "Item_Actividad_GetByAlumno(" + Convert.ToInt64(this.Request.QueryString["AlumnoId"]) + ")");
         }
 
         return res;
@@ -150,7 +150,7 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
         string res = "[]";
         var parameters = new List<SqlParameter>
         {
-            DataParameter.Input("@CursoId", Convert.ToInt64(this.Request.QueryString["CursoId"].ToString()))
+            DataParameter.Input("@CursoId", Convert.ToInt64(this.Request.QueryString["CursoId"]))
         };
 
         try
@@ -159,7 +159,7 @@ public partial class CustomersFramework_AMPA_Data_ItemDataBase : Page
         }
         catch (Exception ex)
         {
-            ExceptionManager.Trace(ex, "Item_Alumno_GetByCurso(" + Convert.ToInt64(this.Request.QueryString["CursoId"].ToString()) + ")");
+            ExceptionManager.Trace(ex, "Item_Alumno_GetByCurso(" + Convert.ToInt64(this.Request.QueryString["CursoId"]) + ")");
         }
 
         return res;

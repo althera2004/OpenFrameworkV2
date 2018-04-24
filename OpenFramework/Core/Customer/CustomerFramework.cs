@@ -7,8 +7,6 @@
 namespace OpenFramework.Customer
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Configuration;
     using System.Globalization;
 
@@ -20,7 +18,7 @@ namespace OpenFramework.Customer
         {
             get
             {
-                return new CustomerFramework()
+                return new CustomerFramework
                 {
                     Id = 0,
                     Name = string.Empty,
@@ -48,13 +46,13 @@ namespace OpenFramework.Customer
 
         public static CustomerFramework Load(string instanceName)
         {
-            CustomerFramework res = new CustomerFramework
+            var result = new CustomerFramework
             {
                 Name = instanceName
             };
 
-            res.LoadConfig();
-            return res;
+            result.LoadConfig();
+            return result;
         }
 
         public string DefinitionPath
@@ -63,7 +61,7 @@ namespace OpenFramework.Customer
             {
                 string path = string.Format(
                     CultureInfo.InvariantCulture,
-                    ConfigurationManager.AppSettings["ItemsDefinitionPath"].ToString(),
+                    ConfigurationManager.AppSettings["ItemsDefinitionPath"],
                     this.Name);
 
                 if (!path.EndsWith(@"\", StringComparison.OrdinalIgnoreCase))

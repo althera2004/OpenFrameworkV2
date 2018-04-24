@@ -13,7 +13,7 @@
         },
         "EditionType": "inline"
     },
-    "ForeignValues": [ {"ItemName": "Integrante"}, { "ItemName": "ReunionTipo"} ],
+    "ForeignValues": [ { "ItemName": "Integrante" }, { "ItemName": "ReunionTipo" } ],
     "PrimaryKeys": [ ],
     "Fields": [
         { "Name": "Id", "Type": "long", "Required": true },
@@ -22,7 +22,8 @@
         { "Name": "FechaConvocatoria", "Label": "Convocatoria", "Type": "datetime" },
         { "Name": "IntegranteId", "Label": "Convocante", "Type": "long", "Required": true, "ColumnDataType": "Text" },
         { "Name": "ReunionTipoId", "Label": "Tipo", "Type": "long", "Required": true, "ColumnDataType": "Text" },
-        { "Name": "Abierta", "Label": "Abierta", "Type": "bool" }
+        { "Name": "Abierta", "Label": "Abierta", "Type": "bool" },
+        { "Name": "Acta", "Label": "Acta", "Type": "DocumentFile" }
     ],
   "Lists": [
     {

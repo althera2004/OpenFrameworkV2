@@ -13,10 +13,10 @@
         },
         "EditionType": "inline"
     },
-    "ForeignValues": [
-		{"ItemName": "Reunion"},
-		{"ItemName": "Integrante"}
-	],
+  "ForeignValues": [
+    { "ItemName": "Reunion" },
+    { "ItemName": "Integrante" }
+  ],
     "PrimaryKeys": [ ],
     "Fields": [
         { "Name": "Id", "Type": "long", "Required": true },

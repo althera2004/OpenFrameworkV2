@@ -18,24 +18,10 @@
   ],
   "PrimaryKeys": [],
   "Fields": [
-    {
-      "Name": "Id",
-      "Type": "long",
-      "Required": true
-    },
-    {
-      "Name": "Nombre",
-      "Label": "Nombre",
-      "Type": "text",
-      "Length": 100,
-      "Required": true
-    },
-    {
-      "Name": "UbicacionId",
-      "Label": "Ubicacion",
-      "Type": "long",
-      "Required": true
-    }
+    { "Name": "Id", "Type": "long", "Required": true },
+    { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
+    { "Name": "CesionId", "Label": "Cesión espacio", "Type": "long", "Required": true, "FK": true },
+    { "Name": "UbicacionId", "Label": "Ubicacion", "Type": "long", "Required": true, "FK": true }
   ],
   "Lists": [
     {
@@ -45,14 +31,8 @@
       "EditAction": 3,
       "CustomAjaxSource": "ITEM_LUGAR_GETALL",
       "Columns": [
-        {
-          "DataProperty": "Nombre",
-          "ReplacedBy": "N"
-        },
-        {
-          "DataProperty": "UbicacionId",
-          "ReplacedBy": "U"
-        }
+        { "DataProperty": "Nombre", "ReplacedBy": "N" },
+        { "DataProperty": "UbicacionId", "ReplacedBy": "U" }
       ]
     }
   ],

@@ -1,1 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FKScript.aspx.cs" Inherits="Data_FKScript" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="FKScript.aspx.cs" Inherits="DataFKScript" %>

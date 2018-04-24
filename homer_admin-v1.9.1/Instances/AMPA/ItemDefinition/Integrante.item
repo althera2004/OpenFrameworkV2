@@ -1,27 +1,102 @@
 ﻿{
-    "ItemName": "Integrante",
-    "MustReload": true,
-    "Layout": {
-        "Icon": "user",
-        "Label": "Integrante",
-        "LabelPlural": "Integrantes",
-        "Description": {
-            "Pattern": "{0}",
-            "Fields": [
-                { "Name": "Nombre" }
-            ]
-        },
-        "EditionType": "inline"
+  "ItemName": "Integrante",
+  "MustReload": true,
+  "Layout": {
+    "Icon": "user",
+    "Label": "Integrante",
+    "LabelPlural": "Integrantes",
+    "Description": {
+      "Pattern": "{0}",
+      "Fields": [
+        { "Name": "Nombre" }
+      ]
     },
-    "ForeignValues": [ ],
-    "PrimaryKeys": [ ],
-    "Fields": [
-        { "Name": "Id", "Type": "long", "Required": true },
-        { "Name": "Nombre", "Label": "Nombre", "Type": "text", "Length": 100, "Required": true },
-        { "Name": "Email", "Label": "Email", "Type": "email", "Length": 100, "Required": true },
-        { "Name": "Fecha", "Label": "Fecha", "Type": "datetime" },
-        { "Name": "Externo", "Label": "Externo", "Type": "bool", "DataFormat": { "Name": "BooleanCheck" } }
-    ],
-    "Lists": [ ],
-    "Forms": [ ]
+    "EditionType": "inline"
+  },
+  "ForeignValues": [],
+  "PrimaryKeys": [],
+  "Fields": [
+    {
+      "Name": "Id",
+      "Type": "long",
+      "Required": true
+    },
+    {
+      "Name": "Nombre",
+      "Label": "Nombre",
+      "Type": "text",
+      "Length": 100,
+      "Required": true
+    },
+    {
+      "Name": "Email",
+      "Label": "Email",
+      "Type": "email",
+      "Length": 100,
+      "Required": true
+    },
+    {
+      "Name": "Fecha",
+      "Label": "Fecha",
+      "Type": "datetime"
+    },
+    {
+      "Name": "Externo",
+      "Label": "Externo",
+      "Type": "bool",
+      "DataFormat": { "Name": "BooleanCheck" }
+    }
+  ],
+  "Lists": [
+    {
+      "Id": "Custom",
+      "FormId": "Custom",
+      "Layout": 1,
+      "EditAction": 3,
+      "CustomAjaxSource": "ITEM_INTEGRANTE_GETALL",
+      "Columns": [
+        {
+          "DataProperty": "Nombre",
+          "ReplacedBy": "N"
+        },
+        {
+          "DataProperty": "Email",
+          "ReplacedBy": "I"
+        },
+        {
+          "DataProperty": "Fecha",
+          "ReplacedBy": "F"
+        },
+        {
+          "DataProperty": "Externo",
+          "ReplacedBy": "E"
+        }
+      ]
+    }
+  ],
+    "Forms": [
+        {
+            "Id": "Custom",
+            "FormType": "Custom",
+            "Tabs": [
+                {
+                    "Label": "Datos",
+                    "Rows": [
+                        {
+                            "Fields": [
+                                { "Name": "Nombre" },                           
+                                { "Name": "Email" }
+                            ]
+                        },
+                        {
+                            "Fields": [
+                                { "Name": "Fecha" },
+                                { "Name": "Externo" }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

@@ -1,1 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DocumentUpload.aspx.cs" Inherits="Data_DocumentUpload" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="DocumentUpload.aspx.cs" Inherits="DataDocumentUpload" %>

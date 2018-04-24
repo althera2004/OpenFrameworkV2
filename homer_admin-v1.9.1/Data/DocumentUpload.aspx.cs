@@ -15,7 +15,7 @@ using OpenFramework;
 using OpenFramework.DataAccess;
 using OpenFramework.Customer;
 
-public partial class Data_DocumentUpload : Page
+public partial class DataDocumentUpload : Page
 {
     private CustomerFramework instance;
 

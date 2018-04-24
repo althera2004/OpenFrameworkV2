@@ -16,14 +16,14 @@ using OpenFramework;
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [ScriptService]
-public partial class Data_GalleryActions : Page
+public partial class DataGalleryActions : Page
 {
     [WebMethod]
     [ScriptMethod]
     public static ActionResult SaveImage(string instanceName, string galleryFolder, string imageData, string imageFileName)
     {
         var res = ActionResult.NoAction;
-        byte[] bytes = Convert.FromBase64String(imageData);
+        var bytes = Convert.FromBase64String(imageData);
         /* ALTER PROCEDURE [dbo].[Core_PhotoGallery_Insert]
          *   @Id bigint output,
          *   @ItemName nvarchar(50),

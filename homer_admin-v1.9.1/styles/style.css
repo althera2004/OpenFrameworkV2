@@ -1948,10 +1948,13 @@ body.fullscreen-panel-mode {
 .nav-tabs > li > a,
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
-  border: 1px solid #e4e5e7;
-  border-bottom-color: transparent;
+    border: 1px solid #e4e5e7;
+    border-top: 3px solid #e4e5e7;
+    border-bottom-color: transparent;
 }
-.nav-tabs > li.active  > a{ border-top:3px solid #ccf;}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover {
+    border-top: 3px solid #ccf;
+}
 .nav-tabs {
   border-bottom: 1px solid #e4e5e7;
 }
@@ -1963,8 +1966,8 @@ body.fullscreen-panel-mode {
   border-top: 1px solid #e4e5e7;
 }
 .nav-tabs > li a:hover {
-  background: transparent;
-  border-color: transparent;
+    background: #fff;
+    border-top: 3px solid #e0e055;
 }
 .tabs-below > .nav-tabs,
 .tabs-right > .nav-tabs,

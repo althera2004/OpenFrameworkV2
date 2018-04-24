@@ -17,7 +17,7 @@ using System.Text;
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 [ScriptService]
-public partial class Data_DocumentGalleryActions : Page
+public partial class DataDocumentGalleryActions : Page
 {
     [WebMethod]
     [ScriptMethod]

@@ -23,7 +23,7 @@
         { "Name": "AlumnoId", "Label": "Alumno", "Type": "long", "Required": true, "ColumnDataType": "text" },
         { "Name": "cc", "Label": "C.C.", "Type": "text", "Length": 30 },
         { "Name": "ActividadId", "Label": "Actividad", "Type": "long", "Required": true, "ColumnDataType": "text" },
-        { "Name": "FechaInscripcion", "Label": "Inscripción", "Type": "datetime", "Required": true },
+        { "Name": "FechaInscripcion", "Label": "Preinscripción", "Type": "datetime", "Required": true },
         { "Name": "FechaConfirmacion", "Label": "Confirmación", "Type": "datetime" },
         { "Name": "FechaBaja", "Label": "Baja", "Type": "datetime" },
         { "Name": "MotivoBaja", "Label": "Motivo", "Type": "textarea", "Length": 500 }

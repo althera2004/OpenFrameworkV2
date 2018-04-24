@@ -59,6 +59,11 @@ function GetTableColumns(definition, listId) {
             columns.push({ data: dataSource });
 
             var renderColumn = null;
+            if (typeof column.Render === "undefined" && column.Render !== null) {
+                if (typeof field.DataFormat !== "undefined" && field.DataFormat !== null) {
+                    column.Render = field.DataFormat.Name;
+                }
+            }
 
             if (field.Type === "url") {
                 renderColumn = "$(\"td\", row).eq(" + x + ").html(ToWebPageBlank(data." + dataSource + "))";
@@ -68,13 +73,12 @@ function GetTableColumns(definition, listId) {
                 renderColumn = "$(\"td\", row).eq(" + x + ").html(ToMail(data." + dataSource + "))";
             }
             else if (typeof column.Render !== "undefined") {
-
                 if (column.Render.indexOf("#") !== -1) {
                     var func = column.Render.split("#")[0] + "data." + column.DataProperty + column.Render.split("#")[1];
                     renderColumn = "$(\"td\", row).eq(" + x + ").html(" + func + ")";
                 }
                 else {
-                    renderColumn = "$(\"td\", row).eq(" + x + ").html(" + column.Render + ")";
+                    renderColumn = "$(\"td\", row).eq(" + x + ").html(" + column.Render + "(data." + dataSource  + "))";
                 }
             }
 

@@ -1,0 +1,402 @@
+********** 24/04/2018 19:30:39 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:35:37 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:36:28 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:36:52 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:37:04 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:37:18 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 3)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:41:00 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:43:02 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:43:18 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:44:36 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:44:39 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 3)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:46:39 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 19:46:43 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 3)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:46:58 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 1)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:47:50 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 3)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:48:10 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de columna 'Cesion' no es válido.
+Source: OpenFramework.Basics.SQLToJSONSimple(SELECT 
+		              '"Id":' + ISNULL(CAST(Item.Id AS nvarchar(20)),'null') + ',' +'"Nombre":"' +  ISNULL(Item.Nombre,'') + '",' +'"LugarId":' + ISNULL(CAST(Item.LugarId AS nvarchar(20)),'null') + ',' +'"TipoPago":"' +  ISNULL(Item.TipoPago,'') + '",' +'"PrecioUnico":' + ISNULL(CAST(Item.PrecioUnico AS nvarchar(20)),'null') + ',' +'"Precio2":' + ISNULL(CAST(Item.Precio2 AS nvarchar(20)),'null') + ',' +'"Precio3":' + ISNULL(CAST(Item.Precio3 AS nvarchar(20)),'null') + ',' +'"ProveedorId":' + ISNULL(CAST(Item.ProveedorId AS nvarchar(20)),'null') + ',' +'"MonitorId":' + ISNULL(CAST(Item.MonitorId AS nvarchar(20)),'null') + ',' +'"QuorumMin":' + ISNULL(CAST(Item.QuorumMin AS nvarchar(20)),'null') + ',' +'"QuorumMax":' + ISNULL(CAST(Item.QuorumMax AS nvarchar(20)),'null') + ',' +'"Cesion":"' +  ISNULL(Item.Cesion,'') + '",' +
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END
+                      FROM Item_Extraescolar Item WITH(NOLOCK) WHERE Id = 2)
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLStreamSimple(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 839
+
+********** 24/04/2018 19:54:58 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+
+********** 24/04/2018 20:02:55 **********
+Exception Type: System.Data.SqlClient.SqlException
+Exception: El nombre de objeto 'Item_Actividad' no es válido.
+Source: OpenFramework.core.Tools.Basics.SQLJsoStream(SELECT 
+		              '{"Id":' +  CAST(Item.Id AS  nvarchar(20)) + ',' +
+                      '"Description":"'  + ISNULL(Item.Nombre,'') + '' + '",' + 
+                      
+                      '"Active":' + CASE WHEN Item.Active = 0 THEN 'false' ELSE 'true' END + '}' AS Data
+                      FROM Item_Actividad Item WITH(NOLOCK))
+Stack Trace: 
+   en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   en System.Data.SqlClient.SqlDataReader.get_MetaData()
+   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   en System.Data.SqlClient.SqlCommand.ExecuteReader()
+   en OpenFramework.Basics.SQLJSONStream(SqlCommand cmd) en D:\My Web Sites\Homer\Homer Theme\webapplayers.com\OpenFramework\Basics.cs:línea 747
+

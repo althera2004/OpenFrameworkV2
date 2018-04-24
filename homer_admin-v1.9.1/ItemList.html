@@ -6,7 +6,7 @@
 	console.log("Coded query", codedQuery);
 	PageType = "list";
 	var MenuOptionId = 3;
-	var queryParams = DecodeEncryptedQuery();;
+	var queryParams = DecodeEncryptedQuery();
 	var Data = null;
 	var ItemDefinition = null;
     console.log("Params", queryParams);
@@ -117,7 +117,9 @@
 					$("#listTable").DataTable().draw();
 				}
 			}
-		}
+        }
+
+        document.title = ItemDefinition.Layout.LabelPlural;
 	}
 	
 	$(".closebox").on("click", function (event) {
